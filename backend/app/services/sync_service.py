@@ -4,6 +4,7 @@ import csv
 import json
 import sys
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -20,6 +21,7 @@ LEVEL_REQUIREMENTS = {
     2: {"personal": 3, "team": 1},
     3: {"personal": 1, "team": 1}
 }
+KST = ZoneInfo("Asia/Seoul")
 
 def parse_tasks(row):
     """띄어쓰기나 오타를 무시하고 필수/선택 문제 개수 추출"""
@@ -81,7 +83,8 @@ def sync_team_json_to_db(db: Session):
                             team_id=team_id, 
                             level=level_str,  # 🚨 수정 완료: level=level_str 로 복구!
                             status=status, 
-                            member_names=member_names_str 
+                            member_names=member_names_str,
+                            status_changed_date=datetime.now(KST).replace(tzinfo=None),
                         )
                         db.add(new_project)
                         db.flush()
@@ -93,6 +96,7 @@ def sync_team_json_to_db(db: Session):
                             project.member_names = member_names_str
                             updated_teams += 1
                             print(f"[UPDATE] cohort=1, team_id={team_id}, level={level_str}, status={status}, members={member_names_str}")
+                        project.status_changed_date = datetime.now(KST).replace(tzinfo=None)
 
         except Exception as e:
             db.rollback()
@@ -144,39 +148,28 @@ def sync_progress_csv_to_db(db: Session):
 
                 prog_log = db.query(models.ProgressLog).filter(
                     models.ProgressLog.trainee_id == trainee.trainee_id,
-                    models.ProgressLog.level == csv_level
+                    models.ProgressLog.level == csv_level,
+                    models.ProgressLog.mission_type == "summary",
+                    models.ProgressLog.mission_label.is_(None),
                 ).first()
 
                 if not prog_log:
-                    prog_log = models.ProgressLog(trainee_id=trainee.trainee_id, level=csv_level)
+                    prog_log = models.ProgressLog(
+                        trainee_id=trainee.trainee_id,
+                        cohort_id=trainee.cohort_id,
+                        level=csv_level,
+                        mission_type="summary",
+                    )
                     db.add(prog_log)
                     db.flush()
 
                 prog_log.personal_tasks_done = personal_done
                 prog_log.is_team_project_done = is_team_done
-
-                if trainee.current_level < csv_level:
-                    trainee.current_level = csv_level
-                    trainee.personal_tasks_done = 0
-                    trainee.is_team_project_done = False
-
-                if trainee.current_level == csv_level:
-                    trainee.personal_tasks_done = personal_done 
-                    trainee.is_team_project_done = is_team_done 
-
-                    if personal_done >= req["personal"] and team_done >= req["team"]:
-                        if not prog_log.passed_date:
-                            prog_log.passed_date = datetime.now()
-                            
-                        next_level = csv_level + 1
-                        
-                        if next_level <= 3:
-                            trainee.current_level = next_level
-                            trainee.personal_tasks_done = 0 
-                            trainee.is_team_project_done = False 
-                            level_up_count += 1
-                        else:
-                            trainee.is_completed = True
+                prog_log.cohort_id = trainee.cohort_id
+                prog_log.status = "summary"
+                prog_log.last_updated = datetime.now(KST).replace(tzinfo=None)
+                if personal_done >= req["personal"] and team_done >= req["team"] and not prog_log.passed_date:
+                    prog_log.passed_date = datetime.now(KST).replace(tzinfo=None)
                 
                 processed_count += 1
                 

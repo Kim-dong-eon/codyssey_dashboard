@@ -1,0 +1,364 @@
+@reference "tailwindcss";
+
+/* main: 9 visual rules */
+.teamprojects__main_001 { @apply h-[calc(100vh-64px)] overflow-hidden max-w-[1800px] flex-col mx-auto gap-5 flex p-4; }
+@media (min-width: 80rem) { .teamprojects__main_001 { @apply p-6; } }
+
+/* header: 12 visual rules */
+.teamprojects__header_001 { @apply justify-between items-center rounded-2xl flex-wrap border gap-5 flex px-5 py-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__header_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+@media (min-width: 80rem) { .teamprojects__header_001 { @apply px-6; } }
+
+/* group: 3 visual rules */
+.teamprojects__group_001 { @apply items-center gap-4 flex; }
+
+/* group: 5 visual rules */
+.teamprojects__group_002 { @apply rounded-xl border p-3; border-color: var(--tint-border-blue); background-color: var(--tint-blue); }
+
+/* users: 1 visual rules */
+.teamprojects__users_001 { color: var(--tone-blue); }
+
+/* title: 3 visual rules */
+.teamprojects__title_001 { @apply font-extrabold text-white text-xl; }
+html[data-theme="light"] .teamprojects__title_001 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.teamprojects__text_001 { @apply text-sm mt-1; color: var(--text-muted); }
+html[data-theme="light"] .teamprojects__text_001 { color: var(--text-muted); }
+
+/* group: 3 visual rules */
+.teamprojects__group_003 { @apply flex-wrap gap-2 flex; }
+
+/* group: 6 visual rules */
+.teamprojects__group_004 { @apply rounded-xl border py-2 px-4; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__group_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* label: 4 visual rules */
+.teamprojects__label_001 { @apply text-[10px] font-bold block; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__label_001 { color: var(--text-muted); }
+
+/* strong: 2 visual rules */
+.teamprojects__strong_001 { @apply text-white text-sm; }
+html[data-theme="light"] .teamprojects__strong_001 { color: var(--text-strong); }
+
+/* strong: 2 visual rules */
+.teamprojects__strong_002 { @apply text-sm; color: var(--tone-blue); }
+html[data-theme="light"] .teamprojects__strong_002 { color: var(--tone-blue); }
+
+/* group: 10 visual rules */
+.teamprojects__group_005 { @apply justify-between items-center rounded-xl flex-wrap border gap-3 flex p-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__group_005 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* label: 4 visual rules */
+.teamprojects__label_002 { @apply min-w-[220px] relative flex-1; }
+@media (min-width: 80rem) { .teamprojects__label_002 { @apply max-w-sm; } }
+
+/* search: 4 visual rules */
+.teamprojects__search_001 { @apply absolute top-2.5 left-3; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__search_001 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.teamprojects__input_001 { @apply outline-none text-white rounded-lg text-sm border w-full py-2 pr-3 pl-9; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__input_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teamprojects__input_001:focus { border-color: var(--tone-blue); }
+
+/* group: 8 visual rules */
+.teamprojects__group_006 { @apply rounded-lg flex-wrap border gap-1 flex p-1; border-color: var(--border-color); background-color: var(--app-background); }
+html[data-theme="light"] .teamprojects__group_006 { border-color: var(--border-color); background-color: var(--app-background); }
+
+/* group: 8 visual rules */
+.teamprojects__group_007 { @apply rounded-xl text-sm border py-3 px-4; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .teamprojects__group_007 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* group: 6 visual rules */
+.teamprojects__group_008 { @apply min-h-0 flex-1 gap-5 grid grid-cols-1; }
+@media (min-width: 80rem) { .teamprojects__group_008 { @apply grid-cols-[minmax(0,1fr)_340px]; } }
+
+/* section: 3 visual rules */
+.teamprojects__section_001 { @apply overflow-y-auto min-h-0 pr-1; }
+
+/* text: 4 visual rules */
+.teamprojects__text_002 { @apply text-center text-sm py-12; color: var(--text-muted); }
+html[data-theme="light"] .teamprojects__text_002 { color: var(--text-muted); }
+
+/* group: 5 visual rules */
+.teamprojects__group_009 { @apply items-start gap-4 grid grid-cols-1; }
+@media (min-width: 64rem) { .teamprojects__group_009 { @apply grid-cols-3; } }
+
+/* card: 6 visual rules */
+.teamprojects__card_001 { @apply overflow-hidden rounded-2xl shadow-sm border; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__card_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* header: 11 visual rules */
+.teamprojects__header_002 { @apply justify-between items-center border-b sticky top-0 flex py-4 z-10 px-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__header_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 3 visual rules */
+.teamprojects__title_002 { @apply font-extrabold text-white text-base; }
+html[data-theme="light"] .teamprojects__title_002 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.teamprojects__text_003 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__text_003 { color: var(--text-muted); }
+
+/* label: 9 visual rules */
+.teamprojects__label_003 { @apply rounded-full font-bold text-xs py-1.5 border px-3; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-raised); }
+html[data-theme="light"] .teamprojects__label_003 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* group: 2 visual rules */
+.teamprojects__group_010 { @apply space-y-2.5 p-3; }
+
+/* button: 13 visual rules */
+.teamprojects__button_001 { @apply transition rounded-xl text-left border w-full p-3; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__button_001 { background-color: var(--surface-background); }
+.teamprojects__button_001:focus-visible { @apply ring-blue-500; }
+.teamprojects__button_001:focus-visible { @apply outline-none; }
+.teamprojects__button_001:hover { border-color: var(--tint-border-blue); }
+.teamprojects__button_001:focus-visible { @apply ring-2; }
+.teamprojects__button_001:hover { background-color: var(--surface-raised); }
+
+/* group: 4 visual rules */
+.teamprojects__group_011 { @apply justify-between items-start gap-2 flex; }
+
+/* group: 1 visual rules */
+.teamprojects__group_012 { @apply min-w-0; }
+
+/* text: 4 visual rules */
+.teamprojects__text_004 { @apply font-extrabold text-white truncate text-sm; }
+html[data-theme="light"] .teamprojects__text_004 { color: var(--text-strong); }
+
+/* group: 11 visual rules */
+.teamprojects__group_013 { @apply justify-between items-center text-[10px] border-t min-w-0 gap-2 flex pt-2 mt-3; border-color: var(--border-color); color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__group_013 { color: var(--text-muted); }
+
+/* label: 2 visual rules */
+.teamprojects__label_004 { @apply truncate min-w-0; }
+
+/* label: 1 visual rules */
+.teamprojects__label_005 { @apply shrink-0; }
+
+/* group: 9 visual rules */
+.teamprojects__group_014 { @apply border-dashed text-center rounded-xl text-xs border py-10 px-3; border-color: var(--border-strong); color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__group_014 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* aside: 9 visual rules */
+.teamprojects__aside_001 { @apply overflow-hidden rounded-2xl shadow-lg flex-col min-h-0 border flex; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__aside_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* header: 5 visual rules */
+.teamprojects__header_003 { @apply border-b px-5 py-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__header_003 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.teamprojects__group_015 { @apply justify-between items-center gap-3 flex; }
+
+/* title: 5 visual rules */
+.teamprojects__title_003 { @apply font-extrabold items-center text-white gap-2 flex; }
+html[data-theme="light"] .teamprojects__title_003 { color: var(--text-strong); }
+
+/* messagesquaretext: 1 visual rules */
+.teamprojects__messagesquaretext_001 { color: var(--tone-purple); }
+html[data-theme="light"] .teamprojects__messagesquaretext_001 { color: var(--tone-purple); }
+
+/* label: 7 visual rules */
+.teamprojects__label_006 { @apply rounded-full font-bold text-xs px-2.5 py-1; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .teamprojects__label_006 { color: var(--text-primary); }
+
+/* text: 4 visual rules */
+.teamprojects__text_005 { @apply leading-relaxed text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__text_005 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.teamprojects__group_016 { @apply space-y-2 border-b p-4; border-color: var(--border-color); }
+html[data-theme="light"] .teamprojects__group_016 { border-color: var(--border-color); }
+
+/* textarea: 12 visual rules */
+.teamprojects__textarea_001 { @apply outline-none text-white rounded-xl resize-y text-sm border w-full p-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__textarea_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teamprojects__textarea_001::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__textarea_001::placeholder { color: var(--text-muted); }
+.teamprojects__textarea_001:focus { border-color: var(--tone-blue); }
+
+/* group: 3 visual rules */
+.teamprojects__group_017 { @apply justify-between items-center flex; }
+
+/* label: 2 visual rules */
+.teamprojects__label_007 { @apply text-[10px]; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__label_007 { color: var(--text-primary); }
+
+/* button: 13 visual rules */
+.teamprojects__button_002 { @apply items-center inline-flex transition text-white rounded-lg font-bold text-xs gap-1.5 px-3 py-2; background-color: var(--action-primary); }
+html[data-theme="light"] .teamprojects__button_002 { color: #fff; }
+.teamprojects__button_002:disabled { @apply opacity-40; }
+.teamprojects__button_002:hover { background-color: var(--action-primary-hover); }
+
+/* group: 4 visual rules */
+.teamprojects__group_018 { @apply overflow-y-auto space-y-3 flex-1 p-4; }
+
+/* card: 5 visual rules */
+.teamprojects__card_002 { @apply rounded-xl border p-3.5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__card_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 5 visual rules */
+.teamprojects__text_006 { @apply whitespace-pre-wrap leading-relaxed break-words text-sm; color: var(--text-primary); }
+html[data-theme="light"] .teamprojects__text_006 { color: var(--text-primary); }
+
+/* button: 7 visual rules */
+.teamprojects__button_003 { @apply transition rounded-md shrink-0 p-1; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__button_003 { color: var(--text-primary); }
+.teamprojects__button_003:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .teamprojects__button_003:hover { background-color: var(--tint-red); }
+.teamprojects__button_003:hover { color: var(--tone-red); }
+html[data-theme="light"] .teamprojects__button_003:hover { color: var(--tone-red); }
+
+/* group: 10 visual rules */
+.teamprojects__group_019 { @apply justify-between items-center text-[10px] border-t gap-2 flex pt-2 mt-3; border-color: var(--border-color); color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__group_019 { color: var(--text-muted); }
+
+/* group: 10 visual rules */
+.teamprojects__group_020 { @apply leading-relaxed border-dashed text-center rounded-xl text-xs border py-10 px-4; border-color: var(--border-strong); color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__group_020 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* group: 6 visual rules */
+.teamprojects__group_021 { @apply bg-black/55 justify-end inset-0 z-[60] fixed flex; }
+
+/* aside: 9 visual rules */
+.teamprojects__aside_002 { @apply shadow-2xl max-w-xl flex-col border-l h-full w-full flex; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__aside_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* header: 8 visual rules */
+.teamprojects__header_004 { @apply justify-between items-start border-b flex px-6 py-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__header_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 3 visual rules */
+.teamprojects__text_007 { @apply font-bold text-xs; color: var(--tone-blue); }
+
+/* title: 4 visual rules */
+.teamprojects__title_004 { @apply font-extrabold text-white text-xl mt-1; }
+html[data-theme="light"] .teamprojects__title_004 { color: var(--text-strong); }
+
+/* button: 5 visual rules */
+.teamprojects__button_004 { @apply rounded-lg p-2; color: var(--text-muted); }
+html[data-theme="light"] .teamprojects__button_004 { color: var(--text-muted); }
+.teamprojects__button_004:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .teamprojects__button_004:hover { background-color: var(--surface-muted); }
+.teamprojects__button_004:hover { @apply text-white; }
+html[data-theme="light"] .teamprojects__button_004:hover { color: var(--text-strong); }
+
+/* group: 4 visual rules */
+.teamprojects__group_022 { @apply overflow-y-auto space-y-5 flex-1 p-6; }
+
+/* section: 5 visual rules */
+.teamprojects__section_002 { @apply rounded-2xl border p-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamprojects__section_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 5 visual rules */
+.teamprojects__group_023 { @apply justify-between items-center flex-wrap gap-3 flex; }
+
+/* text: 3 visual rules */
+.teamprojects__text_008 { @apply font-bold text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__text_008 { color: var(--text-muted); }
+
+/* text: 4 visual rules */
+.teamprojects__text_009 { @apply font-extrabold text-white text-lg mt-1; }
+html[data-theme="light"] .teamprojects__text_009 { color: var(--text-strong); }
+
+/* label: 4 visual rules */
+.teamprojects__label_008 { @apply rounded-xl p-3; background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .teamprojects__label_008 { color: var(--tone-blue); }
+
+/* group: 4 visual rules */
+.teamprojects__group_024 { @apply gap-3 grid mt-5 grid-cols-2; }
+
+/* group: 5 visual rules */
+.teamprojects__group_025 { @apply rounded-xl border p-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__group_025 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 3 visual rules */
+.teamprojects__text_010 { @apply text-[10px] font-bold; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__text_010 { color: var(--text-muted); }
+
+/* text: 4 visual rules */
+.teamprojects__text_011 { @apply font-bold text-sm mt-1; color: var(--text-primary); }
+html[data-theme="light"] .teamprojects__text_011 { color: var(--text-primary); }
+
+/* title: 6 visual rules */
+.teamprojects__title_005 { @apply font-extrabold items-center text-white text-sm gap-2 flex; }
+html[data-theme="light"] .teamprojects__title_005 { color: var(--text-strong); }
+
+/* calendarclock: 1 visual rules */
+.teamprojects__calendarclock_001 { color: var(--tone-amber); }
+
+/* text: 3 visual rules */
+.teamprojects__text_012 { @apply text-sm mt-2; color: var(--text-primary); }
+html[data-theme="light"] .teamprojects__text_012 { color: var(--text-primary); }
+
+/* group: 4 visual rules */
+.teamprojects__group_026 { @apply justify-between items-center flex mb-3; }
+
+/* users: 1 visual rules */
+.teamprojects__users_002 { color: var(--tone-blue); }
+html[data-theme="light"] .teamprojects__users_002 { color: var(--tone-blue); }
+
+/* label: 2 visual rules */
+.teamprojects__label_009 { @apply text-[10px]; color: var(--text-subtle); }
+html[data-theme="light"] .teamprojects__label_009 { color: var(--text-muted); }
+
+/* text: 10 visual rules */
+.teamprojects__text_013 { @apply whitespace-pre-wrap leading-relaxed break-words rounded-xl text-sm border p-4; border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+html[data-theme="light"] .teamprojects__text_013 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+
+/* Conditional style teamprojects__variant_001 */
+.teamprojects__variant_001 { @apply items-center inline-flex transition rounded-md font-bold text-xs gap-1.5 px-3 py-2; }
+
+/* Conditional style teamprojects__variant_002 */
+.teamprojects__variant_002 { @apply text-white; background-color: var(--surface-track); }
+html[data-theme="light"] .teamprojects__variant_002 { background-color: var(--surface-muted); color: var(--text-strong); }
+
+/* Conditional style teamprojects__variant_003 */
+.teamprojects__variant_003 { color: var(--text-muted); }
+html[data-theme="light"] .teamprojects__variant_003 { color: var(--text-muted); }
+.teamprojects__variant_003:hover { color: var(--text-primary); }
+html[data-theme="light"] .teamprojects__variant_003:hover { color: var(--text-primary); }
+
+/* Conditional style teamprojects__variant_004 */
+.teamprojects__variant_004 { border-color: var(--tint-border-green); background-color: var(--tint-green); color: var(--tone-green); }
+html[data-theme="light"] .teamprojects__variant_004 { color: var(--tone-green); }
+
+/* Conditional style teamprojects__variant_005 */
+.teamprojects__variant_005 { border-color: var(--tint-border-blue); background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .teamprojects__variant_005 { color: var(--tone-blue); }
+
+/* Conditional style teamprojects__variant_006 */
+.teamprojects__variant_006 { border-color: var(--tint-border-amber); background-color: var(--tint-amber); color: var(--tone-amber); }
+
+/* Conditional style teamprojects__variant_007 */
+.teamprojects__variant_007 { @apply border-slate-500/20 bg-slate-500/10; color: var(--text-primary); }
+
+/* Conditional style teamprojects__variant_008 */
+.teamprojects__variant_008 { @apply rounded-full items-center inline-flex text-[10px] font-bold shrink-0 gap-1.5 border py-1 px-2; }
+
+/* Light theme neutral surfaces and labels */
+html[data-theme="light"] .teamprojects__button_001 { border-color: var(--border-color); }
+html[data-theme="light"] .teamprojects__group_013 { border-color: var(--border-color); }
+html[data-theme="light"] .teamprojects__label_006 { background-color: var(--surface-track); }
+html[data-theme="light"] .teamprojects__group_019 { border-color: var(--border-color); }
+html[data-theme="light"] .teamprojects__variant_007 { color: var(--text-primary); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .teamprojects__button_002
+):is(
+  .teamprojects__button_002,
+  .teamprojects__input_001,
+  .teamprojects__strong_001,
+  .teamprojects__text_004,
+  .teamprojects__text_009,
+  .teamprojects__textarea_001,
+  .teamprojects__title_001,
+  .teamprojects__title_002,
+  .teamprojects__title_003,
+  .teamprojects__title_004,
+  .teamprojects__title_005,
+  .teamprojects__variant_002
+) { color: #fff; }

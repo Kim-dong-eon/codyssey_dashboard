@@ -1,0 +1,611 @@
+@reference "tailwindcss";
+
+/* group: 7 visual rules */
+.teamdetail__group_001 { @apply overflow-hidden rounded-xl shadow-sm border mb-4; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__group_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 7 visual rules */
+.teamdetail__group_002 { @apply justify-between cursor-pointer items-center flex px-6 py-4; }
+.teamdetail__group_002:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .teamdetail__group_002:hover { background-color: var(--surface-muted); }
+
+/* group: 3 visual rules */
+.teamdetail__group_003 { @apply items-center gap-3 flex; }
+
+/* label: 2 visual rules */
+.teamdetail__label_001 { @apply font-semibold text-white; }
+html[data-theme="light"] .teamdetail__label_001 { color: var(--text-strong); }
+
+/* chevronup: 1 visual rules */
+.teamdetail__chevronup_001 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__chevronup_001 { color: var(--text-muted); }
+
+/* group: 7 visual rules */
+.teamdetail__group_004 { @apply space-y-3 border-t pt-2 px-6 pb-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__group_004 { border-color: var(--border-color); background-color: var(--surface-muted); }
+
+/* text: 4 visual rules */
+.teamdetail__text_001 { @apply text-center text-sm py-4; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__text_001 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.teamdetail__group_005 { @apply flex-col gap-1 w-1/4 flex; }
+
+/* group: 3 visual rules */
+.teamdetail__group_006 { @apply items-center gap-2 flex; }
+
+/* label: 2 visual rules */
+.teamdetail__label_002 { @apply font-medium text-white; }
+html[data-theme="light"] .teamdetail__label_002 { color: var(--text-strong); }
+
+/* alerttriangle: 2 visual rules */
+.teamdetail__alerttriangle_001 { @apply fill-red-500/20; color: var(--tone-red); }
+
+/* label: 13 visual rules */
+.teamdetail__label_003 { @apply items-center inline-flex text-[10px] font-bold rounded border py-0.5 px-1.5 gap-1 w-max; border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .teamdetail__label_003 { background-color: var(--tint-cyan); }
+
+/* group: 5 visual rules */
+.teamdetail__group_007 { @apply items-center gap-4 w-2/5 flex px-4; }
+
+/* group: 5 visual rules */
+.teamdetail__group_008 { @apply overflow-hidden rounded-full w-full h-2; background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__group_008 { background-color: var(--surface-muted); }
+
+/* group: 11 visual rules */
+.teamdetail__group_009 { @apply items-center text-[10px] w-full gap-3 flex pl-8; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__group_009 { color: var(--text-muted); }
+@media (min-width: 40rem) { .teamdetail__group_009 { @apply order-last; } }
+@media (min-width: 40rem) { .teamdetail__group_009 { @apply w-auto; } }
+@media (min-width: 40rem) { .teamdetail__group_009 { @apply flex-1; } }
+@media (min-width: 40rem) { .teamdetail__group_009 { @apply pl-0; } }
+
+/* label: 2 visual rules */
+.teamdetail__label_004 { @apply truncate min-w-0; }
+
+/* group: 6 visual rules */
+.teamdetail__group_010 { @apply items-center justify-end w-full gap-2 flex; }
+@media (min-width: 40rem) { .teamdetail__group_010 { @apply w-auto; } }
+
+/* checkcircle2: 2 visual rules */
+.teamdetail__checkcircle2_001 { @apply mr-1; color: var(--tone-green); }
+
+/* circle: 2 visual rules */
+.teamdetail__circle_001 { @apply mr-1; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__circle_001 { color: var(--text-primary); }
+
+/* button: 13 visual rules */
+.teamdetail__button_001 { @apply items-center inline-flex rounded-lg font-bold text-xs py-1.5 border px-2.5 gap-1; border-color: var(--tint-border-purple); background-color: var(--tint-purple); color: var(--tone-purple); }
+html[data-theme="light"] .teamdetail__button_001 { background-color: var(--tint-purple); }
+.teamdetail__button_001:hover { background-color: var(--tint-purple); }
+html[data-theme="light"] .teamdetail__button_001:hover { background-color: var(--tint-purple); }
+
+/* button: 9 visual rules */
+.teamdetail__button_002 { @apply transition rounded-lg border p-1.5; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .teamdetail__button_002 { background-color: var(--tint-red); }
+.teamdetail__button_002:hover { @apply text-white; }
+html[data-theme="light"] .teamdetail__button_002:hover { color: var(--text-strong); }
+.teamdetail__button_002:hover { background-color: var(--tint-rose); }
+
+/* main: 7 visual rules */
+.teamdetail__main_001 { @apply min-h-[calc(100vh-64px)] max-w-[1700px] space-y-5 mx-auto w-full p-4; }
+@media (min-width: 48rem) { .teamdetail__main_001 { @apply p-6; } }
+
+/* group: 7 visual rules */
+.teamdetail__group_011 { @apply items-center border-b shrink-0 gap-4 flex pb-4; border-color: var(--border-color); }
+html[data-theme="light"] .teamdetail__group_011 { border-color: var(--border-color); }
+
+/* button: 8 visual rules */
+.teamdetail__button_003 { @apply transition rounded-lg border p-2; border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__button_003 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+.teamdetail__button_003:hover { @apply text-white; }
+html[data-theme="light"] .teamdetail__button_003:hover { color: var(--text-strong); }
+
+/* title: 6 visual rules */
+.teamdetail__title_001 { @apply items-center text-white font-bold text-2xl gap-2 flex; }
+html[data-theme="light"] .teamdetail__title_001 { color: var(--text-strong); }
+
+/* users: 1 visual rules */
+.teamdetail__users_001 { color: var(--tone-blue); }
+
+/* text: 3 visual rules */
+.teamdetail__text_002 { @apply text-sm mt-1; color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__text_002 { color: var(--text-muted); }
+
+/* group: 5 visual rules */
+.teamdetail__group_012 { @apply items-start gap-5 grid grid-cols-1; }
+@media (min-width: 64rem) { .teamdetail__group_012 { @apply grid-cols-[minmax(0,2fr)_minmax(320px,1fr)]; } }
+
+/* group: 2 visual rules */
+.teamdetail__group_013 { @apply space-y-5 min-w-0; }
+
+/* group: 3 visual rules */
+.teamdetail__group_014 { @apply flex-col gap-3 flex; }
+
+/* label: 3 visual rules */
+.teamdetail__label_005 { @apply relative w-full block; }
+
+/* search: 4 visual rules */
+.teamdetail__search_001 { @apply absolute top-2.5 left-3; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__search_001 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.teamdetail__input_001 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full pr-3 pl-9; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__input_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teamdetail__input_001:focus { border-color: var(--tone-blue); }
+
+/* group: 4 visual rules */
+.teamdetail__group_015 { @apply justify-between flex-wrap gap-3 flex; }
+
+/* group: 7 visual rules */
+.teamdetail__group_016 { @apply rounded-lg flex-wrap border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__group_016 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 8 visual rules */
+.teamdetail__group_017 { @apply rounded-lg flex-wrap border gap-1 flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__group_017 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 9 visual rules */
+.teamdetail__text_003 { @apply border-dashed text-center rounded-xl text-sm border py-10 px-5; border-color: var(--border-strong); color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__text_003 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* section: 6 visual rules */
+.teamdetail__section_001 { @apply overflow-hidden rounded-2xl shadow-lg border; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__section_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 9 visual rules */
+.teamdetail__group_018 { @apply justify-between items-center flex-wrap border-b gap-3 flex px-5 py-4; border-color: var(--border-color); }
+html[data-theme="light"] .teamdetail__group_018 { border-color: var(--border-color); }
+
+/* title: 6 visual rules */
+.teamdetail__title_002 { @apply items-center text-white font-bold text-lg gap-2 flex; }
+html[data-theme="light"] .teamdetail__title_002 { color: var(--text-strong); }
+
+/* calendarclock: 1 visual rules */
+.teamdetail__calendarclock_001 { color: var(--tone-amber); }
+
+/* text: 3 visual rules */
+.teamdetail__text_004 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__text_004 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.teamdetail__group_019 { @apply flex-wrap items-end gap-3 flex; }
+
+/* group: 6 visual rules */
+.teamdetail__group_020 { @apply rounded-lg border px-3 py-2; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__group_020 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 3 visual rules */
+.teamdetail__text_005 { @apply text-[10px] font-bold; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__text_005 { color: var(--text-muted); }
+
+/* text: 4 visual rules */
+.teamdetail__text_006 { @apply font-bold text-xs mt-0.5; color: var(--tone-blue); }
+html[data-theme="light"] .teamdetail__text_006 { color: var(--tone-blue); }
+
+/* label: 4 visual rules */
+.teamdetail__label_006 { @apply text-[11px] font-bold space-y-1; color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__label_006 { color: var(--text-muted); }
+
+/* input: 11 visual rules */
+.teamdetail__input_002 { @apply outline-none text-white rounded-lg text-sm border block px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__input_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teamdetail__input_002:focus { border-color: var(--tone-blue); }
+
+/* input: 11 visual rules */
+.teamdetail__input_003 { @apply outline-none text-white rounded-lg text-sm border px-3 py-2 w-20; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__input_003 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teamdetail__input_003:focus { border-color: var(--tone-blue); }
+
+/* select: 12 visual rules */
+.teamdetail__select_001 { @apply outline-none text-white rounded-lg min-w-36 text-sm border block px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__select_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teamdetail__select_001:focus { border-color: var(--tone-blue); }
+
+/* label: 7 visual rules */
+.teamdetail__label_007 { @apply rounded-full font-bold text-xs py-1.5 px-3; background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .teamdetail__label_007 { background-color: var(--tint-amber); }
+
+/* group: 8 visual rules */
+.teamdetail__group_021 { @apply justify-between items-center flex-wrap text-sm gap-3 flex px-5 py-3; }
+
+/* text: 1 visual rules */
+.teamdetail__text_007 { color: var(--tone-amber); }
+
+/* label: 7 visual rules */
+.teamdetail__label_008 { @apply cursor-pointer font-semibold items-center inline-flex text-xs gap-2; color: var(--text-primary); }
+html[data-theme="light"] .teamdetail__label_008 { color: var(--text-primary); }
+
+/* input: 3 visual rules */
+.teamdetail__input_004 { @apply accent-blue-500 w-4 h-4; }
+
+/* group: 3 visual rules */
+.teamdetail__group_022 { @apply min-h-[220px] overflow-auto max-h-[55vh]; }
+
+/* table: 4 visual rules */
+.teamdetail__table_001 { @apply min-w-[620px] text-left text-sm w-full; }
+
+/* thead: 5 visual rules */
+.teamdetail__thead_001 { @apply text-xs sticky top-0; color: var(--text-muted); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__thead_001 { color: var(--text-muted); background-color: var(--surface-background); }
+
+/* heading: 2 visual rules */
+.teamdetail__heading_001 { @apply px-5 py-3; }
+
+/* heading: 3 visual rules */
+.teamdetail__heading_002 { @apply text-right px-5 py-3; }
+
+/* tbody: 2 visual rules */
+.teamdetail__tbody_001 { @apply divide-y divide-[var(--border-color)]; }
+
+/* row: 3 visual rules */
+.teamdetail__row_001 { @apply cursor-pointer; color: var(--text-primary); }
+html[data-theme="light"] .teamdetail__row_001 { color: var(--text-primary); }
+.teamdetail__row_001:hover { background-color: var(--surface-raised); }
+
+/* cell: 4 visual rules */
+.teamdetail__cell_001 { @apply font-semibold text-white py-3.5 px-5; }
+html[data-theme="light"] .teamdetail__cell_001 { color: var(--text-strong); }
+
+/* label: 3 visual rules */
+.teamdetail__label_009 { @apply text-[10px] ml-2; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__label_009 { color: var(--text-primary); }
+
+/* cell: 2 visual rules */
+.teamdetail__cell_002 { @apply py-3.5 px-5; }
+
+/* cell: 4 visual rules */
+.teamdetail__cell_003 { @apply whitespace-nowrap py-3.5 px-5; color: var(--text-primary); }
+html[data-theme="light"] .teamdetail__cell_003 { color: var(--text-primary); }
+
+/* cell: 3 visual rules */
+.teamdetail__cell_004 { @apply text-right py-3.5 px-5; }
+
+/* cell: 5 visual rules */
+.teamdetail__cell_005 { @apply text-center text-sm px-5 py-8; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__cell_005 { color: var(--text-muted); }
+
+/* aside: 13 visual rules */
+.teamdetail__aside_001 { @apply overflow-hidden rounded-xl shadow-lg flex-col min-w-0 border flex; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__aside_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+@media (min-width: 64rem) { .teamdetail__aside_001 { @apply max-h-[calc(100vh-96px)]; } }
+@media (min-width: 64rem) { .teamdetail__aside_001 { @apply h-[calc(100vh-96px)]; } }
+@media (min-width: 64rem) { .teamdetail__aside_001 { @apply sticky; } }
+@media (min-width: 64rem) { .teamdetail__aside_001 { @apply top-4; } }
+
+/* group: 6 visual rules */
+.teamdetail__group_023 { @apply border-b shrink-0 px-5 py-4; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__group_023 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.teamdetail__group_024 { @apply justify-between items-center gap-2 flex; }
+
+/* notebookpen: 1 visual rules */
+.teamdetail__notebookpen_001 { color: var(--tone-purple); }
+
+/* title: 3 visual rules */
+.teamdetail__title_003 { @apply text-white font-bold text-lg; }
+html[data-theme="light"] .teamdetail__title_003 { color: var(--text-strong); }
+
+/* label: 7 visual rules */
+.teamdetail__label_010 { @apply font-bold text-xs rounded py-1 px-2; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__label_010 { color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* group: 6 visual rules */
+.teamdetail__group_025 { @apply space-y-3 border-b shrink-0 p-4; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teamdetail__group_025 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.teamdetail__group_026 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__group_026 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.teamdetail__group_027 { @apply shadow-inner rounded-xl border p-3; border-color: var(--tint-border-amber); background-color: var(--tint-amber); }
+html[data-theme="light"] .teamdetail__group_027 { background-color: #fff8dc; }
+
+/* group: 8 visual rules */
+.teamdetail__group_028 { @apply justify-between items-center font-bold text-xs gap-2 flex mb-2; color: var(--text-strong); }
+
+/* button: 6 visual rules */
+.teamdetail__button_004 { @apply items-center inline-flex font-normal gap-1; color: var(--text-subtle); }
+.teamdetail__button_004:hover { color: var(--text-strong); }
+
+/* input: 13 visual rules */
+.teamdetail__input_005 { @apply outline-none rounded-md text-sm border w-full px-3 mb-2 py-2; border-color: var(--tint-border-amber); color: var(--text-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__input_005 { background-color: rgba(255, 255, 255, .8); }
+.teamdetail__input_005::placeholder { color: var(--text-muted); }
+.teamdetail__input_005:focus { border-color: var(--tone-amber); }
+
+/* textarea: 14 visual rules */
+.teamdetail__textarea_001 { @apply outline-none rounded-md leading-6 resize-y text-sm border w-full px-3 py-2; border-color: var(--tint-border-amber); color: var(--text-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__textarea_001 { background-color: rgba(255, 255, 255, .8); }
+.teamdetail__textarea_001::placeholder { color: var(--text-muted); }
+.teamdetail__textarea_001:focus { border-color: var(--tone-amber); }
+
+/* button: 15 visual rules */
+.teamdetail__button_005 { @apply justify-center items-center inline-flex text-white rounded-lg font-bold text-sm gap-1.5 w-full py-2 mt-2; background-color: var(--surface-raised); }
+html[data-theme="light"] .teamdetail__button_005 { color: var(--text-strong); }
+.teamdetail__button_005:disabled { @apply cursor-not-allowed; }
+.teamdetail__button_005:disabled { @apply opacity-40; }
+.teamdetail__button_005:hover { background-color: var(--surface-track); }
+
+/* group: 5 visual rules */
+.teamdetail__group_029 { @apply overflow-y-auto space-y-3 min-h-72 flex-1 p-4; }
+
+/* group: 9 visual rules */
+.teamdetail__group_030 { @apply rounded-lg flex-wrap sticky top-0 gap-1 flex z-10 p-1; background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__group_030 { background-color: var(--surface-background); }
+
+/* group: 7 visual rules */
+.teamdetail__group_031 { @apply items-center text-center flex-col text-sm flex py-8; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__group_031 { color: var(--text-muted); }
+
+/* notebookpen: 2 visual rules */
+.teamdetail__notebookpen_002 { @apply opacity-50 mb-2; }
+
+/* card: 6 visual rules */
+.teamdetail__card_001 { @apply rounded-lg shadow-sm border p-4; border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .teamdetail__card_001 { background-color: var(--tint-cyan); }
+
+/* group: 4 visual rules */
+.teamdetail__group_032 { @apply justify-between items-start gap-3 flex; }
+
+/* title: 3 visual rules */
+.teamdetail__title_004 { @apply font-bold text-sm; color: var(--tone-cyan); }
+html[data-theme="light"] .teamdetail__title_004 { color: var(--tone-cyan); }
+
+/* text: 3 visual rules */
+.teamdetail__text_008 { @apply text-[10px] mt-1; color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__text_008 { color: var(--text-muted); }
+
+/* phonecall: 1 visual rules */
+.teamdetail__phonecall_001 { color: var(--tone-cyan); }
+html[data-theme="light"] .teamdetail__phonecall_001 { color: var(--tone-cyan); }
+
+/* group: 2 visual rules */
+.teamdetail__group_033 { @apply space-y-2 mt-3; }
+
+/* group: 6 visual rules */
+.teamdetail__group_034 { @apply bg-black/10 rounded-md border px-3 py-2; border-color: var(--border-color); }
+html[data-theme="light"] .teamdetail__group_034 { border-color: var(--border-color); }
+
+/* label: 3 visual rules */
+.teamdetail__label_011 { @apply font-bold text-xs; color: var(--text-strong); }
+html[data-theme="light"] .teamdetail__label_011 { color: var(--text-strong); }
+
+/* text: 5 visual rules */
+.teamdetail__text_009 { @apply whitespace-pre-wrap leading-5 text-xs mt-1; color: var(--text-primary); }
+html[data-theme="light"] .teamdetail__text_009 { color: var(--text-primary); }
+
+/* text: 3 visual rules */
+.teamdetail__text_010 { @apply text-[10px] mt-3; color: var(--text-subtle); }
+html[data-theme="light"] .teamdetail__text_010 { color: var(--text-muted); }
+
+/* card: 6 visual rules */
+.teamdetail__card_002 { @apply rounded-lg shadow-sm border p-4; border-color: var(--tint-border-amber); background-color: var(--tint-amber); }
+html[data-theme="light"] .teamdetail__card_002 { background-color: #fffdf2; }
+
+/* group: 4 visual rules */
+.teamdetail__group_035 { @apply justify-between items-start gap-3 flex; }
+
+/* group: 1 visual rules */
+.teamdetail__group_036 { @apply min-w-0; }
+
+/* group: 4 visual rules */
+.teamdetail__group_037 { @apply items-center flex-wrap gap-2 flex; }
+
+/* title: 3 visual rules */
+.teamdetail__title_005 { @apply font-bold text-sm; color: var(--text-strong); }
+
+/* label: 6 visual rules */
+.teamdetail__label_012 { @apply text-[10px] rounded py-0.5 px-1.5; color: var(--tone-purple); background-color: var(--tint-purple); }
+
+/* text: 6 visual rules */
+.teamdetail__text_011 { @apply whitespace-pre-wrap leading-relaxed break-words text-sm mt-2; color: var(--text-primary); }
+
+/* text: 6 visual rules */
+.teamdetail__text_012 { @apply items-center inline-flex text-[10px] gap-1 mt-3; color: var(--text-subtle); }
+
+/* group: 2 visual rules */
+.teamdetail__group_038 { @apply gap-1 flex; }
+
+/* button: 5 visual rules */
+.teamdetail__button_006 { @apply rounded p-1.5; color: var(--text-subtle); }
+.teamdetail__button_006:hover { color: var(--tone-blue); background-color: var(--tint-blue); }
+
+/* button: 5 visual rules */
+.teamdetail__button_007 { @apply rounded p-1.5; color: var(--text-subtle); }
+.teamdetail__button_007:hover { color: var(--tone-red); background-color: var(--tint-red); }
+
+/* Conditional style teamdetail__variant_001 */
+.teamdetail__variant_001 { @apply rounded-md font-bold text-sm px-3 py-1; }
+
+/* Conditional style teamdetail__variant_002 */
+.teamdetail__variant_002 { color: var(--tone-purple); background-color: var(--tint-purple); }
+html[data-theme="light"] .teamdetail__variant_002 { color: var(--tone-purple); background-color: var(--tint-purple); }
+
+/* Conditional style teamdetail__variant_003 */
+.teamdetail__variant_003 { color: var(--tone-blue); background-color: var(--tint-blue); }
+html[data-theme="light"] .teamdetail__variant_003 { color: var(--tone-blue); background-color: var(--tint-blue); }
+
+/* Conditional style teamdetail__variant_004 */
+.teamdetail__variant_004 { color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__variant_004 { color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* Conditional style teamdetail__variant_005 */
+.teamdetail__variant_005 { @apply justify-between items-center rounded-lg flex-wrap border gap-3 flex p-3; }
+
+/* Conditional style teamdetail__variant_006 */
+.teamdetail__variant_006 { border-color: var(--tint-border-red); background-color: var(--tint-red); }
+html[data-theme="light"] .teamdetail__variant_006 { background-color: var(--tint-red); }
+
+/* Conditional style teamdetail__variant_007 */
+.teamdetail__variant_007 { border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teamdetail__variant_007 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* Conditional style teamdetail__variant_008 */
+.teamdetail__variant_008 { @apply h-full; }
+
+/* Conditional style teamdetail__variant_009 */
+.teamdetail__variant_009 { background-color: var(--chart-green); }
+
+/* Conditional style teamdetail__variant_010 */
+.teamdetail__variant_010 { background-color: var(--action-primary); }
+
+/* Conditional style teamdetail__variant_011 */
+.teamdetail__variant_011 { @apply text-right font-bold text-xs w-10; }
+
+/* Conditional style teamdetail__variant_012 */
+.teamdetail__variant_012 { color: var(--tone-green); }
+
+/* Conditional style teamdetail__variant_013 */
+.teamdetail__variant_013 { color: var(--tone-blue); }
+
+/* Conditional style teamdetail__variant_014 */
+.teamdetail__variant_014 { @apply whitespace-nowrap rounded-full font-bold shrink-0 py-1 px-2; }
+
+/* Conditional style teamdetail__variant_015 */
+.teamdetail__variant_015 { background-color: var(--tint-rose); color: var(--tone-rose); }
+html[data-theme="light"] .teamdetail__variant_015 { background-color: var(--tint-rose); }
+
+/* Conditional style teamdetail__variant_016 */
+.teamdetail__variant_016 { background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .teamdetail__variant_016 { background-color: var(--tint-amber); }
+
+/* Conditional style teamdetail__variant_017 */
+.teamdetail__variant_017 { background-color: var(--tint-green); color: var(--tone-green); }
+html[data-theme="light"] .teamdetail__variant_017 { background-color: var(--tint-green); color: var(--tone-green); }
+
+/* Conditional style teamdetail__variant_018 */
+.teamdetail__variant_018 { @apply transition rounded-lg border p-1.5; }
+
+/* Conditional style teamdetail__variant_019 */
+.teamdetail__variant_019 { border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .teamdetail__variant_019 { background-color: var(--tint-red); }
+
+/* Conditional style teamdetail__variant_020 */
+.teamdetail__variant_020 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__variant_020 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+.teamdetail__variant_020:hover { @apply text-white; }
+html[data-theme="light"] .teamdetail__variant_020:hover { color: var(--text-strong); }
+
+/* Conditional style teamdetail__variant_021 */
+.teamdetail__variant_021 { border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .teamdetail__variant_021 { background-color: var(--tint-cyan); }
+
+/* Conditional style teamdetail__variant_022 */
+.teamdetail__variant_022 { @apply font-medium transition rounded-md text-sm py-1.5 px-4; }
+
+/* Conditional style teamdetail__variant_023 */
+.teamdetail__variant_023 { @apply text-white shadow; background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__variant_023 { background-color: var(--surface-muted); color: var(--text-strong); }
+
+/* Conditional style teamdetail__variant_024 */
+.teamdetail__variant_024 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__variant_024 { color: var(--text-muted); }
+.teamdetail__variant_024:hover { color: var(--text-primary); }
+html[data-theme="light"] .teamdetail__variant_024:hover { color: var(--text-primary); }
+
+/* Conditional style teamdetail__variant_025 */
+.teamdetail__variant_025 { @apply items-center font-medium transition rounded-md text-sm gap-1.5 py-1.5 flex px-4; }
+
+/* Conditional style teamdetail__variant_026 */
+.teamdetail__variant_026 { @apply shadow; background-color: var(--tint-green); color: var(--tone-green); }
+
+/* Conditional style teamdetail__variant_027 */
+.teamdetail__variant_027 { @apply shadow; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__variant_027 { color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* Conditional style teamdetail__variant_028 */
+.teamdetail__variant_028 { @apply shadow; background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .teamdetail__variant_028 { background-color: var(--tint-red); }
+
+/* Conditional style teamdetail__variant_029 */
+.teamdetail__variant_029 { @apply shadow; background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .teamdetail__variant_029 { background-color: var(--tint-cyan); }
+
+/* Conditional style teamdetail__variant_030 */
+.teamdetail__variant_030 { @apply rounded-full font-bold text-xs px-2.5 py-1; }
+
+/* Conditional style teamdetail__variant_031 */
+.teamdetail__variant_031 { background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .teamdetail__variant_031 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* Conditional style teamdetail__variant_032 */
+.teamdetail__variant_032 { background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .teamdetail__variant_032 { background-color: var(--tint-amber); }
+
+/* Conditional style teamdetail__variant_033 */
+.teamdetail__variant_033 { @apply rounded-md font-bold text-xs flex-1 py-2 px-2; }
+
+/* Conditional style teamdetail__variant_034 */
+.teamdetail__variant_034 { @apply text-white; background-color: var(--action-purple); }
+html[data-theme="light"] .teamdetail__variant_034 { color: #fff; }
+
+/* Conditional style teamdetail__variant_035 */
+.teamdetail__variant_035 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__variant_035 { color: var(--text-muted); }
+.teamdetail__variant_035:hover { @apply text-white; }
+html[data-theme="light"] .teamdetail__variant_035:hover { color: var(--text-strong); }
+
+/* Conditional style teamdetail__variant_036 */
+.teamdetail__variant_036 { @apply text-white; background-color: var(--action-primary); }
+html[data-theme="light"] .teamdetail__variant_036 { color: #fff; }
+
+/* Conditional style teamdetail__variant_037 */
+.teamdetail__variant_037 { @apply text-[10px] rounded-md font-bold py-1.5 px-2; }
+
+/* Conditional style teamdetail__variant_038 */
+.teamdetail__variant_038 { @apply text-white; background-color: var(--action-primary); }
+html[data-theme="light"] .teamdetail__variant_038 { color: #fff; }
+
+/* Conditional style teamdetail__variant_039 */
+.teamdetail__variant_039 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__variant_039 { color: var(--text-muted); }
+.teamdetail__variant_039:hover { background-color: var(--surface-track); }
+.teamdetail__variant_039:hover { @apply text-white; }
+html[data-theme="light"] .teamdetail__variant_039:hover { color: var(--text-strong); }
+
+/* Conditional style teamdetail__variant_040 */
+.teamdetail__variant_040 { @apply text-[10px] font-bold; }
+
+/* Conditional style teamdetail__variant_041 */
+.teamdetail__variant_041 { color: var(--tone-green); }
+html[data-theme="light"] .teamdetail__variant_041 { color: var(--tone-green); }
+
+/* Conditional style teamdetail__variant_042 */
+.teamdetail__variant_042 { color: var(--tone-rose); }
+
+/* Light theme neutral surfaces and labels */
+html[data-theme="light"] .teamdetail__button_004 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__button_005 { background-color: var(--surface-track); }
+html[data-theme="light"] .teamdetail__text_012 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__button_006 { color: var(--text-muted); }
+html[data-theme="light"] .teamdetail__button_007 { color: var(--text-muted); }
+
+.teamdetail__variant_008 { width: var(--progress-width, 0%); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .teamdetail__variant_009,
+  .teamdetail__variant_010,
+  .teamdetail__variant_034,
+  .teamdetail__variant_036,
+  .teamdetail__variant_038
+):is(
+  .teamdetail__button_005,
+  .teamdetail__cell_001,
+  .teamdetail__input_001,
+  .teamdetail__input_002,
+  .teamdetail__input_003,
+  .teamdetail__label_001,
+  .teamdetail__label_002,
+  .teamdetail__select_001,
+  .teamdetail__title_001,
+  .teamdetail__title_002,
+  .teamdetail__title_003,
+  .teamdetail__variant_023,
+  .teamdetail__variant_034,
+  .teamdetail__variant_036,
+  .teamdetail__variant_038
+) { color: #fff; }

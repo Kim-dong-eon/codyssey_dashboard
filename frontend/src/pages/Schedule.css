@@ -1,0 +1,457 @@
+@reference "tailwindcss";
+
+/* main: 6 visual rules */
+.schedule__main_001 { @apply min-h-[calc(100vh-64px)] max-w-[1700px] space-y-5 mx-auto p-4; }
+@media (min-width: 80rem) { .schedule__main_001 { @apply p-6; } }
+
+/* header: 11 visual rules */
+.schedule__header_001 { @apply justify-between items-center rounded-2xl flex-wrap border gap-4 flex px-5 py-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__header_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.schedule__group_001 { @apply items-center flex-wrap gap-4 flex; }
+
+/* group: 3 visual rules */
+.schedule__group_002 { @apply items-center gap-3 flex; }
+
+/* label: 5 visual rules */
+.schedule__label_001 { @apply rounded-xl border p-3; border-color: var(--tint-border-purple); background-color: var(--tint-purple); }
+
+/* calicon: 1 visual rules */
+.schedule__calicon_001 { color: var(--tone-purple); }
+html[data-theme="light"] .schedule__calicon_001 { color: var(--tone-purple); }
+
+/* title: 3 visual rules */
+.schedule__title_001 { @apply font-extrabold text-white text-xl; }
+html[data-theme="light"] .schedule__title_001 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.schedule__text_001 { @apply text-sm mt-1; color: var(--text-muted); }
+html[data-theme="light"] .schedule__text_001 { color: var(--text-muted); }
+
+/* group: 6 visual rules */
+.schedule__group_003 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__group_003 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.schedule__group_004 { @apply items-center flex-wrap gap-2 flex; }
+
+/* group: 9 visual rules */
+.schedule__group_005 { @apply items-center inline-flex rounded-lg py-1.5 border gap-2 px-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__group_005 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* button: 5 visual rules */
+.schedule__button_001 { @apply rounded p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .schedule__button_001 { color: var(--text-muted); }
+.schedule__button_001:hover { background-color: var(--surface-track); }
+.schedule__button_001:hover { @apply text-white; }
+html[data-theme="light"] .schedule__button_001:hover { color: var(--text-strong); }
+
+/* label: 5 visual rules */
+.schedule__label_002 { @apply font-extrabold text-center text-white min-w-28 text-sm; }
+html[data-theme="light"] .schedule__label_002 { color: var(--text-strong); }
+
+/* button: 11 visual rules */
+.schedule__button_002 { @apply items-center inline-flex text-white rounded-lg font-bold text-sm gap-1.5 py-2.5 px-4; background-color: var(--action-primary); }
+html[data-theme="light"] .schedule__button_002 { color: #fff; }
+.schedule__button_002:hover { background-color: var(--action-primary-hover); }
+
+/* group: 10 visual rules */
+.schedule__group_006 { @apply justify-between items-center rounded-xl flex-wrap border gap-3 flex p-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__group_006 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.schedule__group_007 { @apply font-semibold items-center inline-flex text-xs gap-2; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__group_007 { color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.schedule__group_008 { @apply rounded-lg flex-wrap border gap-1 flex p-1; border-color: var(--border-color); background-color: var(--app-background); }
+html[data-theme="light"] .schedule__group_008 { border-color: var(--border-color); background-color: var(--app-background); }
+
+/* label: 2 visual rules */
+.schedule__label_003 { @apply text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__label_003 { color: var(--text-muted); }
+
+/* text: 7 visual rules */
+.schedule__text_002 { @apply rounded-xl text-sm border p-4; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .schedule__text_002 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* text: 2 visual rules */
+.schedule__text_003 { @apply text-sm; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__text_003 { color: var(--text-muted); }
+
+/* section: 6 visual rules */
+.schedule__section_001 { @apply overflow-hidden rounded-2xl shadow-lg border; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__section_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 10 visual rules */
+.schedule__group_009 { @apply text-center font-bold border-b text-xs grid py-3 grid-cols-7; border-color: var(--border-color); color: var(--text-subtle); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__group_009 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+
+/* label: 1 visual rules */
+.schedule__label_004 { color: var(--tone-red); }
+
+/* label: 1 visual rules */
+.schedule__label_005 { color: var(--tone-blue); }
+
+/* group: 6 visual rules */
+.schedule__group_010 { @apply gap-2 grid p-2 grid-cols-7; }
+@media (min-width: 48rem) { .schedule__group_010 { @apply gap-3; } }
+@media (min-width: 48rem) { .schedule__group_010 { @apply p-4; } }
+
+/* group: 4 visual rules */
+.schedule__group_011 { @apply bg-transparent rounded-xl min-h-28; }
+@media (min-width: 48rem) { .schedule__group_011 { @apply min-h-36; } }
+
+/* label: 6 visual rules */
+.schedule__label_006 { @apply rounded-full text-[9px] py-0.5 px-1.5; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__label_006 { color: var(--text-primary); }
+
+/* group: 4 visual rules */
+.schedule__group_012 { @apply overflow-y-auto space-y-1.5 max-h-24 pr-0.5; }
+
+/* label: 1 visual rules */
+.schedule__label_007 { @apply truncate; }
+
+/* text: 7 visual rules */
+.schedule__text_004 { @apply text-center border-t text-sm py-5 px-4; border-color: var(--border-color); color: var(--text-subtle); }
+html[data-theme="light"] .schedule__text_004 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.schedule__group_013 { @apply justify-center items-center bg-black/65 inset-0 z-[70] fixed flex p-4; }
+
+/* section: 9 visual rules */
+.schedule__section_002 { @apply overflow-y-auto max-h-[94vh] rounded-2xl shadow-2xl max-w-2xl border w-full; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__section_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* header: 8 visual rules */
+.schedule__header_002 { @apply justify-between items-start border-b py-3.5 flex px-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__header_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 3 visual rules */
+.schedule__text_005 { @apply font-bold text-xs; color: var(--tone-blue); }
+html[data-theme="light"] .schedule__text_005 { color: var(--tone-blue); }
+
+/* title: 4 visual rules */
+.schedule__title_002 { @apply font-extrabold text-white text-xl mt-1; }
+html[data-theme="light"] .schedule__title_002 { color: var(--text-strong); }
+
+/* button: 5 visual rules */
+.schedule__button_003 { @apply rounded-lg p-2; color: var(--text-muted); }
+html[data-theme="light"] .schedule__button_003 { color: var(--text-muted); }
+.schedule__button_003:hover { background-color: var(--surface-track); }
+.schedule__button_003:hover { @apply text-white; }
+html[data-theme="light"] .schedule__button_003:hover { color: var(--text-strong); }
+
+/* group: 2 visual rules */
+.schedule__group_014 { @apply space-y-4 p-6; }
+
+/* label: 5 visual rules */
+.schedule__label_008 { @apply space-y-1.5 font-bold text-xs block; color: var(--text-muted); }
+html[data-theme="light"] .schedule__label_008 { color: var(--text-muted); }
+
+/* input: 11 visual rules */
+.schedule__input_001 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__input_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.schedule__input_001:focus { border-color: var(--tone-blue); }
+
+/* textarea: 13 visual rules */
+.schedule__textarea_001 { @apply outline-none text-white rounded-lg leading-6 resize-y text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__textarea_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.schedule__textarea_001:focus { border-color: var(--tone-blue); }
+
+/* label: 11 visual rules */
+.schedule__label_009 { @apply cursor-pointer items-center rounded-lg text-sm border gap-2 flex p-3; border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__label_009 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+
+/* input: 3 visual rules */
+.schedule__input_002 { @apply accent-blue-500 w-4 h-4; }
+
+/* footer: 3 visual rules */
+.schedule__footer_001 { @apply justify-end gap-2 flex; }
+
+/* button: 8 visual rules */
+.schedule__button_004 { @apply rounded-lg font-bold text-sm border py-2 px-4; border-color: var(--border-strong); color: var(--text-primary); }
+html[data-theme="light"] .schedule__button_004 { border-color: var(--border-color); color: var(--text-primary); }
+
+/* button: 12 visual rules */
+.schedule__button_005 { @apply items-center inline-flex text-white rounded-lg font-bold text-sm gap-1.5 py-2 px-4; background-color: var(--action-primary); }
+html[data-theme="light"] .schedule__button_005 { color: #fff; }
+.schedule__button_005:disabled { @apply opacity-40; }
+.schedule__button_005:hover { background-color: var(--action-primary-hover); }
+
+/* group: 3 visual rules */
+.schedule__group_015 { @apply space-y-3 p-4; }
+@media (min-width: 40rem) { .schedule__group_015 { @apply p-5; } }
+
+/* label: 7 visual rules */
+.schedule__label_010 { @apply rounded-full font-bold text-xs px-3 py-1; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__label_010 { color: var(--text-primary); }
+
+/* label: 10 visual rules */
+.schedule__label_011 { @apply rounded-full items-center inline-flex font-bold text-xs gap-1.5 px-3 py-1; color: var(--text-primary); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__label_011 { color: var(--text-primary); background-color: var(--surface-background); }
+
+/* calendardays: 1 visual rules */
+.schedule__calendardays_001 { color: var(--tone-amber); }
+
+/* group: 5 visual rules */
+.schedule__group_016 { @apply rounded-xl border p-3; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__group_016 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 3 visual rules */
+.schedule__title_003 { @apply font-bold text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__title_003 { color: var(--text-muted); }
+
+/* text: 8 visual rules */
+.schedule__text_006 { @apply whitespace-pre-wrap overflow-y-auto break-words leading-6 max-h-20 text-sm mt-1.5; color: var(--text-primary); }
+html[data-theme="light"] .schedule__text_006 { color: var(--text-primary); }
+
+/* section: 4 visual rules */
+.schedule__section_003 { @apply overflow-hidden rounded-xl border; border-color: var(--border-color); }
+html[data-theme="light"] .schedule__section_003 { border-color: var(--border-color); }
+
+/* header: 9 visual rules */
+.schedule__header_003 { @apply justify-between items-center border-b gap-3 flex py-3 px-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__header_003 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 6 visual rules */
+.schedule__title_004 { @apply items-center font-bold text-sm gap-2 flex; color: var(--text-strong); }
+html[data-theme="light"] .schedule__title_004 { color: var(--text-strong); }
+
+/* users: 1 visual rules */
+.schedule__users_001 { color: var(--tone-green); }
+
+/* label: 7 visual rules */
+.schedule__label_012 { @apply rounded-full font-bold text-xs px-2.5 py-1; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__label_012 { color: var(--text-primary); }
+
+/* group: 7 visual rules */
+.schedule__group_017 { @apply relative border-b gap-2 flex p-3; border-color: var(--border-color); background-color: var(--app-background); }
+html[data-theme="light"] .schedule__group_017 { border-color: var(--border-color); background-color: var(--app-background); }
+
+/* group: 3 visual rules */
+.schedule__group_018 { @apply relative min-w-0 flex-1; }
+
+/* search: 4 visual rules */
+.schedule__search_001 { @apply absolute top-2.5 left-3; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__search_001 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.schedule__input_003 { @apply outline-none text-white rounded-lg text-sm border w-full py-2 pr-3 pl-9; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .schedule__input_003 { border-color: var(--border-color); background-color: var(--surface-muted); color: var(--text-strong); }
+.schedule__input_003:focus { border-color: var(--tone-blue); }
+
+/* group: 11 visual rules */
+.schedule__group_019 { @apply overflow-y-auto rounded-lg shadow-xl max-h-48 absolute border w-full z-20 mt-1; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .schedule__group_019 { border-color: var(--border-color); background-color: var(--surface-muted); }
+
+/* button: 14 visual rules */
+.schedule__button_006 { @apply justify-between items-center text-left border-b text-sm py-2.5 w-full gap-3 flex px-3; color: var(--text-primary); border-color: var(--border-strong); }
+html[data-theme="light"] .schedule__button_006 { color: var(--text-primary); }
+.schedule__button_006:hover { background-color: var(--tint-blue); }
+.schedule__button_006:last-child { @apply border-0; }
+
+/* label: 1 visual rules */
+.schedule__label_013 { @apply font-bold; }
+
+/* label: 2 visual rules */
+.schedule__label_014 { @apply text-xs; color: var(--text-muted); }
+html[data-theme="light"] .schedule__label_014 { color: var(--text-muted); }
+
+/* text: 5 visual rules */
+.schedule__text_007 { @apply text-center text-xs px-3 py-4; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__text_007 { color: var(--text-muted); }
+
+/* button: 14 visual rules */
+.schedule__button_007 { @apply items-center inline-flex text-white rounded-lg font-bold shrink-0 text-sm gap-1.5 px-3 py-2; background-color: var(--action-success); }
+html[data-theme="light"] .schedule__button_007 { color: #fff; }
+.schedule__button_007:disabled { @apply cursor-not-allowed; }
+.schedule__button_007:hover { background-color: var(--action-success-hover); }
+.schedule__button_007:disabled { @apply opacity-40; }
+
+/* group: 4 visual rules */
+.schedule__group_020 { @apply overflow-y-auto min-h-[180px] max-h-[42vh]; background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__group_020 { background-color: var(--surface-background); }
+
+/* group: 1 visual rules */
+.schedule__group_021 { @apply min-w-0; }
+
+/* text: 4 visual rules */
+.schedule__text_008 { @apply text-white font-bold truncate text-sm; }
+html[data-theme="light"] .schedule__text_008 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.schedule__text_009 { @apply text-xs mt-0.5; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__text_009 { color: var(--text-muted); }
+
+/* button: 11 visual rules */
+.schedule__button_008 { @apply rounded-lg font-bold shrink-0 text-xs py-1.5 border px-2.5; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .schedule__button_008 { background-color: var(--tint-red); color: var(--tone-red); }
+.schedule__button_008:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .schedule__button_008:hover { background-color: var(--tint-red); }
+
+/* label: 7 visual rules */
+.schedule__label_015 { @apply items-center inline-flex font-bold shrink-0 text-xs gap-1; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__label_015 { color: var(--text-muted); }
+
+/* text: 5 visual rules */
+.schedule__text_010 { @apply text-center text-sm py-8 px-4; color: var(--text-subtle); }
+html[data-theme="light"] .schedule__text_010 { color: var(--text-muted); }
+
+/* button: 9 visual rules */
+.schedule__button_009 { @apply rounded-lg font-bold text-sm border py-2 px-4; border-color: var(--border-strong); color: var(--text-primary); }
+html[data-theme="light"] .schedule__button_009 { border-color: var(--border-color); color: var(--text-primary); }
+.schedule__button_009:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .schedule__button_009:hover { background-color: var(--surface-muted); }
+
+/* button: 13 visual rules */
+.schedule__button_010 { @apply items-center inline-flex rounded-lg font-bold text-sm gap-1.5 border py-2 px-4; border-color: var(--tint-border-blue); background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .schedule__button_010 { background-color: var(--tint-blue); color: var(--tone-blue); }
+.schedule__button_010:hover { background-color: var(--tint-blue); }
+html[data-theme="light"] .schedule__button_010:hover { background-color: var(--tint-blue); }
+
+/* button: 13 visual rules */
+.schedule__button_011 { @apply items-center inline-flex rounded-lg font-bold text-sm gap-1.5 border py-2 px-4; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .schedule__button_011 { background-color: var(--tint-red); color: var(--tone-red); }
+.schedule__button_011:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .schedule__button_011:hover { background-color: var(--tint-red); }
+
+/* section: 9 visual rules */
+.schedule__section_004 { @apply overflow-y-auto max-h-[90vh] rounded-2xl shadow-2xl max-w-lg border w-full; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__section_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* header: 10 visual rules */
+.schedule__header_004 { @apply justify-between items-center border-b sticky top-0 flex px-6 py-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .schedule__header_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 5 visual rules */
+.schedule__title_005 { @apply items-center text-white font-bold gap-2 flex; }
+html[data-theme="light"] .schedule__title_005 { color: var(--text-strong); }
+
+/* button: 5 visual rules */
+.schedule__button_012 { @apply rounded-lg p-1; color: var(--text-muted); }
+html[data-theme="light"] .schedule__button_012 { color: var(--text-muted); }
+.schedule__button_012:hover { background-color: var(--surface-track); }
+.schedule__button_012:hover { @apply text-white; }
+html[data-theme="light"] .schedule__button_012:hover { color: var(--text-strong); }
+
+/* group: 8 visual rules */
+.schedule__group_022 { @apply rounded-lg font-bold text-sm border p-3; border-color: var(--border-strong); color: var(--tone-blue); background-color: var(--surface-raised); }
+html[data-theme="light"] .schedule__group_022 { border-color: var(--border-color); color: var(--tone-blue); background-color: var(--surface-muted); }
+
+/* button: 10 visual rules */
+.schedule__button_013 { @apply text-white rounded-lg font-bold text-sm w-full py-3; background-color: var(--action-primary); }
+html[data-theme="light"] .schedule__button_013 { color: #fff; }
+.schedule__button_013:disabled { @apply cursor-not-allowed; }
+.schedule__button_013:disabled { @apply opacity-40; }
+.schedule__button_013:hover { background-color: var(--action-primary-hover); }
+
+/* Conditional style schedule__variant_001 */
+.schedule__variant_001 { @apply rounded-md font-bold text-xs px-3 py-2; }
+
+/* Conditional style schedule__variant_002 */
+.schedule__variant_002 { @apply text-white; background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__variant_002 { background-color: var(--surface-muted); color: var(--text-strong); }
+
+/* Conditional style schedule__variant_003 */
+.schedule__variant_003 { color: var(--text-muted); }
+html[data-theme="light"] .schedule__variant_003 { color: var(--text-muted); }
+.schedule__variant_003:hover { @apply text-white; }
+html[data-theme="light"] .schedule__variant_003:hover { color: var(--text-strong); }
+
+/* Conditional style schedule__variant_004 */
+.schedule__variant_004 { @apply items-center inline-flex rounded-md font-bold text-xs gap-1.5 px-3 py-2; }
+
+/* Conditional style schedule__variant_005 */
+.schedule__variant_005 { @apply cursor-pointer rounded-xl min-h-28 border p-2; }
+@media (min-width: 48rem) { .schedule__variant_005 { @apply min-h-36; } }
+@media (min-width: 48rem) { .schedule__variant_005 { @apply p-3; } }
+
+/* Conditional style schedule__variant_006 */
+.schedule__variant_006 { @apply ring-blue-500/50 ring-1; border-color: var(--tone-blue); background-color: var(--tint-blue); }
+html[data-theme="light"] .schedule__variant_006 { background-color: var(--tint-blue); }
+
+/* Conditional style schedule__variant_007 */
+.schedule__variant_007 { border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .schedule__variant_007 { border-color: var(--border-color); background-color: var(--surface-background); }
+.schedule__variant_007:hover { border-color: var(--border-strong); }
+
+/* Conditional style schedule__variant_008 */
+.schedule__variant_008 { @apply justify-between items-center font-bold text-sm flex mb-2; }
+
+/* Conditional style schedule__variant_009 */
+.schedule__variant_009 { color: var(--tone-blue); }
+html[data-theme="light"] .schedule__variant_009 { color: var(--tone-blue); }
+
+/* Conditional style schedule__variant_010 */
+.schedule__variant_010 { color: var(--text-muted); }
+html[data-theme="light"] .schedule__variant_010 { color: var(--text-muted); }
+
+/* Conditional style schedule__variant_011 */
+.schedule__variant_011 { @apply items-center text-[10px] rounded-md text-left font-bold gap-1.5 border w-full px-1.5 flex py-1; }
+
+/* Conditional style schedule__variant_012 */
+.schedule__variant_012 { border-color: var(--tint-border-purple); background-color: var(--tint-purple); color: var(--tone-purple); }
+html[data-theme="light"] .schedule__variant_012 { background-color: var(--tint-purple); }
+
+/* Conditional style schedule__variant_013 */
+.schedule__variant_013 { border-color: var(--tint-border-green); background-color: var(--tint-green); color: var(--tone-green); }
+html[data-theme="light"] .schedule__variant_013 { background-color: var(--tint-green); }
+
+/* Conditional style schedule__variant_014 */
+.schedule__variant_014 { @apply text-[8px] shrink-0 rounded py-0.5 px-1; }
+
+/* Conditional style schedule__variant_015 */
+.schedule__variant_015 { background-color: var(--tint-orange); color: var(--tone-orange); }
+html[data-theme="light"] .schedule__variant_015 { background-color: var(--tint-orange); }
+
+/* Conditional style schedule__variant_016 */
+.schedule__variant_016 { background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .schedule__variant_016 { background-color: var(--tint-blue); }
+
+/* Conditional style schedule__variant_017 */
+.schedule__variant_017 { @apply rounded-full font-bold text-xs px-3 py-1; }
+
+/* Conditional style schedule__variant_018 */
+.schedule__variant_018 { background-color: var(--tint-orange); color: var(--tone-orange); }
+html[data-theme="light"] .schedule__variant_018 { background-color: var(--tint-orange); color: var(--tone-orange); }
+
+/* Conditional style schedule__variant_019 */
+.schedule__variant_019 { background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .schedule__variant_019 { background-color: var(--tint-blue); color: var(--tone-blue); }
+
+/* Conditional style schedule__variant_020 */
+.schedule__variant_020 { @apply justify-between items-center border-b gap-3 flex py-3 px-4; border-color: var(--border-color); }
+.schedule__variant_020:last-child { @apply border-0; }
+
+/* Conditional style schedule__variant_021 */
+.schedule__variant_021 { @apply opacity-50; }
+
+/* Light theme neutral surfaces and labels */
+html[data-theme="light"] .schedule__label_006 { background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__label_010 { background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__label_012 { background-color: var(--surface-track); }
+html[data-theme="light"] .schedule__variant_020 { border-color: var(--border-color); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .schedule__button_002,
+  .schedule__button_005,
+  .schedule__button_007,
+  .schedule__button_013
+):is(
+  .schedule__button_002,
+  .schedule__button_005,
+  .schedule__button_007,
+  .schedule__button_013,
+  .schedule__input_001,
+  .schedule__input_003,
+  .schedule__label_002,
+  .schedule__text_008,
+  .schedule__textarea_001,
+  .schedule__title_001,
+  .schedule__title_002,
+  .schedule__title_005,
+  .schedule__variant_002
+) { color: #fff; }

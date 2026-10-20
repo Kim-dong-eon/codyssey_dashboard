@@ -1,52 +1,69 @@
+from contextlib import asynccontextmanager
+import logging
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
 
-from app.database import engine, Base
+from app.migrations import initialize_schema
 from app.crawl_scheduler import start_scheduler, scheduler
-from app.routers import cohorts, trainees, teams, dashboard, schedules
+from app.routers import cohorts, trainees, teams, dashboard, schedules, cron
 
-# DB 테이블 자동 생성
-Base.metadata.create_all(bind=engine)
+logger = logging.getLogger(__name__)
 
-# ==========================================
-# 1. Lifespan (스케줄러 시작/종료) 먼저 정의
-# ==========================================
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("🚀 FastAPI 서버 시작 중...")
-    start_scheduler()  # 스케줄러 가동
-    
-    yield  # 서버가 돌아가는 동안 대기
-    
-    print("🛑 FastAPI 서버 종료 중...")
-    scheduler.shutdown() # 서버 종료 시 스케줄러도 종료
+    # Serverless requests must not run DDL or compatibility migrations.
+    # Initialize the target database once as a deployment step instead.
+    on_vercel = os.getenv('VERCEL', '').lower() in {'1', 'true', 'yes', 'on'}
+    if not on_vercel:
+        initialize_schema()
+    scheduler_setting = os.getenv('ENABLE_SCHEDULER')
+    scheduler_enabled = not on_vercel and (
+        scheduler_setting.lower() in {'1', 'true', 'yes', 'on'}
+        if scheduler_setting is not None
+        else True
+    )
+    if scheduler_enabled:
+        start_scheduler()
+    logger.info('Codyssey API started')
+    try:
+        yield
+    finally:
+        if scheduler.running:
+            scheduler.shutdown(wait=False)
+        logger.info('Codyssey API stopped')
 
-# ==========================================
-# 2. FastAPI 앱 생성 (한 번만! lifespan도 여기서 연결)
-# ==========================================
+
 app = FastAPI(title='교육생 관리 LMS API', lifespan=lifespan)
 
-# ==========================================
-# 3. CORS 허용 설정
-# ==========================================
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        'CORS_ORIGINS',
+        'http://localhost:5173,http://127.0.0.1:5173',
+    ).split(',')
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 개발 중에는 모든 프론트엔드 주소 허용
-    allow_credentials=True,
-    allow_methods=["*"],  # GET, POST, PUT, DELETE 모두 허용
-    allow_headers=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=False,
+    allow_methods=['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allow_headers=['Content-Type', 'Authorization'],
 )
 
-# ==========================================
-# 4. 라우터 등록 (이전에 백지화되던 부분 복구!)
-# ==========================================
+
 @app.get('/')
 def read_root():
-    return {'status': 'success', 'message': 'Backend Running!'}
+    return {'status': 'ok', 'message': 'Codyssey API is running'}
 
-app.include_router(cohorts.router)
-app.include_router(trainees.router)
-app.include_router(teams.router)
-app.include_router(dashboard.router)
-app.include_router(schedules.router)
+
+app.include_router(cohorts.router, prefix='/api/cohorts', tags=['Cohorts'])
+app.include_router(trainees.router, prefix='/api/trainees', tags=['Trainees'])
+app.include_router(teams.router, prefix='/api/teams', tags=['Teams'])
+app.include_router(dashboard.router, prefix='/api/dashboard', tags=['Dashboard'])
+app.include_router(schedules.router, prefix='/api/schedules', tags=['Schedules'])
+app.include_router(cron.router, prefix='/api/cron', tags=['Cron'])

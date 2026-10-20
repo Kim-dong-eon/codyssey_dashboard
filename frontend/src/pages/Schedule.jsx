@@ -1,431 +1,371 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../App';
-import { Calendar as CalIcon, Plus, X, Users, Trash2, UserPlus, XCircle, Globe, Search } from 'lucide-react';
+import './Schedule.css';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { GlobalContext } from '../context/GlobalContext';
+import { schedulesApi } from '../api/schedules';
+import { traineesApi } from '../api/trainees';
+import { Calendar as CalIcon, CalendarDays, Plus, X, Trash2, Globe, ChevronLeft, ChevronRight, SlidersHorizontal, Pencil, Save, Users, UserPlus, XCircle, Search } from 'lucide-react';
+
+const getLocalDateString = () => {
+  const now = new Date();
+  return new Date(now.getTime() - now.getTimezoneOffset() * 60_000).toISOString().slice(0, 10);
+};
 
 const Schedule = () => {
   const { selectedCohort } = useContext(GlobalContext);
   const [events, setEvents] = useState([]);
-  const [allTrainees, setAllTrainees] = useState([]); 
-  
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const [selectedDate, setSelectedDate] = useState(getLocalDateString);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [roster, setRoster] = useState([]);
-
-  const [viewMode, setViewMode] = useState("current"); 
-
+  const [allTrainees, setAllTrainees] = useState([]);
+  const [traineeSearchTerm, setTraineeSearchTerm] = useState('');
+  const [selectedTraineeId, setSelectedTraineeId] = useState('');
+  const [isTraineeDropdownOpen, setIsTraineeDropdownOpen] = useState(false);
+  const traineeSearchRef = useRef(null);
+  const [isEditingEvent, setIsEditingEvent] = useState(false);
+  const [eventEditForm, setEventEditForm] = useState({ title: '', event_type: '행사', description: '', event_date: '', isCommon: false });
+  const [viewMode, setViewMode] = useState('current');
+  const [eventTypeFilter, setEventTypeFilter] = useState('all');
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const [eventForm, setEventForm] = useState({ title: '', event_type: '행사', description: '', isCommon: false });
-  
-  const [selectedTraineeId, setSelectedTraineeId] = useState("");
-  const [traineeSearchTerm, setTraineeSearchTerm] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetchEvents();
-  }, [selectedCohort, viewMode]);
-
-  useEffect(() => {
-    fetchTrainees();
-  }, [selectedCohort]);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        if (isEventModalOpen) setIsEventModalOpen(false);
-        if (isDropdownOpen) setIsDropdownOpen(false);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isEventModalOpen, isDropdownOpen]);
-
-  const fetchEvents = async () => {
-    const endpoint = viewMode === "all" ? "all" : selectedCohort;
-    const res = await fetch(`http://localhost:8000/api/schedules/cohort/${endpoint}`);
-    if (res.ok) setEvents(await res.json());
-  };
-
-  const fetchTrainees = async () => {
-    const res = await fetch(`http://localhost:8000/api/trainees/cohort/${selectedCohort}`);
-    if (res.ok) setAllTrainees(await res.json());
-  };
-
-  const fetchRoster = async (eventId) => {
-    const res = await fetch(`http://localhost:8000/api/schedules/${eventId}/roster`);
-    if (res.ok) setRoster(await res.json());
-  };
-
-  const handleEventClick = (event) => {
-    setSelectedEvent(event);
-    fetchRoster(event.event_id);
-  };
-
-  const handleCreateEvent = async () => {
-    // 🚨 QA 8번 해결: 스페이스바만 입력했는지(.trim()) 검사
-    if (!eventForm.title.trim()) return alert("일정/행사 명을 정확히 입력해주세요.");
-    
-    await fetch(`http://localhost:8000/api/schedules/`, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        cohort_id: eventForm.isCommon ? 0 : selectedCohort,
-        title: eventForm.title.trim(),
-        description: eventForm.description.trim(),
-        event_date: selectedDate,
-        event_type: eventForm.event_type
-      })
-    });
-    setIsEventModalOpen(false);
-    setEventForm({ title: '', event_type: '행사', description: '', isCommon: false });
-    fetchEvents();
-  };
-
-  const handleDeleteEvent = async (eventId) => {
-    if(window.confirm("이 일정을 완전히 삭제하시겠습니까? (명단도 날아갑니다)")) {
-      await fetch(`http://localhost:8000/api/schedules/${eventId}`, { method: 'DELETE' });
-      setSelectedEvent(null);
-      fetchEvents();
-    }
-  };
-
-  const handleAddTraineeToEvent = async () => {
-    if (!selectedTraineeId) return alert("추가할 인원을 검색 후 선택해주세요.");
-    const trainee = allTrainees.find(t => t.id === parseInt(selectedTraineeId));
-    
-    const res = await fetch(`http://localhost:8000/api/schedules/${selectedEvent.event_id}/register`, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ trainee_id: trainee.id, trainee_name: trainee.name })
-    });
-    
-    if (res.ok) {
-      fetchRoster(selectedEvent.event_id);
-      setSelectedTraineeId("");
-      setTraineeSearchTerm(""); 
-    } else {
-      const data = await res.json();
-      alert(data.detail || "명단 추가에 실패했습니다.");
-    }
-  };
-
-  const handleCancelRegistration = async (regId) => {
-    if(window.confirm("이 학생의 신청을 취소 처리하시겠습니까?")) {
-      await fetch(`http://localhost:8000/api/schedules/cancel/${regId}`, { method: 'PUT' });
-      fetchRoster(selectedEvent.event_id);
-    }
-  };
-
-  const getDaysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
-  const getFirstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
-  
   const today = new Date();
   const [currYear, setCurrYear] = useState(today.getFullYear());
   const [currMonth, setCurrMonth] = useState(today.getMonth());
 
-  const daysInMonth = getDaysInMonth(currYear, currMonth);
-  const firstDay = getFirstDayOfMonth(currYear, currMonth);
-  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  const blanks = Array.from({ length: firstDay }, (_, i) => i);
-
-  const prevMonth = () => {
-    if (currMonth === 0) { setCurrYear(currYear - 1); setCurrMonth(11); } 
-    else { setCurrMonth(currMonth - 1); }
+  const fetchEvents = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const endpoint = viewMode === 'all' ? 'all' : selectedCohort;
+      setEvents(await schedulesApi.list(endpoint));
+    } catch (reason) {
+      setError(reason.response?.data?.detail || '일정을 불러오지 못했습니다.');
+    } finally {
+      setLoading(false);
+    }
   };
-  const nextMonth = () => {
-    if (currMonth === 11) { setCurrYear(currYear + 1); setCurrMonth(0); } 
-    else { setCurrMonth(currMonth + 1); }
+
+  useEffect(() => { fetchEvents(); }, [selectedCohort, viewMode]);
+
+  useEffect(() => {
+    traineesApi.list(selectedCohort).then((rows) => setAllTrainees(rows || [])).catch(() => setAllTrainees([]));
+  }, [selectedCohort]);
+
+  useEffect(() => {
+    if (!isTraineeDropdownOpen) return undefined;
+    const closeOnOutsidePointer = (event) => {
+      if (!traineeSearchRef.current?.contains(event.target)) setIsTraineeDropdownOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOnOutsidePointer);
+    return () => document.removeEventListener('pointerdown', closeOnOutsidePointer);
+  }, [isTraineeDropdownOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsEventModalOpen(false);
+        setSelectedEvent(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleCreateEvent = async () => {
+    if (!eventForm.title.trim()) return window.alert('일정/행사 이름을 입력해주세요.');
+    try {
+      await schedulesApi.create({
+        cohort_id: eventForm.isCommon ? 0 : selectedCohort,
+        title: eventForm.title.trim(),
+        description: eventForm.description.trim(),
+        event_date: selectedDate,
+        event_type: eventForm.event_type,
+      });
+      setIsEventModalOpen(false);
+      setEventForm({ title: '', event_type: '행사', description: '', isCommon: false });
+      await fetchEvents();
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '일정을 저장하지 못했습니다.');
+    }
+  };
+
+  const handleDeleteEvent = async (eventId) => {
+    if (!window.confirm('이 일정을 삭제할까요?')) return;
+    try {
+      await schedulesApi.delete(eventId);
+      setSelectedEvent(null);
+      setRoster([]);
+      await fetchEvents();
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '일정을 삭제하지 못했습니다.');
+    }
+  };
+
+  const fetchRoster = async (eventId) => {
+    try {
+      setRoster(await schedulesApi.listRoster(eventId));
+    } catch (reason) {
+      setRoster([]);
+      window.alert(reason.response?.data?.detail || '참석 명단을 불러오지 못했습니다.');
+    }
+  };
+
+  const handleAddTraineeToEvent = async () => {
+    if (!selectedEvent || !selectedTraineeId) return window.alert('추가할 교육생을 검색해 선택해주세요.');
+    try {
+      await schedulesApi.registerTrainee(selectedEvent.event_id, Number(selectedTraineeId));
+      setSelectedTraineeId('');
+      setTraineeSearchTerm('');
+      setIsTraineeDropdownOpen(false);
+      await fetchRoster(selectedEvent.event_id);
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '명단에 추가하지 못했습니다.');
+    }
+  };
+
+  const handleCancelRegistration = async (registrationId) => {
+    if (!window.confirm('이 참석자의 상태를 취소로 바꿀까요?')) return;
+    try {
+      await schedulesApi.cancelRegistration(registrationId);
+      await fetchRoster(selectedEvent.event_id);
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '참석을 취소하지 못했습니다.');
+    }
+  };
+
+  const startEditingEvent = () => {
+    setEventEditForm({
+      title: selectedEvent.title || '',
+      event_type: selectedEvent.event_type || '행사',
+      description: selectedEvent.description || '',
+      event_date: String(selectedEvent.event_date || '').slice(0, 10),
+      isCommon: Number(selectedEvent.cohort_id) === 0,
+    });
+    setIsEditingEvent(true);
+  };
+
+  const handleUpdateEvent = async () => {
+    if (!eventEditForm.title.trim() || !eventEditForm.event_date) return window.alert('일정 이름과 날짜를 입력해주세요.');
+    const cohortId = eventEditForm.isCommon
+      ? 0
+      : Number(selectedEvent.cohort_id) === 0 ? selectedCohort : selectedEvent.cohort_id;
+    try {
+      await schedulesApi.update(selectedEvent.event_id, {
+        cohort_id: cohortId,
+        title: eventEditForm.title.trim(),
+        description: eventEditForm.description.trim(),
+        event_date: eventEditForm.event_date,
+        event_type: eventEditForm.event_type,
+      });
+      setSelectedEvent(null);
+      setIsEditingEvent(false);
+      await fetchEvents();
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '일정 내용을 수정하지 못했습니다.');
+    }
+  };
+
+  const eventTypes = useMemo(() => ['all', ...new Set(events.map((event) => event.event_type).filter(Boolean))], [events]);
+  const visibleEvents = useMemo(() => events.filter((event) => eventTypeFilter === 'all' || event.event_type === eventTypeFilter), [events, eventTypeFilter]);
+  const getDaysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(currYear, currMonth, 1).getDay();
+  const days = Array.from({ length: getDaysInMonth(currYear, currMonth) }, (_, index) => index + 1);
+  const blanks = Array.from({ length: firstDay }, (_, index) => index);
+
+  const changeMonth = (offset) => {
+    const next = new Date(currYear, currMonth + offset, 1);
+    setCurrYear(next.getFullYear());
+    setCurrMonth(next.getMonth());
+    setSelectedDate(`${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, '0')}-01`);
+  };
+
+  const openEvent = (event, dateString) => {
+    setSelectedDate(dateString);
+    setIsEditingEvent(false);
+    setTraineeSearchTerm('');
+    setSelectedTraineeId('');
+    setIsTraineeDropdownOpen(false);
+    setRoster([]);
+    setSelectedEvent(event);
+    fetchRoster(event.event_id);
   };
 
   return (
-    <div className="p-8 max-w-[1600px] mx-auto min-h-[calc(100vh-64px)] h-auto overflow-y-auto flex gap-6 relative">
-      
-      <style>{`
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
-
-      {/* 왼쪽: 캘린더 영역 */}
-      <div className="flex-grow flex flex-col bg-[#151b28] border border-[#2a3441] rounded-2xl shadow-lg">
-        <div className="px-8 py-5 border-b border-[#2a3441] flex justify-between items-center bg-[#111722] rounded-t-2xl shrink-0">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-                <CalIcon size={20} className="text-purple-400" />
-              </div>
-              <h2 className="text-xl font-bold text-white">일정 및 행사 캘린더</h2>
-            </div>
-            
-            <div className="flex bg-[#151b28] p-1 rounded-lg border border-[#334155] shadow-inner">
-              <button onClick={() => setViewMode('current')} className={`px-4 py-1.5 text-sm font-bold rounded-md transition flex items-center gap-1.5 ${viewMode === 'current' ? 'bg-[#334155] text-white shadow' : 'text-gray-400 hover:text-gray-200'}`}>
-                {selectedCohort}기 + 공통
-              </button>
-              <button onClick={() => setViewMode('all')} className={`px-4 py-1.5 text-sm font-bold rounded-md transition flex items-center gap-1.5 ${viewMode === 'all' ? 'bg-[#334155] text-white shadow' : 'text-gray-400 hover:text-gray-200'}`}>
-                <Globe size={14} /> 전체 기수 
-              </button>
-            </div>
+    <main className="schedule__main_001">
+      <header className="schedule__header_001">
+        <div className="schedule__group_001">
+          <div className="schedule__group_002">
+            <span className="schedule__label_001"><CalIcon size={21} className="schedule__calicon_001" /></span>
+            <div><h1 className="schedule__title_001">일정 및 행사</h1><p className="schedule__text_001">날짜를 눌러 일정을 고르고, 행사를 누르면 상세 내용을 엽니다.</p></div>
           </div>
-
-          <div className="flex items-center gap-4 bg-[#1e293b] rounded-lg border border-[#334155] p-1 shadow-inner">
-            <button onClick={prevMonth} className="px-3 py-1 text-gray-400 hover:text-white transition">◀</button>
-            <span className="font-extrabold text-white w-24 text-center">{currYear}년 {currMonth + 1}월</span>
-            <button onClick={nextMonth} className="px-3 py-1 text-gray-400 hover:text-white transition">▶</button>
+          <div className="schedule__group_003">
+            <button onClick={() => setViewMode('current')} className={`schedule__variant_001 ${viewMode === 'current' ? 'schedule__variant_002' : 'schedule__variant_003'}`}>{selectedCohort}기 + 공통</button>
+            <button onClick={() => setViewMode('all')} className={`schedule__variant_004 ${viewMode === 'all' ? 'schedule__variant_002' : 'schedule__variant_003'}`}><Globe size={13} /> 전체 기수</button>
           </div>
         </div>
-
-        <div className="p-6">
-          <div className="grid grid-cols-7 gap-4 text-center mb-4 text-sm font-bold text-gray-500">
-            <div className="text-red-400">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div className="text-blue-400">토</div>
+        <div className="schedule__group_004">
+          <div className="schedule__group_005">
+            <button onClick={() => changeMonth(-1)} aria-label="이전 달" className="schedule__button_001"><ChevronLeft size={17} /></button>
+            <span className="schedule__label_002">{currYear}년 {currMonth + 1}월</span>
+            <button onClick={() => changeMonth(1)} aria-label="다음 달" className="schedule__button_001"><ChevronRight size={17} /></button>
           </div>
-          <div className="grid grid-cols-7 gap-3">
-            {blanks.map(b => <div key={`blank-${b}`} className="min-h-[100px] bg-transparent"></div>)}
-            {days.map(d => {
-              const dateStr = `${currYear}-${String(currMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-              const dayEvents = events.filter(e => e.event_date === dateStr);
-              const isSelected = selectedDate === dateStr;
-              
-              return (
-                <div 
-                  key={d} 
-                  onClick={() => { setSelectedDate(dateStr); setSelectedEvent(null); }}
-                  onDoubleClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedDate(dateStr);
-                    setSelectedEvent(null);
-                    setIsEventModalOpen(true);
-                  }}
-                  className={`min-h-[100px] p-2 rounded-xl border transition-all cursor-pointer flex flex-col 
-                    ${isSelected ? 'bg-blue-900/20 border-blue-500 shadow-md ring-1 ring-blue-500' : 'bg-[#111722] border-[#2a3441] hover:border-gray-500'}
-                  `}
-                >
-                  <span className={`text-sm font-bold self-end mb-1 ${isSelected ? 'text-blue-400' : 'text-gray-400'}`}>{d}</span>
-                  <div className="space-y-1.5 flex-grow overflow-y-auto hide-scroll">
-                    {dayEvents.map(e => (
-                      <div 
-                        key={e.event_id} 
-                        onClick={(ev) => { ev.stopPropagation(); setSelectedDate(dateStr); handleEventClick(e); }}
-                        className={`text-[11px] p-1.5 rounded flex items-center gap-1.5 font-bold truncate 
-                          ${e.event_type === '행사' ? 'bg-purple-900/40 text-purple-300 border border-purple-700/50' : 'bg-green-900/30 text-green-400 border border-green-800/50'}
-                        `}
-                      >
-                        <span className={`px-1 py-[1px] rounded-[3px] text-[9px] ${e.cohort_id === 0 ? 'bg-orange-900 text-orange-200' : 'bg-blue-900 text-blue-200'}`}>
-                          {e.cohort_id === 0 ? '공통' : `${e.cohort_id}기`}
-                        </span>
-                        <span className="truncate">{e.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <button onClick={() => setIsEventModalOpen(true)} className="schedule__button_002"><Plus size={16} /> 새 일정</button>
         </div>
+      </header>
+
+      <div className="schedule__group_006">
+        <div className="schedule__group_007"><SlidersHorizontal size={14} /> 일정 유형</div>
+        <div className="schedule__group_008">
+          {eventTypes.map((type) => (
+            <button key={type} onClick={() => setEventTypeFilter(type)} className={`schedule__variant_001 ${eventTypeFilter === type ? 'schedule__variant_002' : 'schedule__variant_003'}`}>
+              {type === 'all' ? `전체 (${events.length})` : `${type} (${events.filter((event) => event.event_type === type).length})`}
+            </button>
+          ))}
+        </div>
+        {selectedDate && <span className="schedule__label_003">선택 날짜 · {selectedDate.replaceAll('-', '.')}</span>}
       </div>
 
-      {/* 오른쪽: 일정 명단 관리 패널 */}
-      <div className="w-[500px] bg-[#111722] border border-[#2a3441] rounded-2xl flex flex-col shadow-2xl shrink-0 h-auto self-start">
-        <div className="px-6 py-5 border-b border-[#2a3441] bg-[#151b28] rounded-t-2xl flex justify-between items-center sticky top-0">
-          <h3 className="font-extrabold text-white text-lg">
-            {selectedDate.replace(/-/g, '.')} 일정
-          </h3>
-          <button 
-            onClick={() => setIsEventModalOpen(true)}
-            className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded-lg text-sm text-white font-bold transition"
-          >
-            <Plus size={16} /> 새 일정 추가
-          </button>
+      {error && <p role="alert" className="schedule__text_002">{error}</p>}
+      {loading && <p className="schedule__text_003">일정을 불러오는 중...</p>}
+
+      <section className="schedule__section_001">
+        <div className="schedule__group_009">
+          <span className="schedule__label_004">일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span className="schedule__label_005">토</span>
         </div>
-
-        <div className="p-6 space-y-4">
-          {!selectedEvent ? (
-            <div className="text-center py-20 text-gray-500 border-2 border-dashed border-[#2a3441] rounded-xl bg-[#151b28]/50">
-              <CalIcon size={32} className="mx-auto mb-3 opacity-50" />
-              <p>캘린더에서 빈 칸을 <strong>더블 클릭</strong>하여 새 일정을 만들거나,<br/>기존 일정을 클릭해 명단을 관리하세요.</p>
-            </div>
-          ) : (
-            <div className="animate-fade-in space-y-6">
-              
-              <div className="bg-[#151b28] border border-[#2a3441] rounded-xl p-5 relative">
-                <button onClick={() => handleDeleteEvent(selectedEvent.event_id)} className="absolute top-4 right-4 text-gray-500 hover:text-red-500 p-1 bg-gray-800 rounded transition">
-                  <Trash2 size={16} />
-                </button>
-                <div className="flex gap-2 mb-2">
-                  <span className={`text-[10px] px-2 py-0.5 rounded font-bold border ${selectedEvent.cohort_id === 0 ? 'bg-orange-900/50 text-orange-400 border-orange-800' : 'bg-blue-900/50 text-blue-400 border-blue-800'}`}>
-                    {selectedEvent.cohort_id === 0 ? '전체 공통 행사' : `${selectedEvent.cohort_id}기 전용`}
-                  </span>
-                  <span className="text-[10px] bg-[#1e293b] border border-[#334155] px-2 py-0.5 rounded font-bold text-gray-300">
-                    {selectedEvent.event_type}
-                  </span>
+        <div className="schedule__group_010">
+          {blanks.map((blank) => <div key={`blank-${blank}`} className="schedule__group_011" />)}
+          {days.map((day) => {
+            const dateString = `${currYear}-${String(currMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const dayEvents = visibleEvents.filter((event) => event.event_date === dateString);
+            const isSelected = selectedDate === dateString;
+            return (
+              <div
+                key={dateString}
+                onClick={() => setSelectedDate(dateString)}
+                onDoubleClick={() => { setSelectedDate(dateString); setIsEventModalOpen(true); }}
+                className={`schedule__variant_005 ${isSelected ? 'schedule__variant_006' : 'schedule__variant_007'}`}
+              >
+                <div className={`schedule__variant_008 ${isSelected ? 'schedule__variant_009' : 'schedule__variant_010'}`}>
+                  <span>{day}</span>{dayEvents.length > 0 && <span className="schedule__label_006">{dayEvents.length}</span>}
                 </div>
-                {/* 🚨 QA 8번 해결: break-all 적용하여 화면 레이아웃 찢어짐 방지 */}
-                <h2 className="text-xl font-bold text-white mb-2 break-all">{selectedEvent.title}</h2>
-                <p className="text-sm text-gray-400 whitespace-pre-wrap break-all">{selectedEvent.description || "상세 설명이 없습니다."}</p>
+                <div className="schedule__group_012">
+                  {dayEvents.map((event) => (
+                    <button
+                      type="button"
+                      key={event.event_id}
+                      onClick={(clickEvent) => { clickEvent.stopPropagation(); openEvent(event, dateString); }}
+                      className={`schedule__variant_011 ${event.event_type === '행사' ? 'schedule__variant_012' : 'schedule__variant_013'} hover:brightness-125`}
+                    >
+                      <span className={`schedule__variant_014 ${event.cohort_id === 0 ? 'schedule__variant_015' : 'schedule__variant_016'}`}>{event.cohort_id === 0 ? '공통' : `${event.cohort_id}기`}</span>
+                      <span className="schedule__label_007">{event.title}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
+            );
+          })}
+        </div>
+        {!loading && visibleEvents.length === 0 && <p className="schedule__text_004">이 유형으로 등록된 일정이 없습니다.</p>}
+      </section>
 
-              {/* 신청 명단 관리 영역 */}
-              <div className="border border-[#2a3441] rounded-xl overflow-hidden shadow-sm">
-                <div className="bg-[#151b28] px-5 py-3 border-b border-[#2a3441] flex justify-between items-center">
-                  <span className="font-bold text-gray-300 flex items-center gap-2"><Users size={16} className="text-green-400"/> 참석/신청 명단</span>
-                  <span className="bg-[#1e293b] text-gray-300 border border-[#334155] px-2.5 py-0.5 rounded-full text-xs font-bold">
-                    {roster.filter(r => r.status === "신청완료").length}명 신청
-                  </span>
-                </div>
-
-                <div className="p-4 bg-[#0b0f17] border-b border-[#2a3441] flex gap-2 relative">
-                  <div className="relative flex-grow">
-                    <Search size={16} className="absolute left-3 top-2.5 text-gray-400" />
-                    <input
-                      type="text"
-                      placeholder={`+ ${selectedCohort}기 학생 이름 또는 조 검색...`}
-                      value={traineeSearchTerm}
-                      onChange={(e) => {
-                        setTraineeSearchTerm(e.target.value);
-                        setIsDropdownOpen(true);
-                        setSelectedTraineeId(""); 
-                      }}
-                      onFocus={() => setIsDropdownOpen(true)}
-                      onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                      className="w-full bg-[#1e293b] border border-[#334155] text-white text-sm rounded-lg py-2 pl-9 pr-3 focus:outline-none focus:border-blue-500 shadow-inner"
-                    />
-                    
-                    {isDropdownOpen && (
-                      <div className="absolute z-20 w-full mt-1 bg-[#1e293b] border border-[#334155] rounded-lg shadow-xl max-h-48 overflow-y-auto hide-scroll">
-                        {allTrainees
-                          .filter(t => !t.is_dropped && (t.name.includes(traineeSearchTerm) || (t.team_name && t.team_name.includes(traineeSearchTerm))))
-                          .map(t => (
-                            <div
-                              key={t.id}
-                              className="px-4 py-2.5 cursor-pointer hover:bg-blue-600 border-b border-gray-700/50 last:border-0 text-sm text-gray-200 flex justify-between items-center transition"
-                              onMouseDown={(e) => e.preventDefault()} 
-                              onClick={() => {
-                                setSelectedTraineeId(t.id);
-                                setTraineeSearchTerm(`${t.name} (${t.team_name || '미배정'})`);
-                                setIsDropdownOpen(false);
-                              }}
-                            >
-                              <span className="font-bold text-white">{t.name}</span>
-                              <span className="text-xs font-medium text-gray-400 bg-gray-800 px-2 py-0.5 rounded-full">{t.team_name || '미배정'}</span>
-                            </div>
+      {selectedEvent && (
+        <div className="schedule__group_013" onMouseDown={(event) => { if (event.target === event.currentTarget) { setSelectedEvent(null); setIsEditingEvent(false); } }}>
+          <section role="dialog" aria-modal="true" aria-label={`${selectedEvent.title} 상세`} className="schedule__section_002">
+            <header className="schedule__header_002">
+              <div><p className="schedule__text_005">행사 상세</p><h2 className="schedule__title_002">{selectedEvent.title}</h2></div>
+              <button onClick={() => { setSelectedEvent(null); setIsEditingEvent(false); }} aria-label="상세 닫기" className="schedule__button_003"><X size={18} /></button>
+            </header>
+            {isEditingEvent ? <div className="schedule__group_014">
+              <label className="schedule__label_008">일정 이름<input value={eventEditForm.title} onChange={(event) => setEventEditForm({ ...eventEditForm, title: event.target.value })} maxLength={255} className="schedule__input_001" /></label>
+              <label className="schedule__label_008">일정 날짜<input type="date" value={eventEditForm.event_date} onChange={(event) => setEventEditForm({ ...eventEditForm, event_date: event.target.value })} className="schedule__input_001" /></label>
+              <label className="schedule__label_008">유형<select value={eventEditForm.event_type} onChange={(event) => setEventEditForm({ ...eventEditForm, event_type: event.target.value })} className="schedule__input_001"><option value="행사">행사</option><option value="교육/특강">교육/특강</option><option value="휴일">휴일</option><option value="공지">공지</option></select></label>
+              <label className="schedule__label_008">상세 내용<textarea value={eventEditForm.description} onChange={(event) => setEventEditForm({ ...eventEditForm, description: event.target.value })} rows={6} maxLength={2000} className="schedule__textarea_001" /></label>
+              <label className="schedule__label_009"><input type="checkbox" checked={eventEditForm.isCommon} onChange={(event) => setEventEditForm({ ...eventEditForm, isCommon: event.target.checked })} className="schedule__input_002" />모든 기수 공통 일정</label>
+              <footer className="schedule__footer_001"><button onClick={() => setIsEditingEvent(false)} className="schedule__button_004">취소</button><button onClick={handleUpdateEvent} disabled={!eventEditForm.title.trim() || !eventEditForm.event_date} className="schedule__button_005"><Save size={15} />수정 저장</button></footer>
+            </div> : <div className="schedule__group_015">
+              <div className="schedule__group_004">
+                <span className={`schedule__variant_017 ${selectedEvent.cohort_id === 0 ? 'schedule__variant_018' : 'schedule__variant_019'}`}>{selectedEvent.cohort_id === 0 ? '전체 공통' : `${selectedEvent.cohort_id}기 전용`}</span>
+                <span className="schedule__label_010">{selectedEvent.event_type}</span>
+                <span className="schedule__label_011"><CalendarDays size={13} className="schedule__calendardays_001" />{String(selectedEvent.event_date || '').slice(0, 10)}</span>
+              </div>
+              <div className="schedule__group_016">
+                <h3 className="schedule__title_003">상세 내용</h3>
+                <p className="schedule__text_006">{selectedEvent.description || '등록된 상세 내용이 없습니다.'}</p>
+              </div>
+              <section className="schedule__section_003">
+                <header className="schedule__header_003">
+                  <h3 className="schedule__title_004"><Users size={16} className="schedule__users_001" /> 참석 명단</h3>
+                  <span className="schedule__label_012">{roster.filter((person) => person.status === '신청완료').length}명</span>
+                </header>
+                <div className="schedule__group_017">
+                  <div ref={traineeSearchRef} className="schedule__group_018">
+                    <Search size={15} className="schedule__search_001" />
+                    <input value={traineeSearchTerm} onFocus={() => setIsTraineeDropdownOpen(true)} onChange={(event) => { setTraineeSearchTerm(event.target.value); setSelectedTraineeId(''); setIsTraineeDropdownOpen(true); }} placeholder={`${selectedCohort}기 교육생 이름 또는 팀 검색`} className="schedule__input_003" />
+                    {isTraineeDropdownOpen && (
+                      <div className="schedule__group_019">
+                        {allTrainees.filter((person) => !person.is_dropped && `${person.name} ${person.team_name || ''}`.toLocaleLowerCase().includes(traineeSearchTerm.trim().toLocaleLowerCase())).map((person) => (
+                          <button key={person.id} type="button" onClick={() => { setSelectedTraineeId(String(person.id)); setTraineeSearchTerm(`${person.name} (${person.team_name || '미배정'})`); setIsTraineeDropdownOpen(false); }} className="schedule__button_006">
+                            <span className="schedule__label_013">{person.name}</span><span className="schedule__label_014">{person.team_name || '미배정'}</span>
+                          </button>
                         ))}
-                        {allTrainees.filter(t => !t.is_dropped && (t.name.includes(traineeSearchTerm) || (t.team_name && t.team_name.includes(traineeSearchTerm)))).length === 0 && (
-                          <div className="px-4 py-3 text-sm text-gray-500 text-center">검색 결과가 없습니다.</div>
-                        )}
+                        {!allTrainees.some((person) => !person.is_dropped && `${person.name} ${person.team_name || ''}`.toLocaleLowerCase().includes(traineeSearchTerm.trim().toLocaleLowerCase())) && <p className="schedule__text_007">검색 결과가 없습니다.</p>}
                       </div>
                     )}
                   </div>
-                  
-                  <button onClick={handleAddTraineeToEvent} className="bg-green-600 hover:bg-green-500 text-white px-3 py-2 rounded-lg transition flex items-center justify-center shadow">
-                    <UserPlus size={18} />
-                  </button>
+                  <button type="button" onClick={handleAddTraineeToEvent} disabled={!selectedTraineeId} title="명단에 추가" className="schedule__button_007"><UserPlus size={16} />추가</button>
                 </div>
-
-                <div className="max-h-80 overflow-y-auto bg-[#111722] hide-scroll">
-                  <table className="w-full text-left text-sm">
-                    <thead className="bg-[#151b28] border-b border-[#2a3441] text-gray-500 text-[11px] sticky top-0">
-                      <tr>
-                        <th className="py-2.5 px-4 font-bold">이름</th>
-                        <th className="py-2.5 px-4 font-bold">신청일시</th>
-                        <th className="py-2.5 px-4 font-bold text-center">상태/취소</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#2a3441]/50 text-gray-300">
-                      {roster.map(r => (
-                        <tr key={r.reg_id} className={`hover:bg-[#1e293b]/50 ${r.status === '취소됨' ? 'opacity-50' : ''}`}>
-                          <td className="py-3 px-4 font-bold text-white">{r.trainee_name}</td>
-                          <td className="py-3 px-4 text-[10px] text-gray-400 font-medium tracking-wide">
-                            {new Date(r.reg_date).toLocaleString()}
-                          </td>
-                          <td className="py-3 px-4 text-center">
-                            {r.status === "신청완료" ? (
-                              <button onClick={() => handleCancelRegistration(r.reg_id)} className="text-xs bg-red-900/30 text-red-400 border border-red-800/50 hover:bg-red-500 hover:text-white px-2 py-1 rounded transition">
-                                취소
-                              </button>
-                            ) : (
-                              <span className="text-xs text-gray-500 font-bold flex items-center justify-center gap-1"><XCircle size={12}/> 취소됨</span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                      {roster.length === 0 && (
-                        <tr><td colSpan="3" className="py-8 text-center text-xs text-gray-500">신청 명단이 없습니다.</td></tr>
-                      )}
-                    </tbody>
-                  </table>
+                <div className="attendance-roster-scroll schedule__group_020">
+                  {roster.map((person) => (
+                    <div key={person.reg_id} className={`schedule__variant_020 ${person.status === '취소됨' ? 'schedule__variant_021' : ''}`}>
+                      <div className="schedule__group_021"><p className="schedule__text_008">{person.trainee_name}</p><p className="schedule__text_009">{person.team_name} · {person.reg_date ? new Date(person.reg_date).toLocaleString('ko-KR') : '등록 시각 없음'}</p></div>
+                      {person.status === '신청완료' ? <button onClick={() => handleCancelRegistration(person.reg_id)} className="schedule__button_008">취소</button> : <span className="schedule__label_015"><XCircle size={13} />취소됨</span>}
+                    </div>
+                  ))}
+                  {!roster.length && <p className="schedule__text_010">등록된 참석 명단이 없습니다.</p>}
                 </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* 일정 추가 모달창 */}
-      {isEventModalOpen && (
-        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-50">
-          <div className="bg-[#111722] border border-[#2a3441] rounded-2xl w-[450px] shadow-2xl flex flex-col overflow-hidden">
-             <div className="px-6 py-4 bg-[#151b28] border-b border-[#2a3441] flex justify-between items-center">
-               <h3 className="font-bold text-white flex items-center gap-2"><CalIcon size={18} className="text-blue-500"/> 새 일정 등록</h3>
-               <button onClick={() => setIsEventModalOpen(false)}><X size={20} className="text-gray-400 hover:text-white"/></button>
-             </div>
-             
-             <div className="p-6 space-y-4">
-               <div>
-                 <p className="text-sm text-gray-400 mb-1.5 font-bold">일정 날짜</p>
-                 <div className="bg-[#1e293b] p-3 rounded-lg text-blue-400 font-bold border border-[#334155]">{selectedDate}</div>
-               </div>
-               
-               <div>
-                 <p className="text-sm text-gray-400 mb-1.5 font-bold">일정/행사 종류</p>
-                 <select 
-                   value={eventForm.event_type} 
-                   onChange={(e) => setEventForm({...eventForm, event_type: e.target.value})} 
-                   className="w-full bg-[#1e293b] p-3 text-white rounded-lg border border-[#334155] focus:outline-none focus:border-blue-500 cursor-pointer"
-                 >
-                   <option value="행사">🎉 일반 행사 / 이벤트</option>
-                   <option value="교육/특강">📚 교육 / 특강</option>
-                   <option value="휴일">🌴 휴일 / 공휴일</option>
-                 </select>
-               </div>
-               
-               <div>
-                 <p className="text-sm text-gray-400 mb-1.5 font-bold">행사명 (타이틀)</p>
-                 {/* 🚨 QA 8번 해결: maxLength 추가로 50자 제한 */}
-                 <input 
-                   type="text"
-                   maxLength={50}
-                   value={eventForm.title} 
-                   onChange={(e) => setEventForm({...eventForm, title: e.target.value})} 
-                   className="w-full bg-[#1e293b] border border-[#334155] rounded-lg p-3 text-sm text-white focus:outline-none focus:border-blue-500" 
-                   placeholder="예) AI 네이티브 해커톤 1일차 (최대 50자)" 
-                 />
-               </div>
-
-               <div>
-                 <p className="text-sm text-gray-400 mb-1.5 font-bold">상세 내용 (선택)</p>
-                 {/* 🚨 QA 8번 해결: maxLength 추가로 300자 제한 */}
-                 <textarea 
-                   maxLength={300}
-                   value={eventForm.description} 
-                   onChange={(e) => setEventForm({...eventForm, description: e.target.value})} 
-                   className="w-full h-24 bg-[#1e293b] border border-[#334155] rounded-lg p-3 text-sm text-white focus:outline-none focus:border-blue-500 resize-none hide-scroll" 
-                   placeholder="행사 장소, 주의사항 등을 기록하세요. (최대 300자)" 
-                 />
-               </div>
-
-               <label className="flex items-center gap-2 cursor-pointer bg-[#151b28] p-3 rounded-lg border border-[#2a3441] hover:bg-[#1e293b] transition">
-                 <input 
-                   type="checkbox" 
-                   checked={eventForm.isCommon}
-                   onChange={(e) => setEventForm({...eventForm, isCommon: e.target.checked})}
-                   className="w-4 h-4 rounded text-blue-500 focus:ring-blue-500 focus:ring-offset-gray-900 bg-gray-700 border-gray-600"
-                 />
-                 <span className="text-sm text-gray-300 font-bold">모든 기수(1,2기..) 공통 행사로 등록</span>
-               </label>
-               
-               <button onClick={handleCreateEvent} className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold transition mt-2 shadow-lg shadow-blue-900/50">
-                 일정 및 명단 보드 생성하기
-               </button>
-             </div>
-          </div>
+              </section>
+              <footer className="schedule__footer_001">
+                <button onClick={() => setSelectedEvent(null)} className="schedule__button_009">닫기</button>
+                <button onClick={startEditingEvent} className="schedule__button_010"><Pencil size={15} />일정 수정</button>
+                <button onClick={() => handleDeleteEvent(selectedEvent.event_id)} className="schedule__button_011"><Trash2 size={15} /> 일정 삭제</button>
+              </footer>
+            </div>}
+          </section>
         </div>
       )}
-    </div>
+
+      {isEventModalOpen && (
+        <div className="schedule__group_013" onMouseDown={(event) => { if (event.target === event.currentTarget) setIsEventModalOpen(false); }}>
+          <section role="dialog" aria-modal="true" aria-labelledby="event-create-title" className="schedule__section_004">
+            <header className="schedule__header_004">
+              <h2 id="event-create-title" className="schedule__title_005"><CalIcon size={18} className="schedule__calicon_001" /> 새 일정 등록</h2>
+              <button onClick={() => setIsEventModalOpen(false)} aria-label="등록 창 닫기" className="schedule__button_012"><X size={19} /></button>
+            </header>
+            <div className="schedule__group_014">
+              <div className="schedule__group_022">{selectedDate}</div>
+              <label className="schedule__label_008">일정 이름
+                <input value={eventForm.title} onChange={(event) => setEventForm({ ...eventForm, title: event.target.value })} maxLength={255} placeholder="예: 프로젝트 발표" className="schedule__input_001" />
+              </label>
+              <label className="schedule__label_008">유형
+                <select value={eventForm.event_type} onChange={(event) => setEventForm({ ...eventForm, event_type: event.target.value })} className="schedule__input_001">
+                  <option value="행사">행사</option><option value="교육/특강">교육/특강</option><option value="휴일">휴일</option><option value="공지">공지</option>
+                </select>
+              </label>
+              <label className="schedule__label_008">상세 내용
+                <textarea value={eventForm.description} onChange={(event) => setEventForm({ ...eventForm, description: event.target.value })} rows={5} maxLength={2000} placeholder="장소, 준비물, 안내 사항 등을 적어주세요." className="schedule__textarea_001" />
+              </label>
+              <label className="schedule__label_009">
+                <input type="checkbox" checked={eventForm.isCommon} onChange={(event) => setEventForm({ ...eventForm, isCommon: event.target.checked })} className="schedule__input_002" />
+                모든 기수 공통 일정
+              </label>
+              <button onClick={handleCreateEvent} disabled={!eventForm.title.trim()} className="schedule__button_013">일정 등록</button>
+            </div>
+          </section>
+        </div>
+      )}
+    </main>
   );
 };
 

@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+/* group: 3 visual rules */
+.app__loading { @apply text-sm p-8; color: var(--text-muted); }
+html[data-theme="light"] .app__loading { color: var(--text-muted); }

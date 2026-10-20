@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, Date, DateTime, ForeignKey, Text, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Boolean, Date, DateTime, ForeignKey, Index, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
@@ -15,10 +15,10 @@ class Cohort(Base):
     # 관계 설정 (1:N)
     teams = relationship("Team", back_populates="cohort", cascade="all, delete-orphan")
     trainees = relationship("Trainee", back_populates="cohort", cascade="all, delete-orphan")
-    schedules = relationship("Schedule", back_populates="cohort", cascade="all, delete-orphan")
 
 class Team(Base):
     __tablename__ = "teams"
+    __table_args__ = (Index("ix_teams_cohort_name", "cohort_id", "team_name"),)
     
     team_id = Column(Integer, primary_key=True, index=True)
     cohort_id = Column(Integer, ForeignKey("cohorts.cohort_id", ondelete="CASCADE"), nullable=False)
@@ -27,15 +27,9 @@ class Team(Base):
     cohort = relationship("Cohort", back_populates="teams")
     trainees = relationship("Trainee", back_populates="team")
 
-class LevelSetting(Base):
-    __tablename__ = "level_settings"
-    
-    level = Column(Integer, primary_key=True, index=True)
-    personal_task_count = Column(Integer, nullable=False)
-    team_project_count = Column(Integer, nullable=False, default=1)
-
 class Trainee(Base):
     __tablename__ = "trainees"
+    __table_args__ = (Index("ix_trainees_cohort_team", "cohort_id", "team_id"),)
     
     trainee_id = Column(Integer, primary_key=True, index=True)
     cohort_id = Column(Integer, ForeignKey("cohorts.cohort_id", ondelete="CASCADE"), nullable=False)
@@ -52,11 +46,6 @@ class Trainee(Base):
     education_level = Column(String(100))
     employment_status = Column(String(100))
     
-    # 초기값 자동 세팅
-    current_level = Column(Integer, ForeignKey("level_settings.level"), nullable=False, default=1)
-    personal_tasks_done = Column(Integer, nullable=False, default=0)
-    is_team_project_done = Column(Boolean, default=False)
-    is_completed = Column(Boolean, nullable=False, default=False)
     is_dropped = Column(Boolean, nullable=False, default=False)
     drop_date = Column(Date)
     drop_reason = Column(Text)
@@ -65,9 +54,20 @@ class Trainee(Base):
     team = relationship("Team", back_populates="trainees")
     progress_logs = relationship("ProgressLog", back_populates="trainee", cascade="all, delete-orphan")
     contact_logs = relationship("ContactLog", back_populates="trainee", cascade="all, delete-orphan")
-    
-    requires_attention = Column(Boolean, default=False)
-    is_tech_linked = Column(Boolean, default=False)
+    memos = relationship("FacilitatorMemo", back_populates="trainee", cascade="all, delete-orphan")
+    flags = relationship("TraineeFlag", back_populates="trainee", uselist=False, cascade="all, delete-orphan")
+
+
+class TraineeFlag(Base):
+    """Small, joinable table for facilitator-managed trainee flags."""
+    __tablename__ = "trainee_flags"
+
+    trainee_id = Column(Integer, ForeignKey("trainees.trainee_id", ondelete="CASCADE"), primary_key=True)
+    requires_attention = Column(Boolean, nullable=False, default=False)
+    is_tech_linked = Column(Boolean, nullable=False, default=False)
+    updated_at = Column(DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+
+    trainee = relationship("Trainee", back_populates="flags")
 
 class ProgressLog(Base):
     __tablename__ = "progress_logs"
@@ -75,8 +75,15 @@ class ProgressLog(Base):
     log_id = Column(Integer, primary_key=True, index=True)
     trainee_id = Column(Integer, ForeignKey("trainees.trainee_id"))
     
-    # [주의] 이 부분이 level_reached가 아니라 반드시 level 이어야 합니다!
-    level = Column(Integer, ForeignKey("level_settings.level"), nullable=False)
+    # Level comes from the crawl configuration and can vary by cohort.
+    level = Column(Integer, nullable=False)
+
+    # Mission-level crawl data. Legacy aggregate rows keep these nullable.
+    cohort_id = Column(Integer, nullable=True, index=True)
+    mission_type = Column(String(20), nullable=True)
+    mission_label = Column(String(100), nullable=True)
+    status = Column(String(50), nullable=True)
+    completed_at = Column(DateTime, nullable=True, index=True)
     
     personal_tasks_done = Column(Integer, default=0)
     is_team_project_done = Column(Boolean, default=False)
@@ -85,26 +92,76 @@ class ProgressLog(Base):
 
     trainee = relationship("Trainee", back_populates="progress_logs")
 
-class TeamMoveLog(Base):
-    __tablename__ = "team_move_logs"
-    
-    move_id = Column(Integer, primary_key=True, index=True)
-    trainee_id = Column(Integer, ForeignKey("trainees.trainee_id", ondelete="CASCADE"), nullable=False)
-    from_team_id = Column(Integer, ForeignKey("teams.team_id", ondelete="SET NULL"), nullable=True)
-    to_team_id = Column(Integer, ForeignKey("teams.team_id", ondelete="CASCADE"), nullable=False)
-    move_date = Column(DateTime, server_default=func.now())
-    note = Column(String(500), nullable=True)
+
+class FacilitatorMemo(Base):
+    """Team-level or trainee-level working notes for facilitator handoffs."""
+    __tablename__ = "facilitator_memos"
+
+    memo_id = Column(Integer, primary_key=True, index=True)
+    cohort_id = Column(Integer, ForeignKey("cohorts.cohort_id", ondelete="CASCADE"), nullable=False, index=True)
+    team_id = Column(Integer, ForeignKey("teams.team_id", ondelete="SET NULL"), nullable=True, index=True)
+    trainee_id = Column(Integer, ForeignKey("trainees.trainee_id", ondelete="CASCADE"), nullable=True, index=True)
+    title = Column(String(255), nullable=True)
+    content = Column(Text, nullable=False)
+    author = Column(String(100), nullable=False, default="퍼실리테이터")
+    created_at = Column(DateTime, nullable=False, server_default=func.now(), index=True)
+    updated_at = Column(DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+
+    trainee = relationship("Trainee", back_populates="memos")
+    team = relationship("Team")
 
 class TeamProject(Base):
     __tablename__ = "team_projects"
+    __table_args__ = (Index("ix_team_projects_cohort_team_level", "cohort_id", "team_id", "level"),)
     cohort_id = Column(Integer, index=True, default=1)
     project_id = Column(Integer, primary_key=True, index=True)
     team_id = Column(Integer)
     member_names = Column(String(500), nullable=True)
     level = Column(String(50))
     status = Column(String(50), default="팀 셋팅 중")
-    status_changed_date = Column(DateTime, onupdate=func.now())
+    status_changed_date = Column(DateTime, nullable=True, default=func.now(), onupdate=func.now())
     approved_by = Column(String(50), nullable=True)
+
+
+
+class TeamBoardMemo(Base):
+    """Cohort-scoped notes for the team project board, not a specific team."""
+    __tablename__ = "team_board_memos"
+
+    memo_id = Column(Integer, primary_key=True, index=True)
+    cohort_id = Column(Integer, ForeignKey("cohorts.cohort_id", ondelete="CASCADE"), nullable=False, index=True)
+    content = Column(Text, nullable=False)
+    author = Column(String(100), nullable=False, default="퍼실리테이터")
+    created_at = Column(DateTime, nullable=False, server_default=func.now(), index=True)
+
+
+class TeamCallCampaign(Base):
+    """One team-wide call reason with an outcome and optional note per trainee."""
+    __tablename__ = "team_call_campaigns"
+
+    campaign_id = Column(Integer, primary_key=True, index=True)
+    cohort_id = Column(Integer, ForeignKey("cohorts.cohort_id", ondelete="CASCADE"), nullable=False, index=True)
+    team_id = Column(Integer, ForeignKey("teams.team_id", ondelete="SET NULL"), nullable=True, index=True)
+    reason = Column(String(255), nullable=False)
+    manager_name = Column(String(100), nullable=False, default="퍼실리테이터")
+    created_at = Column(DateTime, nullable=False, server_default=func.now(), index=True)
+    updated_at = Column(DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+
+    recipients = relationship("TeamCallRecipient", back_populates="campaign", cascade="all, delete-orphan")
+
+
+class TeamCallRecipient(Base):
+    """A trainee selected for a team call campaign."""
+    __tablename__ = "team_call_recipients"
+
+    recipient_id = Column(Integer, primary_key=True, index=True)
+    campaign_id = Column(Integer, ForeignKey("team_call_campaigns.campaign_id", ondelete="CASCADE"), nullable=False, index=True)
+    trainee_id = Column(Integer, ForeignKey("trainees.trainee_id", ondelete="CASCADE"), nullable=False, index=True)
+    received = Column(Boolean, nullable=False, default=True, server_default="1")
+    note = Column(Text, nullable=True)
+
+    campaign = relationship("TeamCallCampaign", back_populates="recipients")
+    trainee = relationship("Trainee")
     
 
 class ContactLog(Base):
@@ -120,18 +177,6 @@ class ContactLog(Base):
 
     trainee = relationship("Trainee", back_populates="contact_logs")
 
-class Schedule(Base):
-    __tablename__ = "schedules"
-    
-    schedule_id = Column(Integer, primary_key=True, index=True)
-    cohort_id = Column(Integer, ForeignKey("cohorts.cohort_id", ondelete="CASCADE"), nullable=False)
-    title = Column(String(255), nullable=False)
-    start_datetime = Column(DateTime, nullable=False)
-    end_datetime = Column(DateTime)
-    description = Column(Text)
-
-    cohort = relationship("Cohort", back_populates="schedules")
-    
 # ==========================================
 # 퍼실팀 공지사항 테이블 (업그레이드)
 # ==========================================
@@ -158,22 +203,19 @@ class ScheduleEvent(Base):
 
     event_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     cohort_id = Column(Integer, index=True, default=1)
-    title = Column(String(100))        # 행사명
+    title = Column(String(255))        # 행사명
     description = Column(Text, nullable=True) # 간단한 설명
     event_date = Column(Date)          # 행사 날짜
     event_type = Column(String(50), default="행사") # 행사, 특강, 교육 등
+    start_datetime = Column(DateTime, nullable=True)
+    end_datetime = Column(DateTime, nullable=True)
 
-# ==========================================
-# ✅ 신규 추가: 행사 신청 명단 테이블
-# ==========================================
 class EventRegistration(Base):
     __tablename__ = "event_registrations"
 
     reg_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    event_id = Column(Integer, index=True)
-    trainee_id = Column(Integer, index=True)
-    trainee_name = Column(String(50))
-    # 언제 신청했는지 시간 기록
-    reg_date = Column(DateTime, server_default=func.now())
-    # "신청완료" 또는 "취소됨"
-    status = Column(String(20), default="신청완료")
+    event_id = Column(Integer, nullable=False, index=True)
+    trainee_id = Column(Integer, nullable=False, index=True)
+    trainee_name = Column(String(50), nullable=False)
+    reg_date = Column(DateTime, nullable=False, default=datetime.now)
+    status = Column(String(20), nullable=False, default="신청완료")

@@ -8,6 +8,14 @@
 .env
 .env.
 backend/.env
+backend/private_exports/
+.env.*
+!.env.example
+.vercel/
+*.sql
+*.dump
+*.bak
+*.backup
 
 ==========================================
 
@@ -40,6 +48,8 @@ backend/app/temp_data/
 !package.json
 !package-lock.json
 !tsconfig.json
+!backend/vercel.json
+!frontend/vercel.json
 
 데이터베이스 파일 (로컬 SQLite 등을 쓸 경우 대비)
 

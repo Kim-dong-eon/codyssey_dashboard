@@ -1,0 +1,137 @@
+@reference "tailwindcss";
+
+/* text: 9 visual rules */
+.missionprogressbylevel__text_001 { @apply border-dashed text-center rounded-lg text-xs border py-4 px-3; border-color: var(--border-strong); color: var(--text-subtle); }
+html[data-theme="light"] .missionprogressbylevel__text_001 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* group: 1 visual rules */
+.missionprogressbylevel__group_001 { @apply space-y-3; }
+
+/* group: 6 visual rules */
+.missionprogressbylevel__group_002 { @apply rounded-lg border py-2.5 px-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .missionprogressbylevel__group_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.missionprogressbylevel__group_003 { @apply justify-between items-center gap-3 flex; }
+
+/* label: 5 visual rules */
+.missionprogressbylevel__label_001 { @apply font-bold truncate text-sm min-w-0; color: var(--text-strong); }
+html[data-theme="light"] .missionprogressbylevel__label_001 { color: var(--text-strong); }
+
+/* label: 4 visual rules */
+.missionprogressbylevel__label_002 { @apply font-bold shrink-0 text-xs; color: var(--text-primary); }
+html[data-theme="light"] .missionprogressbylevel__label_002 { color: var(--text-primary); }
+
+/* group: 5 visual rules */
+.missionprogressbylevel__group_004 { @apply overflow-hidden rounded-full h-2.5 mt-2; background-color: var(--surface-track); }
+
+/* text: 3 visual rules */
+.missionprogressbylevel__text_002 { @apply text-[11px] mt-1.5; color: var(--text-subtle); }
+html[data-theme="light"] .missionprogressbylevel__text_002 { color: var(--text-muted); }
+
+/* section: 7 visual rules */
+.missionprogressbylevel__section_001 { @apply rounded-xl shadow-lg border p-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .missionprogressbylevel__section_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+@media (min-width: 48rem) { .missionprogressbylevel__section_001 { @apply p-6; } }
+
+/* header: 6 visual rules */
+.missionprogressbylevel__header_001 { @apply justify-between items-start flex-wrap gap-3 flex mb-4; }
+
+/* title: 3 visual rules */
+.missionprogressbylevel__title_001 { @apply text-white font-bold text-lg; }
+html[data-theme="light"] .missionprogressbylevel__title_001 { color: var(--text-strong); }
+
+/* group: 5 visual rules */
+.missionprogressbylevel__group_005 { @apply justify-between items-center flex-wrap gap-3 flex; }
+
+/* text: 3 visual rules */
+.missionprogressbylevel__text_003 { @apply leading-relaxed text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .missionprogressbylevel__text_003 { color: var(--text-muted); }
+
+/* group: 6 visual rules */
+.missionprogressbylevel__group_006 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .missionprogressbylevel__group_006 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.missionprogressbylevel__group_007 { @apply gap-4 grid grid-cols-1; }
+@media (min-width: 80rem) { .missionprogressbylevel__group_007 { @apply grid-cols-3; } }
+
+/* header: 8 visual rules */
+.missionprogressbylevel__header_002 { @apply justify-between items-center border-b gap-2 flex pb-3 mb-4; border-color: var(--border-color); }
+
+/* title: 3 visual rules */
+.missionprogressbylevel__title_002 { @apply font-extrabold text-white text-base; }
+html[data-theme="light"] .missionprogressbylevel__title_002 { color: var(--text-strong); }
+
+/* label: 7 visual rules */
+.missionprogressbylevel__label_003 { @apply rounded-full font-bold text-xs px-2.5 py-1; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .missionprogressbylevel__label_003 { color: var(--text-primary); }
+
+/* group: 3 visual rules */
+.missionprogressbylevel__group_008 { @apply flex-col flex-1 flex; }
+
+/* section: 1 visual rules */
+.missionprogressbylevel__section_002 { @apply flex-1; }
+
+/* title: 6 visual rules */
+.missionprogressbylevel__title_003 { @apply tracking-wide font-bold uppercase text-xs mb-2; color: var(--tone-sky); }
+
+/* section: 1 visual rules */
+.missionprogressbylevel__section_003 { @apply mt-5; }
+
+/* title: 6 visual rules */
+.missionprogressbylevel__title_004 { @apply tracking-wide font-bold uppercase text-xs mb-2; color: var(--tone-amber); }
+
+/* Conditional style missionprogressbylevel__variant_001 */
+.missionprogressbylevel__variant_001 { border-color: var(--tint-border-blue); }
+
+/* Conditional style missionprogressbylevel__variant_002 */
+.missionprogressbylevel__variant_002 { border-color: var(--tint-border-green); }
+
+/* Conditional style missionprogressbylevel__variant_003 */
+.missionprogressbylevel__variant_003 { border-color: var(--tint-border-purple); }
+
+/* Conditional style missionprogressbylevel__variant_004 */
+.missionprogressbylevel__variant_004 { @apply transition-[width] rounded-full duration-300 h-full; }
+
+/* Conditional style missionprogressbylevel__variant_005 */
+.missionprogressbylevel__variant_005 { background-color: var(--chart-amber); }
+
+/* Conditional style missionprogressbylevel__variant_006 */
+.missionprogressbylevel__variant_006 { background-color: var(--chart-blue); }
+
+/* Conditional style missionprogressbylevel__variant_007 */
+.missionprogressbylevel__variant_007 { @apply rounded-md font-bold text-xs py-1.5 px-3; }
+
+/* Conditional style missionprogressbylevel__variant_008 */
+.missionprogressbylevel__variant_008 { @apply text-white; background-color: var(--action-primary); }
+html[data-theme="light"] .missionprogressbylevel__variant_008 { color: #fff; }
+
+/* Conditional style missionprogressbylevel__variant_009 */
+.missionprogressbylevel__variant_009 { color: var(--text-muted); }
+html[data-theme="light"] .missionprogressbylevel__variant_009 { color: var(--text-muted); }
+.missionprogressbylevel__variant_009:hover { @apply text-white; }
+html[data-theme="light"] .missionprogressbylevel__variant_009:hover { color: var(--text-strong); }
+
+/* Conditional style missionprogressbylevel__variant_010 */
+.missionprogressbylevel__variant_010 { @apply rounded-xl flex-col min-w-0 border flex; }
+
+/* Conditional style missionprogressbylevel__variant_011 */
+.missionprogressbylevel__variant_011 { @apply p-4; background-color: var(--surface-background); }
+html[data-theme="light"] .missionprogressbylevel__variant_011 { background-color: var(--surface-background); }
+
+/* Light theme neutral surfaces and labels */
+html[data-theme="light"] .missionprogressbylevel__group_004 { background-color: var(--surface-track); }
+html[data-theme="light"] .missionprogressbylevel__header_002 { border-color: var(--border-color); }
+html[data-theme="light"] .missionprogressbylevel__label_003 { background-color: var(--surface-track); }
+
+.missionprogressbylevel__variant_004 { width: var(--progress-width, 0%); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .missionprogressbylevel__variant_008
+):is(
+  .missionprogressbylevel__title_001,
+  .missionprogressbylevel__title_002,
+  .missionprogressbylevel__variant_008
+) { color: #fff; }

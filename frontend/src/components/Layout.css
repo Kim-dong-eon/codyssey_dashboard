@@ -1,0 +1,8 @@
+@reference "tailwindcss";
+
+/* group: 4 visual rules */
+.layout__shell { @apply min-h-screen font-sans; color: var(--text-primary); background-color: var(--app-background); }
+html[data-theme="light"] .layout__shell { color: var(--text-primary); background-color: var(--app-background); }
+
+/* main: 3 visual rules */
+.layout__content { @apply overflow-y-auto h-screen pt-16; }

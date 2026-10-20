@@ -1,0 +1,15 @@
+# Keep local credentials and exported trainee data out of CLI uploads.
+.env
+.env.*
+private_exports/
+*.db
+*.sqlite
+*.sqlite3
+app/temp_data/
+temp_data/
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+tests/
+seed_trainees.py

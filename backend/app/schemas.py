@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, model_validator
 from typing import Optional, List
 from datetime import date, datetime
 
@@ -15,7 +15,17 @@ class CohortBase(BaseModel):
     end_date: Optional[date] = None
 
 class CohortCreate(CohortBase):
-    pass
+    end_date: date
+
+    @model_validator(mode="after")
+    def validate_period(self):
+        if self.start_date and self.end_date < self.start_date:
+            raise ValueError("기한은 시작일보다 빠를 수 없습니다.")
+        return self
+
+
+class CohortDeadlineUpdate(BaseModel):
+    end_date: date
 
 class CohortOut(CohortBase, ORMBaseModel):
     cohort_id: int
@@ -52,9 +62,8 @@ class TraineeCreate(TraineeBase):
     team_id: Optional[int] = None
 
 class TraineeUpdate(BaseModel):
-    # 수료, 드랍, 조 변경 시 사용하는 부분 업데이트 모델
+    # 드랍, 조 변경 시 사용하는 부분 업데이트 모델
     team_id: Optional[int] = None
-    is_completed: Optional[bool] = None
     is_dropped: Optional[bool] = None
     drop_date: Optional[date] = None
     drop_reason: Optional[str] = None
@@ -63,9 +72,6 @@ class TraineeOut(TraineeBase, ORMBaseModel):
     trainee_id: int
     cohort_id: int
     team_id: Optional[int]
-    current_level: int
-    personal_tasks_done: int
-    is_completed: bool
     is_dropped: bool
     drop_date: Optional[date]
     drop_reason: Optional[str]
@@ -102,19 +108,3 @@ class ContactLogOut(ContactLogBase, ORMBaseModel):
     contact_id: int
     trainee_id: int
     contact_date: datetime
-
-# ==========================================
-# 6. 일정 (Schedule)
-# ==========================================
-class ScheduleBase(BaseModel):
-    title: str
-    start_datetime: datetime
-    end_datetime: Optional[datetime] = None
-    description: Optional[str] = None
-
-class ScheduleCreate(ScheduleBase):
-    cohort_id: int
-
-class ScheduleOut(ScheduleBase, ORMBaseModel):
-    schedule_id: int
-    cohort_id: int

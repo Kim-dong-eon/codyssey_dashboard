@@ -1,0 +1,115 @@
+@reference "tailwindcss";
+
+/* section: 7 visual rules */
+.periodprogresssection__section_001 { @apply rounded-xl shadow-lg border p-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .periodprogresssection__section_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+@media (min-width: 48rem) { .periodprogresssection__section_001 { @apply p-6; } }
+
+/* group: 6 visual rules */
+.periodprogresssection__group_001 { @apply justify-between items-start flex-wrap gap-4 mb-5 flex; }
+
+/* title: 6 visual rules */
+.periodprogresssection__title_001 { @apply items-center text-white font-bold text-lg gap-2 flex; }
+html[data-theme="light"] .periodprogresssection__title_001 { color: var(--text-strong); }
+
+/* calendardays: 1 visual rules */
+.periodprogresssection__calendardays_001 { color: var(--tone-blue); }
+
+/* text: 3 visual rules */
+.periodprogresssection__text_001 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .periodprogresssection__text_001 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.periodprogresssection__group_002 { @apply items-center flex-wrap gap-2 flex; }
+
+/* button: 8 visual rules */
+.periodprogresssection__button_001 { @apply rounded-lg text-xs border px-3 py-2; border-color: var(--border-strong); color: var(--text-primary); }
+html[data-theme="light"] .periodprogresssection__button_001 { border-color: var(--border-color); color: var(--text-primary); }
+.periodprogresssection__button_001:hover { @apply text-white; }
+html[data-theme="light"] .periodprogresssection__button_001:hover { color: var(--text-strong); }
+
+/* input: 8 visual rules */
+.periodprogresssection__input_001 { @apply rounded-lg text-xs border px-2 py-2; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-background); }
+html[data-theme="light"] .periodprogresssection__input_001 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+
+/* label: 2 visual rules */
+.periodprogresssection__label_001 { @apply text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .periodprogresssection__label_001 { color: var(--text-muted); }
+
+/* button: 8 visual rules */
+.periodprogresssection__button_002 { @apply rounded-lg text-white font-bold text-xs px-4 py-2; background-color: var(--action-primary); }
+html[data-theme="light"] .periodprogresssection__button_002 { color: #fff; }
+.periodprogresssection__button_002:hover { background-color: var(--action-primary-hover); }
+
+/* text: 9 visual rules */
+.periodprogresssection__text_002 { @apply rounded-lg text-xs border px-3 mb-3 py-2; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .periodprogresssection__text_002 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* group: 5 visual rules */
+.periodprogresssection__group_003 { @apply gap-3 mb-5 grid grid-cols-2; }
+@media (min-width: 80rem) { .periodprogresssection__group_003 { @apply grid-cols-3; } }
+
+/* group: 6 visual rules */
+.periodprogresssection__group_004 { @apply rounded-xl border px-4 py-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .periodprogresssection__group_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 5 visual rules */
+.periodprogresssection__group_005 { @apply justify-between items-baseline gap-2 flex mt-1; }
+
+/* label: 3 visual rules */
+.periodprogresssection__label_002 { @apply font-extrabold text-white text-xl; }
+html[data-theme="light"] .periodprogresssection__label_002 { color: var(--text-strong); }
+
+/* label: 3 visual rules */
+.periodprogresssection__label_003 { @apply text-xs ml-1; color: var(--text-subtle); }
+html[data-theme="light"] .periodprogresssection__label_003 { color: var(--text-muted); }
+
+/* text: 3 visual rules */
+.periodprogresssection__text_003 { @apply text-[10px] mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .periodprogresssection__text_003 { color: var(--text-muted); }
+
+/* group: 9 visual rules */
+.periodprogresssection__group_006 { @apply rounded-lg text-xs border px-3 mb-3 py-2; border-color: var(--tint-border-amber); background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .periodprogresssection__group_006 { background-color: var(--tint-amber); }
+
+/* group: 9 visual rules */
+.periodprogresssection__group_007 { @apply rounded-lg text-xs border px-3 mb-3 py-2; border-color: var(--tint-border-blue); background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .periodprogresssection__group_007 { background-color: var(--tint-blue); color: var(--tone-blue); }
+
+/* group: 2 visual rules */
+.periodprogresssection__group_008 { @apply h-[340px] w-full; }
+
+/* Conditional style periodprogresssection__variant_001 */
+.periodprogresssection__variant_001 { color: var(--text-muted); }
+html[data-theme="light"] .periodprogresssection__variant_001 { color: var(--text-muted); }
+
+/* Conditional style periodprogresssection__variant_002 */
+.periodprogresssection__variant_002 { color: var(--tone-blue); }
+
+/* Conditional style periodprogresssection__variant_003 */
+.periodprogresssection__variant_003 { color: var(--tone-purple); }
+
+/* Conditional style periodprogresssection__variant_004 */
+.periodprogresssection__variant_004 { color: var(--tone-green); }
+
+/* Conditional style periodprogresssection__variant_005 */
+.periodprogresssection__variant_005 { color: var(--tone-sky); }
+
+/* Conditional style periodprogresssection__variant_006 */
+.periodprogresssection__variant_006 { color: var(--tone-rose); }
+
+/* Conditional style periodprogresssection__variant_007 */
+.periodprogresssection__variant_007 { @apply font-bold text-xs; }
+
+/* Conditional style periodprogresssection__variant_008 */
+.periodprogresssection__variant_008 { color: var(--text-subtle); }
+html[data-theme="light"] .periodprogresssection__variant_008 { color: var(--text-muted); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .periodprogresssection__button_002
+):is(
+  .periodprogresssection__button_002,
+  .periodprogresssection__label_002,
+  .periodprogresssection__title_001
+) { color: #fff; }

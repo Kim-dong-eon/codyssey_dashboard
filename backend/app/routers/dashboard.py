@@ -1,99 +1,179 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from datetime import date, timedelta
+from datetime import date, datetime, time, timedelta
+from zoneinfo import ZoneInfo
 from typing import Optional
 from pydantic import BaseModel
 from app import models
 from app.database import get_db
+from app.services.progress_state import DONE_STATUSES, build_progress_state_map, load_progress_logs
 
-router = APIRouter(
-    prefix="/api/dashboard",
-    tags=["Dashboard"]
-)
+router = APIRouter()
+KST = ZoneInfo("Asia/Seoul")
 
 @router.get("/{cohort_id}")
-def get_dashboard_data(cohort_id: int, db: Session = Depends(get_db)):
-    trainees = db.query(models.Trainee).filter(
-        models.Trainee.cohort_id == cohort_id,
-        models.Trainee.is_dropped == False
-    ).all()
+def get_dashboard_data(
+    cohort_id: int,
+    start_date: Optional[date] = None,
+    end_date: Optional[date] = None,
+    team_id: Optional[int] = None,
+    roster_only: bool = False,
+    db: Session = Depends(get_db),
+):
+    today = datetime.now(KST).date()
+    end_day = end_date or today
+    start_day = start_date or end_day - timedelta(days=6)
+    if start_day > end_day:
+        raise HTTPException(status_code=422, detail="시작일은 종료일보다 늦을 수 없습니다.")
 
-    # 🚨 신규: 팀 번호(48) 대신 진짜 조 이름(김재은 퍼실님)을 찾기 위한 딕셔너리 생성
-    teams = db.query(models.Team).filter(models.Team.cohort_id == cohort_id).all()
-    team_dict = {team.team_id: team.team_name for team in teams}
+    # Join the cohort roster to its current team and normalized facilitator flags.
+    roster_rows = (
+        db.query(
+            models.Trainee,
+            models.Team.team_name,
+            models.TraineeFlag.requires_attention,
+            models.TraineeFlag.is_tech_linked,
+        )
+        .outerjoin(models.Team, models.Team.team_id == models.Trainee.team_id)
+        .outerjoin(models.TraineeFlag, models.TraineeFlag.trainee_id == models.Trainee.trainee_id)
+        .filter(models.Trainee.cohort_id == cohort_id)
+        .order_by(models.Trainee.name.asc())
+        .all()
+    )
+    if team_id is not None:
+        roster_rows = [row for row in roster_rows if row[0].team_id == team_id]
+    scoped_trainee_ids = {row[0].trainee_id for row in roster_rows}
+    progress_logs = load_progress_logs(
+        db, cohort_id, scoped_trainee_ids if team_id is not None else None
+    )
+    current_states = build_progress_state_map(progress_logs)
+    last_progress_by_trainee = {}
+    for log in progress_logs:
+        if (
+            log.mission_type not in {"personal", "team"}
+            or not log.mission_label
+            or not log.completed_at
+            or (log.status or "").strip().replace(" ", "").lower() not in DONE_STATUSES
+        ):
+            continue
+        previous = last_progress_by_trainee.get(log.trainee_id)
+        if previous is None or log.completed_at > previous:
+            last_progress_by_trainee[log.trainee_id] = log.completed_at
+    current_rows = [row for row in roster_rows if not row[0].is_dropped]
+    trainee_list = [
+        {
+            "id": trainee.trainee_id,
+            "name": trainee.name,
+            "team_id": trainee.team_id,
+            "team": team_name or "미배정",
+            "level": current_states.get(trainee.trainee_id, {}).get("current_level", 1),
+            "done": current_states.get(trainee.trainee_id, {}).get("personal_tasks_done", 0),
+            "target": current_states.get(trainee.trainee_id, {}).get("target", 3),
+            "optional_task_done": int(bool(current_states.get(trainee.trainee_id, {}).get("is_team_project_done"))),
+            "is_dropped": trainee.is_dropped,
+            "drop_date": trainee.drop_date,
+            "is_completed": bool(current_states.get(trainee.trainee_id, {}).get("is_completed")),
+            "requires_attention": bool(requires_attention),
+            "is_tech_linked": bool(is_tech_linked),
+            "last_progress_at": last_progress_by_trainee.get(trainee.trainee_id),
+        }
+        for trainee, team_name, requires_attention, is_tech_linked in current_rows
+    ]
+    if roster_only:
+        return {
+            "trainees": trainee_list,
+            "missionProgressByTrainee": [],
+            "chartData": [],
+            "historyAvailable": False,
+            "historyMode": "none",
+            "range": {"start_date": start_day.isoformat(), "end_date": end_day.isoformat()},
+        }
+    roster_trainee_ids = {row[0].trainee_id for row in roster_rows}
+    mission_progress_by_trainee = [
+        {
+            "trainee_id": log.trainee_id,
+            "level": log.level,
+            "mission_type": log.mission_type,
+            "mission_label": log.mission_label,
+            "is_completed": (log.status or "").strip().replace(" ", "").lower()
+            in {"미션완료", "완료", "completed", "complete"},
+            "completed_at": log.completed_at,
+        }
+        for log in progress_logs
+        if log.trainee_id in roster_trainee_ids
+        and log.mission_label and log.mission_type in {"personal", "team"}
+    ]
 
-    trainee_ids = [t.trainee_id for t in trainees]
-    progress_logs = []
-    if trainee_ids:
-        progress_logs = db.query(models.ProgressLog).filter(
-            models.ProgressLog.trainee_id.in_(trainee_ids)
-        ).all()
-
-    level_targets = {1: 3, 2: 3, 3: 2}
-    trainee_list = []
-    
-    for t in trainees:
-        current_log = next((log for log in progress_logs if log.trainee_id == t.trainee_id and log.level == t.current_level), None)
-        done_tasks = getattr(t, 'personal_tasks_done', 0)
-        opt_done = 0
-        
-        if current_log:
-            log_dict = current_log.__dict__
-            if 'personal_tasks_done' in log_dict:
-                done_tasks = log_dict['personal_tasks_done']
-            opt_done = log_dict.get('is_team_project_done', 0)
-        else:
-            opt_done = 0
-
-        trainee_list.append({
-            "id": t.trainee_id,
-            "name": t.name,
-            # 🚨 핵심 수정: t.team_id를 이용해 team_dict에서 진짜 팀 이름을 가져옴!
-            "team": team_dict.get(t.team_id, "미배정") if t.team_id else "미배정", 
-            "level": t.current_level,
-            "done": done_tasks,
-            "target": level_targets.get(t.current_level, 3),
-            "optional_task_done": int(opt_done),
-            "requires_attention": getattr(t, 'requires_attention', False),
-            "is_tech_linked": getattr(t, 'is_tech_linked', False)
-        })
-
-    today = date.today()
-    recent_dates = [today - timedelta(days=i) for i in range(6, -1, -1)]
+    end_cutoff = datetime.combine(end_day, time.max)
     chart_data = []
-    
-    for d in recent_dates:
-        l1_cnt = l2_cnt = l3_cnt = 0
-        for t in trainees:
-            passed_levels = []
-            for log in progress_logs:
-                if log.trainee_id == t.trainee_id:
-                    log_dict = log.__dict__
-                    date_val = log_dict.get('passed_date') or log_dict.get('last_updated')
-                    if date_val and date_val.date() <= d:
-                        passed_levels.append(log.level)
-                        
-            hist_level = max(passed_levels) if passed_levels else 1
-            if d == today:
-                hist_level = t.current_level
-            else:
-                hist_level = min(hist_level, t.current_level)
-            
-            if hist_level == 1: l1_cnt += 1
-            elif hist_level == 2: l2_cnt += 1
-            elif hist_level >= 3: l3_cnt += 1
-                
+    legacy_history_available = any(
+        (log.completed_at is not None and log.completed_at <= end_cutoff)
+        or (log.passed_date is not None and log.passed_date <= end_cutoff)
+        or (log.last_updated is not None and log.last_updated <= end_cutoff)
+        for log in progress_logs
+    )
+    has_mission_dates = any(log.mission_label and log.completed_at for log in progress_logs)
+    historical_data_available = has_mission_dates or legacy_history_available
+    history_mode = "crawl_missions" if has_mission_dates else "legacy_logs" if legacy_history_available else "none"
+    display_levels = sorted({log.level for log in progress_logs if log.level is not None}) or [1, 2, 3]
+    day_count = (end_day - start_day).days + 1
+    for day_offset in range(day_count):
+        point_day = start_day + timedelta(days=day_offset)
+        if not historical_data_available and point_day < today:
+            chart_data.append({
+                "date": point_day.strftime("%m/%d"),
+                "fullDate": point_day.isoformat(),
+                "level1": None,
+                "level2": None,
+                "level3": None,
+                "tasksDone": None,
+                "projectDone": None,
+                "completed": None,
+                "dropped": None,
+            })
+            continue
+        cutoff = datetime.combine(point_day, time.max)
+        counts = {level: 0 for level in display_levels}
+        tasks_done = 0
+        project_done = 0
+        completed = 0
+        dropped = 0
+        state_by_trainee = build_progress_state_map(progress_logs, as_of=cutoff)
+
+        for trainee, _, _, _ in roster_rows:
+            state = state_by_trainee.get(trainee.trainee_id, {})
+            level = state.get("current_level", 1)
+            done = state.get("personal_tasks_done", 0)
+            did_project = state.get("is_team_project_done", False)
+            is_completed = state.get("is_completed", False)
+            is_dropped = bool(trainee.drop_date and trainee.drop_date <= point_day)
+            if trainee.is_dropped and trainee.drop_date is None:
+                is_dropped = point_day >= today
+            if is_dropped:
+                dropped += 1
+                continue
+            counts[level] = counts.get(level, 0) + 1
+            tasks_done += int(done or 0)
+            project_done += int(bool(did_project))
+            completed += int(bool(is_completed))
+
         chart_data.append({
-            "date": d.strftime("%m/%d"),
-            "level1": l1_cnt,
-            "level2": l2_cnt,
-            "level3": l3_cnt
+            "date": point_day.strftime("%m/%d"),
+            "fullDate": point_day.isoformat(),
+            **{f"level{level}": counts.get(level, 0) for level in display_levels},
+            "tasksDone": tasks_done,
+            "projectDone": project_done,
+            "completed": completed,
+            "dropped": dropped,
         })
 
     return {
         "trainees": trainee_list,
+        "missionProgressByTrainee": mission_progress_by_trainee,
         "chartData": chart_data,
-        "grassData": [] 
+        "historyAvailable": historical_data_available,
+        "historyMode": history_mode,
+        "range": {"start_date": start_day.isoformat(), "end_date": end_day.isoformat()},
     }
 
 # ==========================================
@@ -124,7 +204,12 @@ def create_notice(cohort_id: int, req: NoticeCreateRequest, db: Session = Depend
     new_notice = models.Notice(cohort_id=cohort_id, content=req.content, category=req.category)
     db.add(new_notice)
     db.commit()
-    return {"message": "등록 완료"}
+    db.refresh(new_notice)
+    return {
+        "message": "등록 완료",
+        "notice_id": new_notice.notice_id,
+        "created_at": new_notice.created_at,
+    }
 
 @router.put("/notices/{notice_id}")
 def update_notice(notice_id: int, req: NoticeUpdateRequest, db: Session = Depends(get_db)):

@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, Pretendard, "Noto Sans KR", system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --app-background: #192635;
+  --surface-background: #233246;
+  --surface-muted: #2b3c50;
+  --surface-raised: #34485e;
+  --surface-track: #40556b;
+  --border-color: #455b70;
+  --border-strong: #5b7187;
+  --text-strong: #f3f6f8;
+  --text-primary: #d9e3eb;
+  --text-muted: #b4c3d1;
+  --text-subtle: #a0b2c3;
+  --chart-grid: #4b6075;
+  --chart-axis: #b2c1cf;
+  --chart-series-neutral: #b8c8d5;
+  --chart-blue: #82b2e4;
+  --chart-purple: #b7a0d8;
+  --chart-green: #80c5a0;
+  --chart-cyan: #84c6d0;
+  --chart-amber: #d8ae6e;
+  --chart-muted-bar: #8ca2b6;
+  --tint-blue: #2b435c;
+  --tint-purple: #3c3b53;
+  --tint-cyan: #2b4954;
+  --tint-red: #49393f;
+  --tint-rose: #4b3a45;
+  --tint-amber: #4b4235;
+  --tint-orange: #4b4038;
+  --tint-green: #2f493f;
+  --tint-border-blue: #54789c;
+  --tint-border-purple: #77688c;
+  --tint-border-cyan: #5b858f;
+  --tint-border-red: #96666d;
+  --tint-border-rose: #986b7a;
+  --tint-border-amber: #957d58;
+  --tint-border-orange: #956f59;
+  --tint-border-green: #5c856f;
+  --tone-blue: #a2c7ee;
+  --tone-purple: #c8b8e5;
+  --tone-cyan: #a2d8df;
+  --tone-red: #f0b2b6;
+  --tone-rose: #efb6c1;
+  --tone-amber: #edce9a;
+  --tone-orange: #e9bc9e;
+  --tone-green: #a5ddba;
+  --tone-sky: #acd7eb;
+  --action-primary: #4e6f98;
+  --action-primary-hover: #426389;
+  --action-teal: #3b717d;
+  --action-teal-hover: #31646f;
+  --action-purple: #6d5f85;
+  --action-purple-hover: #5d5076;
+  --action-success: #39755f;
+  --action-success-hover: #2e6853;
+  --action-danger: #a6535e;
+  --action-danger-hover: #954752;
+  background: var(--app-background);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --app-background: #fcfcfc;
+  --surface-background: #ffffff;
+  --surface-muted: #f5f7f9;
+  --surface-raised: #edf1f5;
+  --surface-track: #e4e9ef;
+  --border-color: #dce3ea;
+  --border-strong: #c8d2dc;
+  --text-strong: #1f2a38;
+  --text-primary: #344255;
+  --text-muted: #5f6d7d;
+  --text-subtle: #637386;
+  --chart-grid: #e2e7ed;
+  --chart-axis: #657487;
+  --chart-series-neutral: #7f8b99;
+  --chart-blue: #4778a8;
+  --chart-purple: #786b9c;
+  --chart-green: #4a8a72;
+  --chart-cyan: #478e9a;
+  --chart-amber: #b48a4c;
+  --chart-muted-bar: #9da9b6;
+  --tint-blue: #ecf2f8;
+  --tint-purple: #f1eff6;
+  --tint-cyan: #eaf3f4;
+  --tint-red: #f9eeee;
+  --tint-rose: #f8eef1;
+  --tint-amber: #f8f3e8;
+  --tint-orange: #f8f1eb;
+  --tint-green: #edf5f1;
+  --tint-border-blue: #cbd8e6;
+  --tint-border-purple: #d8d0e3;
+  --tint-border-cyan: #c9dee1;
+  --tint-border-red: #e8cdd0;
+  --tint-border-rose: #e7cdd5;
+  --tint-border-amber: #e5d7ba;
+  --tint-border-orange: #e8d5c6;
+  --tint-border-green: #cadfd4;
+  --tone-blue: #3e6796;
+  --tone-purple: #6e5e8d;
+  --tone-cyan: #327782;
+  --tone-red: #a34c55;
+  --tone-rose: #a4546a;
+  --tone-amber: #896326;
+  --tone-orange: #9b6546;
+  --tone-green: #30765f;
+  --tone-sky: #3f7d9a;
+  --action-primary: #355c87;
+  --action-primary-hover: #2d5078;
+  --action-teal: #2f6f78;
+  --action-teal-hover: #285e68;
+  --action-purple: #65577f;
+  --action-purple-hover: #55496e;
+  --action-success: #2e765e;
+  --action-success-hover: #26664f;
+  --action-danger: #a34c55;
+  --action-danger-hover: #8f4149;
+  background: var(--app-background);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] body,
+html[data-theme="light"] #root { background: var(--app-background); color: var(--text-primary); }
+
+* { box-sizing: border-box; }
+html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
+body { min-height: 100vh; background: var(--app-background); }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+.hide-scroll::-webkit-scrollbar { display: none; }
+.hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+.custom-scrollbar { scrollbar-color: var(--border-strong) transparent; scrollbar-width: thin; }
+.attendance-roster-scroll { scrollbar-color: var(--border-strong) var(--surface-background); scrollbar-width: thin; }
+.attendance-roster-scroll::-webkit-scrollbar { width: 10px; }
+.attendance-roster-scroll::-webkit-scrollbar-track { background: var(--surface-background); }
+.attendance-roster-scroll::-webkit-scrollbar-thumb { border: 2px solid var(--surface-background); border-radius: 999px; background: var(--border-strong); }
+.attendance-roster-scroll::-webkit-scrollbar-thumb:hover { background: var(--text-subtle); }
+
+html[data-theme="light"] input, html[data-theme="light"] textarea,
+html[data-theme="light"] select, html[data-theme="light"] option { color-scheme: light; }
+.recharts-default-tooltip { background: var(--surface-raised) !important; border-color: var(--border-strong) !important; color: var(--text-strong) !important; }
+.recharts-tooltip-item, .recharts-tooltip-label { color: var(--text-strong) !important; }
+.recharts-legend-item-text { color: var(--text-primary) !important; }
+.recharts-cartesian-axis-tick-value { fill: var(--chart-axis) !important; }

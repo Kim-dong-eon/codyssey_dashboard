@@ -1,0 +1,207 @@
+@reference "tailwindcss";
+
+/* group: 7 visual rules */
+.techsupportteam__group_001 { @apply overflow-hidden rounded-xl shadow-sm border mb-4; border-color: var(--tint-border-cyan); background-color: var(--surface-background); }
+html[data-theme="light"] .techsupportteam__group_001 { background-color: var(--surface-background); }
+
+/* group: 8 visual rules */
+.techsupportteam__group_002 { @apply transition-colors justify-between cursor-pointer items-center flex px-6 py-4; }
+.techsupportteam__group_002:hover { background-color: var(--tint-cyan); }
+html[data-theme="light"] .techsupportteam__group_002:hover { background-color: var(--tint-cyan); }
+
+/* group: 3 visual rules */
+.techsupportteam__group_003 { @apply items-center gap-3 flex; }
+
+/* label: 2 visual rules */
+.techsupportteam__label_001 { @apply font-semibold text-white; }
+html[data-theme="light"] .techsupportteam__label_001 { color: var(--text-strong); }
+
+/* chevronup: 1 visual rules */
+.techsupportteam__chevronup_001 { color: var(--tone-cyan); }
+
+/* group: 7 visual rules */
+.techsupportteam__group_004 { @apply space-y-3 border-t pt-2 px-6 pb-4; border-color: var(--tint-border-cyan); background-color: var(--surface-muted); }
+html[data-theme="light"] .techsupportteam__group_004 { background-color: var(--surface-muted); }
+
+/* text: 4 visual rules */
+.techsupportteam__text_001 { @apply text-center text-sm py-4; color: var(--text-subtle); }
+html[data-theme="light"] .techsupportteam__text_001 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.techsupportteam__group_005 { @apply flex-col gap-1 w-1/4 flex; }
+
+/* group: 3 visual rules */
+.techsupportteam__group_006 { @apply items-center gap-2 flex; }
+
+/* user: 1 visual rules */
+.techsupportteam__user_001 { color: var(--text-muted); }
+html[data-theme="light"] .techsupportteam__user_001 { color: var(--text-muted); }
+
+/* label: 2 visual rules */
+.techsupportteam__label_002 { @apply font-medium text-white; }
+html[data-theme="light"] .techsupportteam__label_002 { color: var(--text-strong); }
+
+/* alerttriangle: 2 visual rules */
+.techsupportteam__alerttriangle_001 { @apply fill-red-500/20; color: var(--tone-red); }
+
+/* label: 12 visual rules */
+.techsupportteam__label_003 { @apply items-center inline-flex text-[10px] font-bold rounded border py-0.5 px-1.5 w-max; border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .techsupportteam__label_003 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* group: 5 visual rules */
+.techsupportteam__group_007 { @apply items-center gap-4 w-2/5 flex px-4; }
+
+/* group: 5 visual rules */
+.techsupportteam__group_008 { @apply overflow-hidden rounded-full w-full h-2; background-color: var(--surface-track); }
+html[data-theme="light"] .techsupportteam__group_008 { background-color: var(--surface-muted); }
+
+/* group: 5 visual rules */
+.techsupportteam__group_009 { @apply items-center justify-end w-[35%] gap-2 flex; }
+
+/* checkcircle2: 2 visual rules */
+.techsupportteam__checkcircle2_001 { @apply mr-1; color: var(--tone-green); }
+
+/* circle: 2 visual rules */
+.techsupportteam__circle_001 { @apply mr-1; color: var(--text-subtle); }
+html[data-theme="light"] .techsupportteam__circle_001 { color: var(--text-primary); }
+
+/* group: 8 visual rules */
+.techsupportteam__group_010 { @apply h-[calc(100vh-64px)] overflow-hidden max-w-[1200px] flex-col mx-auto gap-6 flex p-8; }
+
+/* group: 7 visual rules */
+.techsupportteam__group_011 { @apply items-center border-b shrink-0 gap-4 flex pb-4; border-color: var(--border-color); }
+html[data-theme="light"] .techsupportteam__group_011 { border-color: var(--border-color); }
+
+/* button: 8 visual rules */
+.techsupportteam__button_001 { @apply transition rounded-lg border p-2; border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+html[data-theme="light"] .techsupportteam__button_001 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+.techsupportteam__button_001:hover { @apply text-white; }
+html[data-theme="light"] .techsupportteam__button_001:hover { color: var(--text-strong); }
+
+/* title: 6 visual rules */
+.techsupportteam__title_001 { @apply items-center font-bold text-2xl gap-2 flex; color: var(--tone-cyan); }
+
+/* text: 3 visual rules */
+.techsupportteam__text_002 { @apply text-sm mt-1; color: var(--text-muted); }
+html[data-theme="light"] .techsupportteam__text_002 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.techsupportteam__group_012 { @apply flex-grow min-h-0 gap-6 flex; }
+
+/* group: 6 visual rules */
+.techsupportteam__group_013 { @apply overflow-y-auto flex-grow flex-col w-2/3 gap-6 flex; }
+
+/* group: 4 visual rules */
+.techsupportteam__group_014 { @apply justify-end shrink-0 gap-3 flex; }
+
+/* group: 6 visual rules */
+.techsupportteam__group_015 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .techsupportteam__group_015 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.techsupportteam__group_016 { @apply flex-col gap-6 w-1/3 flex; }
+
+/* section: 8 visual rules */
+.techsupportteam__section_001 { @apply rounded-xl shadow-lg shrink-0 border h-72 p-6; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .techsupportteam__section_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 7 visual rules */
+.techsupportteam__title_002 { @apply items-center text-white font-bold text-lg gap-2 flex mb-4; }
+html[data-theme="light"] .techsupportteam__title_002 { color: var(--text-strong); }
+
+/* headset: 1 visual rules */
+.techsupportteam__headset_001 { color: var(--tone-cyan); }
+
+/* Conditional style techsupportteam__variant_001 */
+.techsupportteam__variant_001 { @apply rounded-md font-bold text-sm border px-3 py-1; border-color: var(--tint-border-cyan); color: var(--tone-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .techsupportteam__variant_001 { background-color: var(--tint-cyan); }
+
+/* Conditional style techsupportteam__variant_002 */
+.techsupportteam__variant_002 { @apply justify-between transition-all items-center rounded-lg border flex p-3; }
+
+/* Conditional style techsupportteam__variant_003 */
+.techsupportteam__variant_003 { border-color: var(--tint-border-red); background-color: var(--tint-red); }
+html[data-theme="light"] .techsupportteam__variant_003 { background-color: var(--tint-red); }
+
+/* Conditional style techsupportteam__variant_004 */
+.techsupportteam__variant_004 { border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .techsupportteam__variant_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* Conditional style techsupportteam__variant_005 */
+.techsupportteam__variant_005 { @apply h-full; }
+
+/* Conditional style techsupportteam__variant_006 */
+.techsupportteam__variant_006 { background-color: var(--action-teal); }
+
+/* Conditional style techsupportteam__variant_007 */
+.techsupportteam__variant_007 { background-color: var(--action-primary); }
+
+/* Conditional style techsupportteam__variant_008 */
+.techsupportteam__variant_008 { @apply text-right font-bold text-xs w-10; }
+
+/* Conditional style techsupportteam__variant_009 */
+.techsupportteam__variant_009 { color: var(--tone-cyan); }
+
+/* Conditional style techsupportteam__variant_010 */
+.techsupportteam__variant_010 { color: var(--tone-blue); }
+
+/* Conditional style techsupportteam__variant_011 */
+.techsupportteam__variant_011 { @apply transition rounded-lg border p-1.5; }
+
+/* Conditional style techsupportteam__variant_012 */
+.techsupportteam__variant_012 { border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .techsupportteam__variant_012 { background-color: var(--tint-red); }
+
+/* Conditional style techsupportteam__variant_013 */
+.techsupportteam__variant_013 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .techsupportteam__variant_013 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+.techsupportteam__variant_013:hover { @apply text-white; }
+html[data-theme="light"] .techsupportteam__variant_013:hover { color: var(--text-strong); }
+
+/* Conditional style techsupportteam__variant_014 */
+.techsupportteam__variant_014 { @apply items-center transition rounded-lg font-bold text-xs gap-1.5 py-1.5 border flex px-3; border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .techsupportteam__variant_014 { background-color: var(--tint-cyan); }
+.techsupportteam__variant_014:hover { border-color: var(--tint-border-red); }
+.techsupportteam__variant_014:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .techsupportteam__variant_014:hover { background-color: var(--tint-red); }
+.techsupportteam__variant_014:hover { color: var(--tone-red); }
+
+/* Conditional style techsupportteam__variant_015 */
+.techsupportteam__variant_015 { @apply font-medium transition rounded-md text-sm py-1.5 px-4; }
+
+/* Conditional style techsupportteam__variant_016 */
+.techsupportteam__variant_016 { @apply text-white shadow; background-color: var(--surface-track); }
+html[data-theme="light"] .techsupportteam__variant_016 { background-color: var(--surface-muted); color: var(--text-strong); }
+
+/* Conditional style techsupportteam__variant_017 */
+.techsupportteam__variant_017 { color: var(--text-muted); }
+html[data-theme="light"] .techsupportteam__variant_017 { color: var(--text-muted); }
+.techsupportteam__variant_017:hover { color: var(--text-primary); }
+html[data-theme="light"] .techsupportteam__variant_017:hover { color: var(--text-primary); }
+
+/* Conditional style techsupportteam__variant_018 */
+.techsupportteam__variant_018 { @apply items-center font-medium transition rounded-md text-sm gap-1.5 py-1.5 flex px-4; }
+
+/* Conditional style techsupportteam__variant_019 */
+.techsupportteam__variant_019 { @apply shadow; background-color: var(--tint-green); color: var(--tone-green); }
+
+/* Conditional style techsupportteam__variant_020 */
+.techsupportteam__variant_020 { @apply shadow; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .techsupportteam__variant_020 { color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* Conditional style techsupportteam__variant_021 */
+.techsupportteam__variant_021 { @apply shadow; background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .techsupportteam__variant_021 { background-color: var(--tint-red); }
+
+.techsupportteam__variant_005 { width: var(--progress-width, 0%); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .techsupportteam__variant_006,
+  .techsupportteam__variant_007
+):is(
+  .techsupportteam__label_001,
+  .techsupportteam__label_002,
+  .techsupportteam__title_002,
+  .techsupportteam__variant_016
+) { color: #fff; }

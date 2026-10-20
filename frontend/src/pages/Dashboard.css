@@ -1,0 +1,592 @@
+@reference "tailwindcss";
+
+/* group: 7 visual rules */
+.dashboard__group_001 { @apply overflow-hidden rounded-xl shadow-sm border mb-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__group_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 8 visual rules */
+.dashboard__group_002 { @apply transition-colors justify-between cursor-pointer items-center flex px-6 py-4; }
+.dashboard__group_002:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .dashboard__group_002:hover { background-color: var(--surface-muted); }
+
+/* group: 3 visual rules */
+.dashboard__group_003 { @apply items-center gap-3 flex; }
+
+/* label: 2 visual rules */
+.dashboard__label_001 { @apply font-semibold text-white; }
+html[data-theme="light"] .dashboard__label_001 { color: var(--text-strong); }
+
+/* chevronup: 1 visual rules */
+.dashboard__chevronup_001 { color: var(--text-muted); }
+html[data-theme="light"] .dashboard__chevronup_001 { color: var(--text-muted); }
+
+/* group: 7 visual rules */
+.dashboard__group_004 { @apply space-y-3 border-t pt-2 px-6 pb-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__group_004 { border-color: var(--border-color); background-color: var(--surface-muted); }
+
+/* text: 4 visual rules */
+.dashboard__text_001 { @apply text-center text-sm py-4; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__text_001 { color: var(--text-muted); }
+
+/* group: 9 visual rules */
+.dashboard__group_005 { @apply items-center rounded-lg border gap-3 grid p-3 grid-cols-[minmax(0,1.15fr)_minmax(100px,1.3fr)_auto]; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__group_005 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.dashboard__group_006 { @apply items-center min-w-0 gap-2 flex; }
+
+/* label: 5 visual rules */
+.dashboard__label_002 { @apply whitespace-nowrap font-medium text-white truncate min-w-0; }
+html[data-theme="light"] .dashboard__label_002 { color: var(--text-strong); }
+
+/* label: 9 visual rules */
+.dashboard__label_003 { @apply text-[10px] max-w-20 truncate shrink-0 rounded py-0.5 px-1.5; color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__label_003 { color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* group: 2 visual rules */
+.dashboard__group_007 { @apply min-w-0 px-1; }
+
+/* group: 4 visual rules */
+.dashboard__group_008 { @apply justify-between text-xs flex mb-1; }
+
+/* group: 4 visual rules */
+.dashboard__group_009 { @apply rounded-full w-full h-1.5; background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__group_009 { background-color: var(--surface-muted); }
+
+/* group: 5 visual rules */
+.dashboard__group_010 { @apply items-center justify-end shrink-0 gap-2 flex; }
+
+/* label: 2 visual rules */
+.dashboard__label_004 { @apply text-xs; color: var(--text-muted); }
+html[data-theme="light"] .dashboard__label_004 { color: var(--text-muted); }
+
+/* label: 10 visual rules */
+.dashboard__label_005 { @apply rounded-full items-center font-bold text-xs gap-1 flex py-1 px-2; background-color: var(--tint-green); color: var(--tone-green); }
+
+/* label: 10 visual rules */
+.dashboard__label_006 { @apply rounded-full items-center font-bold text-xs gap-1 flex py-1 px-2; color: var(--text-subtle); background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__label_006 { color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* button: 6 visual rules */
+.dashboard__button_001 { @apply transition rounded-lg p-2; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__button_001 { color: var(--text-muted); }
+.dashboard__button_001:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .dashboard__button_001:hover { background-color: var(--tint-red); }
+.dashboard__button_001:hover { color: var(--tone-red); }
+
+/* group: 6 visual rules */
+.dashboard__group_011 { @apply max-w-7xl flex-col mx-auto gap-6 flex p-8; }
+
+/* group: 9 visual rules */
+.dashboard__group_012 { @apply justify-between items-center rounded-xl shadow-sm border flex p-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__group_012 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 2 visual rules */
+.dashboard__group_013 { @apply relative w-64; }
+
+/* search: 4 visual rules */
+.dashboard__search_001 { @apply absolute top-2.5 left-3; color: var(--text-muted); }
+html[data-theme="light"] .dashboard__search_001 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.dashboard__input_001 { @apply text-white rounded-lg text-sm border w-full py-2 pr-4 pl-9; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__input_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.dashboard__input_001:focus { border-color: var(--tone-blue); }
+.dashboard__input_001:focus { @apply outline-none; }
+
+/* group: 6 visual rules */
+.dashboard__group_014 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__group_014 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.dashboard__group_015 { @apply gap-6 grid grid-cols-1; }
+@media (min-width: 80rem) { .dashboard__group_015 { @apply grid-cols-[minmax(0,2fr)_minmax(300px,1fr)]; } }
+
+/* group: 4 visual rules */
+.dashboard__group_016 { @apply flex-col min-w-0 gap-6 flex; }
+
+/* section: 6 visual rules */
+.dashboard__section_001 { @apply rounded-xl shadow-lg border p-6; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__section_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.dashboard__group_017 { @apply justify-between items-start flex-wrap gap-4 flex mb-5; }
+
+/* title: 6 visual rules */
+.dashboard__title_001 { @apply items-center text-white font-bold text-lg gap-2 flex; }
+html[data-theme="light"] .dashboard__title_001 { color: var(--text-strong); }
+
+/* calendardays: 1 visual rules */
+.dashboard__calendardays_001 { color: var(--tone-blue); }
+
+/* text: 3 visual rules */
+.dashboard__text_002 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__text_002 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.dashboard__group_018 { @apply items-center flex-wrap gap-2 flex; }
+
+/* button: 8 visual rules */
+.dashboard__button_002 { @apply rounded-lg text-xs border px-3 py-2; border-color: var(--border-strong); color: var(--text-primary); }
+html[data-theme="light"] .dashboard__button_002 { border-color: var(--border-color); color: var(--text-primary); }
+.dashboard__button_002:hover { @apply text-white; }
+html[data-theme="light"] .dashboard__button_002:hover { color: var(--text-strong); }
+
+/* input: 8 visual rules */
+.dashboard__input_002 { @apply rounded-lg text-xs border py-2 px-2; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__input_002 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+
+/* label: 2 visual rules */
+.dashboard__label_007 { @apply text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__label_007 { color: var(--text-muted); }
+
+/* button: 8 visual rules */
+.dashboard__button_003 { @apply text-white rounded-lg font-bold text-xs py-2 px-4; background-color: var(--action-primary); }
+html[data-theme="light"] .dashboard__button_003 { color: #fff; }
+.dashboard__button_003:hover { background-color: var(--action-primary-hover); }
+
+/* group: 5 visual rules */
+.dashboard__group_019 { @apply gap-3 grid mb-5 grid-cols-2; }
+@media (min-width: 80rem) { .dashboard__group_019 { @apply grid-cols-3; } }
+
+/* group: 6 visual rules */
+.dashboard__group_020 { @apply rounded-xl border py-3 px-4; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__group_020 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 5 visual rules */
+.dashboard__group_021 { @apply justify-between items-baseline gap-2 flex mt-1; }
+
+/* label: 3 visual rules */
+.dashboard__label_008 { @apply font-extrabold text-white text-xl; }
+html[data-theme="light"] .dashboard__label_008 { color: var(--text-strong); }
+
+/* label: 3 visual rules */
+.dashboard__label_009 { @apply text-xs ml-1; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__label_009 { color: var(--text-muted); }
+
+/* text: 3 visual rules */
+.dashboard__text_003 { @apply text-[10px] mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__text_003 { color: var(--text-muted); }
+
+/* group: 9 visual rules */
+.dashboard__group_022 { @apply rounded-lg text-xs border px-3 py-2 mb-3; border-color: var(--tint-border-amber); background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .dashboard__group_022 { background-color: var(--tint-amber); }
+
+/* group: 9 visual rules */
+.dashboard__group_023 { @apply rounded-lg text-xs border px-3 py-2 mb-3; border-color: var(--tint-border-blue); background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .dashboard__group_023 { background-color: var(--tint-blue); color: var(--tone-blue); }
+
+/* group: 2 visual rules */
+.dashboard__group_024 { @apply h-[400px] w-full; }
+
+/* section: 6 visual rules */
+.dashboard__section_002 { @apply rounded-xl shadow-lg border p-6; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__section_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 1 visual rules */
+.dashboard__group_025 { @apply mb-4; }
+
+/* title: 3 visual rules */
+.dashboard__title_002 { @apply text-white font-bold text-lg; }
+html[data-theme="light"] .dashboard__title_002 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.dashboard__text_004 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__text_004 { color: var(--text-muted); }
+
+/* group: 1 visual rules */
+.dashboard__group_026 { @apply w-full; }
+
+/* text: 9 visual rules */
+.dashboard__text_005 { @apply border-dashed text-center rounded-lg text-sm border py-8 px-4; border-color: var(--border-strong); color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__text_005 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* group: 1 visual rules */
+.dashboard__group_027 { @apply min-w-0; }
+
+/* section: 10 visual rules */
+.dashboard__section_003 { @apply min-h-[600px] rounded-xl shadow-lg flex-col h-full border flex p-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__section_003 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 7 visual rules */
+.dashboard__title_003 { @apply items-center text-white font-bold text-lg gap-2 flex mb-4; }
+html[data-theme="light"] .dashboard__title_003 { color: var(--text-strong); }
+
+/* bell: 1 visual rules */
+.dashboard__bell_001 { color: var(--tone-amber); }
+
+/* group: 10 visual rules */
+.dashboard__group_028 { @apply rounded-xl shrink-0 flex-col border gap-2 flex mb-5 p-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__group_028 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 3 visual rules */
+.dashboard__group_029 { @apply gap-2 flex mb-1; }
+
+/* alertcircle: 2 visual rules */
+.dashboard__alertcircle_001 { @apply inline mr-1; }
+
+/* textarea: 7 visual rules */
+.dashboard__textarea_001 { @apply bg-transparent resize-none text-white text-sm w-full h-16; }
+html[data-theme="light"] .dashboard__textarea_001 { color: var(--text-strong); }
+.dashboard__textarea_001:focus { @apply outline-none; }
+
+/* button: 9 visual rules */
+.dashboard__button_004 { @apply transition text-white rounded-lg font-bold text-sm py-1.5 w-full; background-color: var(--action-primary); }
+html[data-theme="light"] .dashboard__button_004 { color: #fff; }
+.dashboard__button_004:hover { background-color: var(--action-primary-hover); }
+
+/* group: 4 visual rules */
+.dashboard__group_030 { @apply overflow-y-auto space-y-3 flex-grow pr-1; }
+
+/* button: 2 visual rules */
+.dashboard__button_005 { @apply shrink-0 mt-0.5; }
+
+/* checkcircle2: 1 visual rules */
+.dashboard__checkcircle2_001 { color: var(--tone-green); }
+
+/* circle: 2 visual rules */
+.dashboard__circle_001 { color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__circle_001 { color: var(--text-muted); }
+.dashboard__circle_001:hover { color: var(--text-muted); }
+html[data-theme="light"] .dashboard__circle_001:hover { color: var(--text-muted); }
+
+/* group: 2 visual rules */
+.dashboard__group_031 { @apply flex-grow min-w-0; }
+
+/* group: 4 visual rules */
+.dashboard__group_032 { @apply items-center gap-2 flex mb-1; }
+
+/* label: 7 visual rules */
+.dashboard__label_010 { @apply text-[10px] font-bold rounded py-0.5 px-1.5; background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .dashboard__label_010 { background-color: var(--tint-amber); color: var(--tone-amber); }
+
+/* time: 6 visual rules */
+.dashboard__time_001 { @apply items-center inline-flex text-[10px] gap-1 mt-2; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__time_001 { color: var(--text-muted); }
+
+/* group: 5 visual rules */
+.dashboard__group_033 { @apply items-center shrink-0 flex-col gap-2 flex; }
+
+/* button: 3 visual rules */
+.dashboard__button_006 { @apply rounded p-1; }
+.dashboard__button_006:hover { background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__button_006:hover { background-color: var(--surface-muted); }
+
+/* button: 6 visual rules */
+.dashboard__button_007 { @apply transition opacity-0 rounded p-1; }
+.group:hover .dashboard__button_007 { @apply opacity-100; }
+.dashboard__button_007:hover { background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__button_007:hover { background-color: var(--surface-muted); }
+
+/* trash2: 2 visual rules */
+.dashboard__trash2_001 { color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__trash2_001 { color: var(--text-primary); }
+.dashboard__trash2_001:hover { color: var(--tone-red); }
+
+/* group: 4 visual rules */
+.dashboard__group_034 { @apply text-center text-sm py-10; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__group_034 { color: var(--text-muted); }
+
+/* section: 6 visual rules */
+.dashboard__section_004 { @apply overflow-hidden rounded-2xl shadow-lg border; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .dashboard__section_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 9 visual rules */
+.dashboard__group_035 { @apply justify-between items-center flex-wrap border-b gap-4 flex px-5 py-4; border-color: var(--border-color); }
+html[data-theme="light"] .dashboard__group_035 { border-color: var(--border-color); }
+
+/* title: 6 visual rules */
+.dashboard__title_004 { @apply items-center text-white font-bold text-lg gap-2 flex; }
+html[data-theme="light"] .dashboard__title_004 { color: var(--text-strong); }
+
+/* clock3: 1 visual rules */
+.dashboard__clock3_001 { color: var(--tone-amber); }
+
+/* group: 5 visual rules */
+.dashboard__group_036 { @apply justify-end flex-wrap items-end gap-3 flex; }
+
+/* group: 6 visual rules */
+.dashboard__group_037 { @apply rounded-lg border px-3 py-2; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__group_037 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 3 visual rules */
+.dashboard__text_006 { @apply text-[10px] font-bold; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__text_006 { color: var(--text-muted); }
+
+/* text: 4 visual rules */
+.dashboard__text_007 { @apply font-bold text-xs mt-0.5; color: var(--tone-blue); }
+html[data-theme="light"] .dashboard__text_007 { color: var(--tone-blue); }
+
+/* label: 4 visual rules */
+.dashboard__label_011 { @apply text-[11px] font-bold space-y-1; color: var(--text-muted); }
+html[data-theme="light"] .dashboard__label_011 { color: var(--text-muted); }
+
+/* input: 11 visual rules */
+.dashboard__input_003 { @apply outline-none text-white rounded-lg text-sm border block px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__input_003 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.dashboard__input_003:focus { border-color: var(--tone-blue); }
+
+/* label: 3 visual rules */
+.dashboard__label_012 { @apply items-center gap-2 flex; }
+
+/* input: 11 visual rules */
+.dashboard__input_004 { @apply outline-none text-white rounded-lg text-sm border px-3 py-2 w-20; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__input_004 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.dashboard__input_004:focus { border-color: var(--tone-blue); }
+
+/* select: 12 visual rules */
+.dashboard__select_001 { @apply outline-none text-white rounded-lg min-w-32 text-sm border block px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__select_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.dashboard__select_001:focus { border-color: var(--tone-blue); }
+
+/* select: 12 visual rules */
+.dashboard__select_002 { @apply outline-none text-white rounded-lg min-w-36 text-sm border block px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__select_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.dashboard__select_002:focus { border-color: var(--tone-blue); }
+
+/* group: 8 visual rules */
+.dashboard__group_038 { @apply justify-between items-center flex-wrap text-sm gap-3 flex px-5 py-3; }
+
+/* text: 1 visual rules */
+.dashboard__text_008 { color: var(--tone-amber); }
+
+/* label: 7 visual rules */
+.dashboard__label_013 { @apply cursor-pointer font-semibold items-center inline-flex text-xs gap-2; color: var(--text-primary); }
+html[data-theme="light"] .dashboard__label_013 { color: var(--text-primary); }
+
+/* input: 3 visual rules */
+.dashboard__input_005 { @apply accent-blue-500 w-4 h-4; }
+
+/* group: 3 visual rules */
+.dashboard__group_039 { @apply overflow-auto min-h-[320px] max-h-[55vh]; }
+
+/* table: 4 visual rules */
+.dashboard__table_001 { @apply min-w-[860px] text-left text-sm w-full; }
+
+/* thead: 5 visual rules */
+.dashboard__thead_001 { @apply text-xs sticky top-0; color: var(--text-muted); background-color: var(--surface-background); }
+html[data-theme="light"] .dashboard__thead_001 { color: var(--text-muted); background-color: var(--surface-background); }
+
+/* heading: 2 visual rules */
+.dashboard__heading_001 { @apply px-5 py-3; }
+
+/* heading: 3 visual rules */
+.dashboard__heading_002 { @apply text-right px-5 py-3; }
+
+/* tbody: 2 visual rules */
+.dashboard__tbody_001 { @apply divide-y divide-[var(--border-color)]; }
+
+/* row: 2 visual rules */
+.dashboard__row_001 { color: var(--text-primary); }
+html[data-theme="light"] .dashboard__row_001 { color: var(--text-primary); }
+.dashboard__row_001:hover { background-color: var(--surface-raised); }
+
+/* cell: 4 visual rules */
+.dashboard__cell_001 { @apply font-semibold text-white py-3.5 px-5; }
+html[data-theme="light"] .dashboard__cell_001 { color: var(--text-strong); }
+
+/* label: 3 visual rules */
+.dashboard__label_014 { @apply text-[10px] ml-2; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__label_014 { color: var(--text-primary); }
+
+/* cell: 2 visual rules */
+.dashboard__cell_002 { @apply py-3.5 px-5; }
+
+/* cell: 4 visual rules */
+.dashboard__cell_003 { @apply whitespace-nowrap py-3.5 px-5; color: var(--text-primary); }
+html[data-theme="light"] .dashboard__cell_003 { color: var(--text-primary); }
+
+/* cell: 3 visual rules */
+.dashboard__cell_004 { @apply text-right py-3.5 px-5; }
+
+/* cell: 5 visual rules */
+.dashboard__cell_005 { @apply text-center text-sm px-5 py-8; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__cell_005 { color: var(--text-muted); }
+
+/* Conditional style dashboard__variant_001 */
+.dashboard__variant_001 { color: var(--text-muted); }
+html[data-theme="light"] .dashboard__variant_001 { color: var(--text-muted); }
+
+/* Conditional style dashboard__variant_002 */
+.dashboard__variant_002 { color: var(--tone-blue); }
+
+/* Conditional style dashboard__variant_003 */
+.dashboard__variant_003 { color: var(--tone-purple); }
+
+/* Conditional style dashboard__variant_004 */
+.dashboard__variant_004 { color: var(--tone-green); }
+
+/* Conditional style dashboard__variant_005 */
+.dashboard__variant_005 { color: var(--tone-sky); }
+
+/* Conditional style dashboard__variant_006 */
+.dashboard__variant_006 { color: var(--tone-rose); }
+
+/* Conditional style dashboard__variant_007 */
+.dashboard__variant_007 { @apply rounded-md font-bold text-sm px-3 py-1; }
+
+/* Conditional style dashboard__variant_008 */
+.dashboard__variant_008 { color: var(--tone-purple); background-color: var(--tint-purple); }
+html[data-theme="light"] .dashboard__variant_008 { color: var(--tone-purple); background-color: var(--tint-purple); }
+
+/* Conditional style dashboard__variant_009 */
+.dashboard__variant_009 { color: var(--tone-blue); background-color: var(--tint-blue); }
+html[data-theme="light"] .dashboard__variant_009 { color: var(--tone-blue); background-color: var(--tint-blue); }
+
+/* Conditional style dashboard__variant_010 */
+.dashboard__variant_010 { color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__variant_010 { color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* Conditional style dashboard__variant_011 */
+.dashboard__variant_011 { @apply whitespace-nowrap rounded-full text-[10px] font-bold shrink-0 py-0.5 px-1.5; }
+
+/* Conditional style dashboard__variant_012 */
+.dashboard__variant_012 { background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .dashboard__variant_012 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* Conditional style dashboard__variant_013 */
+.dashboard__variant_013 { background-color: var(--tint-amber); color: var(--tone-amber); }
+html[data-theme="light"] .dashboard__variant_013 { background-color: var(--tint-amber); }
+
+/* Conditional style dashboard__variant_014 */
+.dashboard__variant_014 { background-color: var(--tint-green); color: var(--tone-green); }
+html[data-theme="light"] .dashboard__variant_014 { background-color: var(--tint-green); color: var(--tone-green); }
+
+/* Conditional style dashboard__variant_015 */
+.dashboard__variant_015 { color: var(--tone-green); }
+
+/* Conditional style dashboard__variant_016 */
+.dashboard__variant_016 { @apply rounded-full h-1.5; }
+
+/* Conditional style dashboard__variant_017 */
+.dashboard__variant_017 { background-color: var(--chart-green); }
+
+/* Conditional style dashboard__variant_018 */
+.dashboard__variant_018 { background-color: var(--action-primary); }
+
+/* Conditional style dashboard__variant_019 */
+.dashboard__variant_019 { @apply font-medium transition rounded-md text-sm py-1.5 px-4; }
+
+/* Conditional style dashboard__variant_020 */
+.dashboard__variant_020 { @apply text-white shadow; background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__variant_020 { background-color: var(--surface-muted); color: var(--text-strong); }
+
+/* Conditional style dashboard__variant_021 */
+.dashboard__variant_021 { color: var(--text-muted); }
+html[data-theme="light"] .dashboard__variant_021 { color: var(--text-muted); }
+.dashboard__variant_021:hover { color: var(--text-primary); }
+html[data-theme="light"] .dashboard__variant_021:hover { color: var(--text-primary); }
+
+/* Conditional style dashboard__variant_022 */
+.dashboard__variant_022 { @apply items-center font-medium transition rounded-md text-sm gap-1.5 py-1.5 flex px-4; }
+
+/* Conditional style dashboard__variant_023 */
+.dashboard__variant_023 { @apply shadow; background-color: var(--tint-green); color: var(--tone-green); }
+
+/* Conditional style dashboard__variant_024 */
+.dashboard__variant_024 { @apply shadow; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__variant_024 { color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* Conditional style dashboard__variant_025 */
+.dashboard__variant_025 { @apply font-bold text-xs; }
+
+/* Conditional style dashboard__variant_026 */
+.dashboard__variant_026 { color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__variant_026 { color: var(--text-muted); }
+
+/* Conditional style dashboard__variant_027 */
+.dashboard__variant_027 { @apply transition font-bold text-xs rounded py-1 px-2; }
+
+/* Conditional style dashboard__variant_028 */
+.dashboard__variant_028 { background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .dashboard__variant_028 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* Conditional style dashboard__variant_029 */
+.dashboard__variant_029 { background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .dashboard__variant_029 { background-color: var(--tint-cyan); color: var(--tone-cyan); }
+
+/* Conditional style dashboard__variant_030 */
+.dashboard__variant_030 { background-color: var(--tint-purple); color: var(--tone-purple); }
+html[data-theme="light"] .dashboard__variant_030 { background-color: var(--tint-purple); color: var(--tone-purple); }
+
+/* Conditional style dashboard__variant_031 */
+.dashboard__variant_031 { @apply text-white; background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__variant_031 { background-color: var(--surface-track); color: var(--text-strong); }
+
+/* Conditional style dashboard__variant_032 */
+.dashboard__variant_032 { color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .dashboard__variant_032 { color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* Conditional style dashboard__variant_033 */
+.dashboard__variant_033 { @apply rounded-xl border gap-3 flex p-3; }
+
+/* Conditional style dashboard__variant_034 */
+.dashboard__variant_034 { @apply transition-colors relative; }
+
+/* Conditional style dashboard__variant_035 */
+.dashboard__variant_035 { border-color: var(--tint-border-amber); background-color: var(--tint-amber); }
+html[data-theme="light"] .dashboard__variant_035 { background-color: var(--tint-amber); }
+
+/* Conditional style dashboard__variant_036 */
+.dashboard__variant_036 { background-color: var(--surface-raised); border-color: var(--border-color); }
+html[data-theme="light"] .dashboard__variant_036 { border-color: var(--border-color); }
+
+/* Conditional style dashboard__variant_037 */
+.dashboard__variant_037 { @apply text-[10px] font-bold rounded py-0.5 px-1.5; }
+
+/* Conditional style dashboard__variant_038 */
+.dashboard__variant_038 { @apply whitespace-pre-wrap leading-relaxed break-words text-sm; }
+
+/* Conditional style dashboard__variant_039 */
+.dashboard__variant_039 { @apply line-through; color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__variant_039 { color: var(--text-muted); }
+
+/* Conditional style dashboard__variant_040 */
+.dashboard__variant_040 { color: var(--text-primary); }
+html[data-theme="light"] .dashboard__variant_040 { color: var(--text-primary); }
+
+/* Conditional style dashboard__variant_041 */
+.dashboard__variant_041 { @apply fill-yellow-500/20; color: var(--tone-amber); }
+
+/* Conditional style dashboard__variant_042 */
+.dashboard__variant_042 { color: var(--text-subtle); }
+html[data-theme="light"] .dashboard__variant_042 { color: var(--text-primary); }
+.dashboard__variant_042:hover { @apply text-yellow-500/70; }
+
+/* Conditional style dashboard__variant_043 */
+.dashboard__variant_043 { @apply rounded-full font-bold text-xs px-2.5 py-1; }
+
+/* Conditional style dashboard__variant_044 */
+.dashboard__variant_044 { background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .dashboard__variant_044 { background-color: var(--tint-red); color: var(--tone-red); }
+
+.dashboard__variant_016 { width: var(--progress-width, 0%); }
+
+.dashboard__group_026 { height: var(--chart-height, 240px); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .dashboard__button_003,
+  .dashboard__button_004,
+  .dashboard__variant_017,
+  .dashboard__variant_018
+):is(
+  .dashboard__button_003,
+  .dashboard__button_004,
+  .dashboard__cell_001,
+  .dashboard__input_001,
+  .dashboard__input_003,
+  .dashboard__input_004,
+  .dashboard__label_001,
+  .dashboard__label_002,
+  .dashboard__label_008,
+  .dashboard__select_001,
+  .dashboard__select_002,
+  .dashboard__textarea_001,
+  .dashboard__title_001,
+  .dashboard__title_002,
+  .dashboard__title_003,
+  .dashboard__title_004,
+  .dashboard__variant_020,
+  .dashboard__variant_031
+) { color: #fff; }

@@ -1,209 +1,233 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { GlobalContext } from '../App';
-import { Users, ChevronDown, ChevronUp, Clock, CheckCircle2, PlayCircle, Filter, Search } from 'lucide-react';
+import './TeamProjects.css';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { GlobalContext } from '../context/GlobalContext';
+import { teamsApi } from '../api/teams';
+import {
+  CalendarClock, CheckCircle2, Clock3, Filter, MessageSquareText, NotebookPen,
+  PlayCircle, Search, Trash2, Users, X,
+} from 'lucide-react';
+
+const formatDate = (value, withTime = true) => {
+  if (!value) return '갱신일 미기록';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '갱신일 미기록';
+  return date.toLocaleString('ko-KR', withTime
+    ? { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }
+    : { year: 'numeric', month: '2-digit', day: '2-digit' });
+};
+
+const phaseLabel = (level = '') => {
+  const value = String(level).toLowerCase();
+  if (value.startsWith('1-')) return '1단계';
+  if (value.startsWith('2-')) return '2단계';
+  if (value.includes('final') || value.startsWith('3-')) return 'Final';
+  return '프로젝트';
+};
+
+const statusPresentation = (status = '') => {
+  if (status.includes('완료')) return { tone: 'emerald', Icon: CheckCircle2 };
+  if (status.includes('시작') || status.includes('진행')) return { tone: 'blue', Icon: PlayCircle };
+  if (status.includes('대기') || status.includes('셋팅')) return { tone: 'amber', Icon: Clock3 };
+  return { tone: 'slate', Icon: Clock3 };
+};
 
 const TeamProjects = () => {
   const { selectedCohort } = useContext(GlobalContext);
-  const [projectData, setProjectData] = useState([]);
-  const [expandedCards, setExpandedCards] = useState({});
+  const [teamData, setTeamData] = useState([]);
+  const [boardMemos, setBoardMemos] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  
-  // ✅ 신규: 명단 및 조 이름 검색 상태
-  const [searchTerm, setSearchTerm] = useState("");
+  const [memoDraft, setMemoDraft] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const fetchMemos = async () => {
+    try {
+      setBoardMemos(await teamsApi.listBoardMemos(selectedCohort));
+    } catch (reason) {
+      setError(reason.response?.data?.detail || '현황판 메모를 불러오지 못했습니다.');
+    }
+  };
 
   useEffect(() => {
-    const fetchTeamProjects = async () => {
-      const res = await fetch(`http://localhost:8000/api/teams/cohort/${selectedCohort}/projects`);
-      if (res.ok) setProjectData(await res.json());
-    };
-    fetchTeamProjects();
+    let active = true;
+    setLoading(true);
+    setError('');
+    setSelectedProject(null);
+    Promise.allSettled([teamsApi.listProjects(selectedCohort), teamsApi.listBoardMemos(selectedCohort)])
+      .then(([projectsResult, memosResult]) => {
+        if (!active) return;
+        if (projectsResult.status === 'fulfilled') setTeamData(projectsResult.value || []);
+        else setError(projectsResult.reason.response?.data?.detail || '팀 프로젝트 현황을 불러오지 못했습니다.');
+        if (memosResult.status === 'fulfilled') setBoardMemos(memosResult.value || []);
+        else setError(memosResult.reason.response?.data?.detail || '현황판 메모를 불러오지 못했습니다.');
+      })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
   }, [selectedCohort]);
 
-  const toggleCard = (cardId) => {
-    setExpandedCards(prev => ({
-      ...prev,
-      [cardId]: !prev[cardId]
+  const projects = useMemo(() => teamData.flatMap((team) => Object.entries(team.projects || {}).map(([levelStr, project]) => ({
+    team_id: team.team_id,
+    team_name: team.team_name || '미배정 팀',
+    levelStr,
+    ...project,
+  }))), [teamData]);
+
+  const latestUpdate = projects
+    .filter((project) => project.status_changed_date)
+    .map((project) => project.status_changed_date)
+    .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())[0];
+
+  const visibleStageGroups = useMemo(() => {
+    const query = searchTerm.trim().toLocaleLowerCase();
+    const filtered = projects.filter((project) => {
+      const matchesStatus = statusFilter === 'all'
+        || (statusFilter === 'waiting' && (project.status || '').includes('대기'))
+        || (statusFilter === 'progress' && ((project.status || '').includes('시작') || (project.status || '').includes('진행')))
+        || (statusFilter === 'completed' && (project.status || '').includes('완료'));
+      const matchesQuery = !query || `${project.team_name} ${project.levelStr} ${project.member_names || ''}`.toLocaleLowerCase().includes(query);
+      return matchesStatus && matchesQuery;
+    });
+    const stages = ['1단계', '2단계', 'Final'].map((label) => ({
+      label,
+      projects: filtered.filter((project) => phaseLabel(project.levelStr) === label).sort((a, b) => {
+        const aDate = a.status_changed_date ? new Date(a.status_changed_date).getTime() : 0;
+        const bDate = b.status_changed_date ? new Date(b.status_changed_date).getTime() : 0;
+        return bDate - aDate || String(a.team_name).localeCompare(String(b.team_name), 'ko', { numeric: true });
+      }),
     }));
+    return stages;
+  }, [projects, searchTerm, statusFilter]);
+
+  const handleSaveMemo = async () => {
+    if (!memoDraft.trim()) return;
+    try {
+      await teamsApi.createBoardMemo(selectedCohort, { content: memoDraft.trim() });
+      setMemoDraft('');
+      await fetchMemos();
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '현황판 메모를 저장하지 못했습니다.');
+    }
   };
 
-  const getStatusStyle = (status) => {
-    if (!status) return { bg: 'bg-[#1e293b]/30', border: 'border-[#2a3441]', text: 'text-gray-400', badge: 'bg-gray-800 text-gray-400 border border-gray-700' };
-    if (status.includes('완료')) return { bg: 'bg-[#22c55e]/5', border: 'border-[#22c55e]/20', text: 'text-[#22c55e]', badge: 'bg-[#22c55e]/10 text-[#22c55e] border border-[#22c55e]/30' };
-    if (status.includes('시작') || status.includes('진행')) return { bg: 'bg-blue-900/10', border: 'border-blue-700/30', text: 'text-blue-400', badge: 'bg-blue-900/30 text-blue-400 border border-blue-700/50' };
-    if (status.includes('대기')) return { bg: 'bg-yellow-900/10', border: 'border-yellow-700/30', text: 'text-yellow-500', badge: 'bg-yellow-900/30 text-yellow-500 border border-yellow-700/50' };
-    return { bg: 'bg-[#1e293b]/30', border: 'border-[#2a3441]', text: 'text-gray-400', badge: 'bg-gray-800 text-gray-400 border border-gray-700' };
+  const handleDeleteMemo = async (memoId) => {
+    if (!window.confirm('현황판 메모를 삭제할까요?')) return;
+    try {
+      await teamsApi.deleteBoardMemo(selectedCohort, memoId);
+      setBoardMemos((previous) => previous.filter((memo) => memo.memo_id !== memoId));
+    } catch (reason) {
+      window.alert(reason.response?.data?.detail || '현황판 메모를 삭제하지 못했습니다.');
+    }
   };
 
-  const getPhase = (levelStr) => {
-    const lower = levelStr.toLowerCase();
-    if (lower.startsWith('1-')) return 'phase1';
-    if (lower.startsWith('2-')) return 'phase2';
-    if (lower.includes('final')) return 'final';
-    return 'other'; 
-  };
-
-  const phases = [
-    { id: 'phase1', title: '1단계 프로젝트' },
-    { id: 'phase2', title: '2단계 프로젝트' },
-    { id: 'final', title: 'Final 프로젝트' }
+  const filters = [
+    { id: 'all', label: '전체', Icon: Filter },
+    { id: 'waiting', label: '대기', Icon: Clock3 },
+    { id: 'progress', label: '진행 중', Icon: PlayCircle },
+    { id: 'completed', label: '완료', Icon: CheckCircle2 },
   ];
 
   return (
-    <div className="p-8 max-w-[1600px] mx-auto h-[calc(100vh-64px)] flex flex-col gap-6 overflow-hidden">
-      
-      <style>{`
-        .hide-scroll::-webkit-scrollbar { display: none; }
-        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
-
-      <div className="flex justify-between items-center shrink-0 bg-[#151b28] border border-[#2a3441] p-5 rounded-2xl shadow-sm">
-        <div className="flex items-center gap-4">
-          <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
-            <Users size={24} className="text-blue-400" />
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-white">팀 프로젝트 현황 보드</h2>
-            <p className="text-sm text-gray-400 mt-1">현재 선택된 기수의 팀플 진행 상태 및 승인 대기 명단 모니터링</p>
-          </div>
+    <main className="teamprojects__main_001">
+      <header className="teamprojects__header_001">
+        <div className="teamprojects__group_001">
+          <div className="teamprojects__group_002"><Users size={22} className="teamprojects__users_001" /></div>
+          <div><h1 className="teamprojects__title_001">팀 프로젝트 현황판</h1><p className="teamprojects__text_001">최근 확인된 팀이 위에 오며, 각 팀의 갱신일과 세부 내용을 볼 수 있습니다.</p></div>
         </div>
-        
-        <div className="flex items-center gap-4">
-          {/* ✅ 신규: 명단 검색 바 */}
-          <div className="relative w-64">
-            <Search size={16} className="absolute left-3 top-2.5 text-gray-400" />
-            <input 
-              type="text" 
-              placeholder="참여 명단 또는 조 검색..." 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-[#111722] border border-[#334155] rounded-lg py-2 pl-9 pr-4 text-sm text-white focus:outline-none focus:border-blue-500 shadow-inner" 
-            />
-          </div>
+        <div className="teamprojects__group_003">
+          <div className="teamprojects__group_004"><span className="teamprojects__label_001">팀</span><strong className="teamprojects__strong_001">{teamData.length}</strong></div>
+          <div className="teamprojects__group_004"><span className="teamprojects__label_001">프로젝트</span><strong className="teamprojects__strong_001">{projects.length}</strong></div>
+          <div className="teamprojects__group_004"><span className="teamprojects__label_001">최근 갱신</span><strong className="teamprojects__strong_002">{formatDate(latestUpdate, false)}</strong></div>
+        </div>
+      </header>
 
-          <div className="flex bg-[#111722] p-1 rounded-xl border border-[#334155] shadow-inner">
-            <button onClick={() => setStatusFilter('all')} className={`px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-1.5 ${statusFilter === 'all' ? 'bg-[#334155] text-white shadow' : 'text-gray-400 hover:text-gray-200'}`}>
-              <Filter size={16} /> 전체 보기
-            </button>
-            <button onClick={() => setStatusFilter('waiting')} className={`px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-1.5 ${statusFilter === 'waiting' ? 'bg-yellow-900/30 text-yellow-500 border border-yellow-700/50 shadow' : 'text-gray-400 hover:text-gray-200'}`}>
-              <Clock size={16} /> 승인 대기
-            </button>
-            <button onClick={() => setStatusFilter('progress')} className={`px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-1.5 ${statusFilter === 'progress' ? 'bg-blue-900/30 text-blue-400 border border-blue-700/50 shadow' : 'text-gray-400 hover:text-gray-200'}`}>
-              <PlayCircle size={16} /> 진행 중
-            </button>
-            <button onClick={() => setStatusFilter('completed')} className={`px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-1.5 ${statusFilter === 'completed' ? 'bg-[#22c55e]/20 text-[#22c55e] border border-[#22c55e]/40 shadow' : 'text-gray-400 hover:text-gray-200'}`}>
-              <CheckCircle2 size={16} /> 완료됨
-            </button>
-          </div>
+      <div className="teamprojects__group_005">
+        <label className="teamprojects__label_002">
+          <Search size={16} className="teamprojects__search_001" />
+          <input value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)} placeholder="팀, 단계, 참여자 검색" className="teamprojects__input_001" />
+        </label>
+        <div className="teamprojects__group_006">
+          {filters.map(({ id, label, Icon }) => <button key={id} onClick={() => setStatusFilter(id)} className={`teamprojects__variant_001 ${statusFilter === id ? 'teamprojects__variant_002' : 'teamprojects__variant_003'}`}><Icon size={13} />{label}</button>)}
         </div>
       </div>
-      
-      <div className="grid grid-cols-3 gap-6 flex-grow min-h-0">
-        {phases.map(phase => {
-          
-          let phaseCards = [];
-          projectData.forEach(team => {
-            Object.keys(team.projects).forEach(levelStr => {
-              if (getPhase(levelStr) === phase.id) {
-                phaseCards.push({
-                  team_id: team.team_id,
-                  team_name: team.team_name,
-                  levelStr: levelStr,
-                  ...team.projects[levelStr]
-                });
-              }
-            });
-          });
 
-          // 상태 필터 적용
-          if (statusFilter === 'waiting') {
-            phaseCards = phaseCards.filter(c => c.status && c.status.includes('대기'));
-          } else if (statusFilter === 'progress') {
-            phaseCards = phaseCards.filter(c => c.status && (c.status.includes('시작') || c.status.includes('진행')));
-          } else if (statusFilter === 'completed') {
-            phaseCards = phaseCards.filter(c => c.status && c.status.includes('완료'));
-          }
+      {error && <div role="alert" className="teamprojects__group_007">{error}</div>}
 
-          // ✅ 신규: 명단 및 조 이름 검색 필터 적용
-          if (searchTerm) {
-            const lowerSearchTerm = searchTerm.toLowerCase();
-            phaseCards = phaseCards.filter(c => 
-              (c.member_names && c.member_names.toLowerCase().includes(lowerSearchTerm)) ||
-              (c.team_name && c.team_name.toLowerCase().includes(lowerSearchTerm))
-            );
-          }
-
-          phaseCards.sort((a, b) => {
-            if (a.levelStr !== b.levelStr) return a.levelStr.localeCompare(b.levelStr);
-            return a.team_id - b.team_id;
-          });
-
-          return (
-            <div key={phase.id} className="flex flex-col bg-[#111722] border border-[#2a3441] rounded-2xl overflow-hidden h-full shadow-lg">
-              
-              <div className="px-6 py-5 bg-[#151b28] border-b border-[#2a3441] shrink-0 flex justify-between items-center">
-                <h3 className="font-extrabold text-white text-lg">{phase.title}</h3>
-                <span className="text-xs font-bold text-gray-300 bg-[#1e293b] border border-[#334155] px-3 py-1.5 rounded-full">
-                  {phaseCards.length} 팀
-                </span>
-              </div>
-              
-              <div className="p-5 flex-grow overflow-y-auto space-y-4 hide-scroll bg-[#0b0f17]">
-                {phaseCards.map(card => {
-                  const cardId = `${card.levelStr}-${card.team_id}`;
-                  // 검색어가 있을 경우 자동으로 아코디언이 열리도록 처리
-                  const isExpanded = searchTerm ? true : expandedCards[cardId];
-                  const style = getStatusStyle(card.status);
-
-                  return (
-                    <div 
-                      key={cardId} 
-                      onClick={() => toggleCard(cardId)}
-                      className={`border rounded-xl p-4 cursor-pointer transition-all duration-200 hover:scale-[1.01] ${style.bg} ${style.border}`}
-                    >
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-3">
-                          <span className={`text-base font-extrabold ${style.text}`}>{card.team_name}</span>
-                          <span className="text-[10px] px-2 py-0.5 rounded border border-gray-600/50 bg-gray-900/50 text-gray-400 font-bold tracking-wider">
-                            {card.levelStr}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <span className={`text-[11px] font-extrabold px-2.5 py-1 rounded-full ${style.badge}`}>
-                            {card.status || "상태 없음"}
-                          </span>
-                          <div className={`p-1 rounded-md ${isExpanded ? 'bg-black/20' : 'hover:bg-black/10'}`}>
-                            {isExpanded ? <ChevronUp size={16} className={style.text} /> : <ChevronDown size={16} className={style.text} />}
-                          </div>
-                        </div>
-                      </div>
-
-                      {isExpanded && (
-                        <div className="mt-4 pt-4 border-t border-gray-700/50 animate-fade-in-down">
-                          <div className="flex items-center gap-1.5 mb-2">
-                            <Users size={12} className="text-gray-500" />
-                            <span className="font-bold text-xs text-gray-500">참여 명단</span>
-                          </div>
-                          <div className="bg-[#0f1520] p-3 rounded-lg border border-[#2a3441] text-sm text-gray-300 leading-relaxed break-keep">
-                            {card.member_names || "명단 미등록"}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-
-                {phaseCards.length === 0 && (
-                  <div className="flex flex-col items-center justify-center h-40 text-gray-600 text-sm border-2 border-dashed border-[#2a3441] rounded-xl bg-[#151b28]/50">
-                    <Filter size={24} className="mb-2 opacity-50" />
-                    <span>현재 조건에 맞는 프로젝트가 없습니다.</span>
+      <div className="teamprojects__group_008">
+        <section className="teamprojects__section_001">
+          {loading ? <p className="teamprojects__text_002">현황을 불러오는 중...</p> : (
+            <div className="teamprojects__group_009">
+              {visibleStageGroups.map((stage) => (
+                <article key={stage.label} className="teamprojects__card_001">
+                  <header className="teamprojects__header_002">
+                    <div><h2 className="teamprojects__title_002">{stage.label} 프로젝트</h2><p className="teamprojects__text_003">팀 프로젝트별 상태와 최근 확인</p></div>
+                    <span className="teamprojects__label_003">{stage.projects.length}팀</span>
+                  </header>
+                  <div className="teamprojects__group_010">
+                    {stage.projects.map((project) => {
+                      const { tone, Icon } = statusPresentation(project.status || '');
+                      const toneClasses = {
+                        emerald: 'teamprojects__variant_004',
+                        blue: 'teamprojects__variant_005',
+                        amber: 'teamprojects__variant_006',
+                        slate: 'teamprojects__variant_007',
+                      }[tone];
+                      return <button key={project.project_id || `${project.team_id}-${project.levelStr}`} onClick={() => setSelectedProject(project)} className="teamprojects__button_001">
+                        <div className="teamprojects__group_011"><div className="teamprojects__group_012"><p className="teamprojects__text_004">{project.team_name}</p><p className="teamprojects__text_003">{project.levelStr}</p></div><span className={`teamprojects__variant_008 ${toneClasses}`}><Icon size={12} />{project.status || '상태 없음'}</span></div>
+                        <div className="teamprojects__group_013"><span className="teamprojects__label_004">{project.member_names || '명단 미등록'}</span><span className="teamprojects__label_005">{formatDate(project.status_changed_date)}</span></div>
+                      </button>;
+                    })}
+                    {!stage.projects.length && <div className="teamprojects__group_014">조건에 맞는 프로젝트가 없습니다.</div>}
                   </div>
-                )}
-              </div>
+                </article>
+              ))}
             </div>
-          );
-        })}
+          )}
+        </section>
+
+        <aside className="teamprojects__aside_001">
+          <header className="teamprojects__header_003">
+            <div className="teamprojects__group_015"><h2 className="teamprojects__title_003"><MessageSquareText size={17} className="teamprojects__messagesquaretext_001" /> 현황판 메모</h2><span className="teamprojects__label_006">{boardMemos.length}</span></div>
+            <p className="teamprojects__text_005">팀이나 프로젝트 하나에 묶이지 않는 이 페이지 전용 메모입니다.</p>
+          </header>
+          <div className="teamprojects__group_016">
+            <textarea value={memoDraft} onChange={(event) => setMemoDraft(event.target.value)} rows={3} maxLength={1000} placeholder="전체 프로젝트 관련 메모나 확인할 내용을 적어주세요." className="teamprojects__textarea_001" />
+            <div className="teamprojects__group_017"><span className="teamprojects__label_007">{memoDraft.length}/1000</span><button onClick={handleSaveMemo} disabled={!memoDraft.trim()} className="teamprojects__button_002"><NotebookPen size={14} /> 메모 저장</button></div>
+          </div>
+          <div className="teamprojects__group_018">
+            {boardMemos.map((memo) => <article key={memo.memo_id} className="group teamprojects__card_002"><div className="teamprojects__group_011"><p className="teamprojects__text_006">{memo.content}</p><button onClick={() => handleDeleteMemo(memo.memo_id)} aria-label="메모 삭제" title="메모 삭제" className="teamprojects__button_003"><Trash2 size={14} /></button></div><div className="teamprojects__group_019"><span>{memo.author || '퍼실리테이터'}</span><time>{formatDate(memo.created_at)}</time></div></article>)}
+            {!boardMemos.length && <div className="teamprojects__group_020">아직 현황판 메모가 없습니다.<br />위 입력란에서 페이지 공통 메모를 작성하세요.</div>}
+          </div>
+        </aside>
       </div>
-    </div>
+
+      {selectedProject && (
+        <div className="teamprojects__group_021" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelectedProject(null); }}>
+          <aside role="dialog" aria-modal="true" aria-label={`${selectedProject.team_name} 프로젝트 상세`} className="teamprojects__aside_002">
+            <header className="teamprojects__header_004">
+              <div><p className="teamprojects__text_007">{selectedProject.team_name} · {selectedProject.levelStr}</p><h2 className="teamprojects__title_004">프로젝트 상세</h2></div>
+              <button onClick={() => setSelectedProject(null)} aria-label="상세 닫기" className="teamprojects__button_004"><X size={18} /></button>
+            </header>
+            <div className="teamprojects__group_022">
+              <section className="teamprojects__section_002">
+                <div className="teamprojects__group_023"><div><p className="teamprojects__text_008">현재 상태</p><p className="teamprojects__text_009">{selectedProject.status || '상태 없음'}</p></div><span className="teamprojects__label_008"><Users size={20} /></span></div>
+                <div className="teamprojects__group_024"><div className="teamprojects__group_025"><p className="teamprojects__text_010">팀</p><p className="teamprojects__text_011">{selectedProject.team_name}</p></div><div className="teamprojects__group_025"><p className="teamprojects__text_010">단계</p><p className="teamprojects__text_011">{phaseLabel(selectedProject.levelStr)} · {selectedProject.levelStr}</p></div></div>
+              </section>
+              <section className="teamprojects__section_002">
+                <h3 className="teamprojects__title_005"><CalendarClock size={16} className="teamprojects__calendarclock_001" /> 최근 크롤링 확인</h3>
+                <p className="teamprojects__text_012">{formatDate(selectedProject.status_changed_date)}</p>
+                <p className="teamprojects__text_003">크롤러가 이 팀 프로젝트의 상태와 명단을 마지막으로 확인한 시각입니다.</p>
+              </section>
+              <section className="teamprojects__section_002">
+                <div className="teamprojects__group_026"><h3 className="teamprojects__title_005"><Users size={16} className="teamprojects__users_002" /> 참여 명단</h3><span className="teamprojects__label_009">팀 프로젝트 정보</span></div>
+                <p className="teamprojects__text_013">{selectedProject.member_names || '명단 미등록'}</p>
+              </section>
+            </div>
+          </aside>
+        </div>
+      )}
+    </main>
   );
 };
 

@@ -1,0 +1,500 @@
+@reference "tailwindcss";
+
+/* group: 10 visual rules */
+.facilitatorteams__group_001 { @apply cursor-pointer rounded-xl shadow-sm border p-3.5; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .facilitatorteams__group_001 { border-color: var(--border-color); background-color: var(--surface-muted); }
+.facilitatorteams__group_001:hover { border-color: var(--tone-blue); }
+.facilitatorteams__group_001:hover { @apply shadow-blue-950/20; }
+.facilitatorteams__group_001:hover { @apply shadow-lg; }
+
+/* group: 4 visual rules */
+.facilitatorteams__group_002 { @apply justify-between items-start gap-2 flex; }
+
+/* group: 4 visual rules */
+.facilitatorteams__group_003 { @apply items-center min-w-0 gap-2 flex; }
+
+/* gripvertical: 2 visual rules */
+.facilitatorteams__gripvertical_001 { @apply shrink-0; color: var(--tone-blue); opacity: .65; }
+
+/* label: 4 visual rules */
+.facilitatorteams__label_001 { @apply text-white font-bold truncate text-sm; }
+html[data-theme="light"] .facilitatorteams__label_001 { color: var(--text-strong); }
+
+/* group: 4 visual rules */
+.facilitatorteams__group_004 { @apply items-center shrink-0 gap-1 flex; }
+
+/* button: 5 visual rules */
+.facilitatorteams__button_001 { @apply rounded-md p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__button_001 { color: var(--text-muted); }
+.facilitatorteams__button_001:hover { background-color: var(--tint-purple); }
+html[data-theme="light"] .facilitatorteams__button_001:hover { background-color: var(--tint-purple); }
+.facilitatorteams__button_001:hover { color: var(--tone-purple); }
+html[data-theme="light"] .facilitatorteams__button_001:hover { color: var(--tone-purple); }
+
+/* button: 5 visual rules */
+.facilitatorteams__button_002 { @apply rounded-md p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__button_002 { color: var(--text-muted); }
+.facilitatorteams__button_002:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .facilitatorteams__button_002:hover { background-color: var(--tint-red); }
+.facilitatorteams__button_002:hover { color: var(--tone-red); }
+html[data-theme="light"] .facilitatorteams__button_002:hover { color: var(--tone-red); }
+
+/* group: 7 visual rules */
+.facilitatorteams__group_005 { @apply justify-between font-semibold items-center text-[10px] mt-2.5 flex; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__group_005 { color: var(--text-muted); }
+
+/* group: 5 visual rules */
+.facilitatorteams__group_006 { @apply overflow-hidden rounded-full mt-1.5 h-1.5; background-color: var(--app-background); }
+html[data-theme="light"] .facilitatorteams__group_006 { background-color: var(--app-background); }
+
+/* group: 7 visual rules */
+.facilitatorteams__group_007 { @apply h-[calc(100vh-64px)] max-w-[1600px] flex-col mx-auto gap-6 flex p-8; }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_008 { @apply justify-between items-center flex-wrap gap-3 flex mb-2; }
+
+/* title: 6 visual rules */
+.facilitatorteams__title_001 { @apply items-center text-white font-bold text-xl gap-2 flex; }
+html[data-theme="light"] .facilitatorteams__title_001 { color: var(--text-strong); }
+
+/* label: 4 visual rules */
+.facilitatorteams__label_002 { @apply rounded-full w-1.5 h-6; background-color: var(--action-purple); }
+
+/* text: 3 visual rules */
+.facilitatorteams__text_001 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__text_001 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.facilitatorteams__group_009 { @apply items-center flex-wrap gap-2 flex; }
+
+/* label: 1 visual rules */
+.facilitatorteams__label_003 { @apply relative; }
+
+/* search: 4 visual rules */
+.facilitatorteams__search_001 { @apply absolute top-2.5 left-3; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__search_001 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.facilitatorteams__input_001 { @apply text-white rounded-lg text-sm border py-2 w-52 pr-3 pl-9; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__input_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.facilitatorteams__input_001:focus { border-color: var(--tone-blue); }
+.facilitatorteams__input_001:focus { @apply outline-none; }
+
+/* label: 2 visual rules */
+.facilitatorteams__label_004 { @apply text-xs; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__label_004 { color: var(--text-muted); }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_010 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__group_010 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* button: 13 visual rules */
+.facilitatorteams__button_003 { @apply items-center rounded-lg font-bold text-sm border gap-2 flex px-3 py-2; border-color: var(--tint-border-purple); background-color: var(--tint-purple); color: var(--tone-purple); }
+html[data-theme="light"] .facilitatorteams__button_003 { background-color: var(--tint-purple); }
+.facilitatorteams__button_003:hover { background-color: var(--tint-purple); }
+
+/* button: 12 visual rules */
+.facilitatorteams__button_004 { @apply items-center transition text-white rounded-lg font-bold text-sm gap-2 flex py-2 px-4; background-color: var(--action-success); }
+html[data-theme="light"] .facilitatorteams__button_004 { color: #fff; }
+.facilitatorteams__button_004:hover { background-color: var(--action-success-hover); }
+
+/* button: 12 visual rules */
+.facilitatorteams__button_005 { @apply items-center transition text-white rounded-lg font-bold text-sm gap-2 flex py-2 px-4; background-color: var(--action-primary); }
+html[data-theme="light"] .facilitatorteams__button_005 { color: #fff; }
+.facilitatorteams__button_005:hover { background-color: var(--action-primary-hover); }
+
+/* group: 8 visual rules */
+.facilitatorteams__group_011 { @apply rounded-lg text-sm border py-3 px-4; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .facilitatorteams__group_011 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* text: 2 visual rules */
+.facilitatorteams__text_002 { @apply text-sm; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__text_002 { color: var(--text-muted); }
+
+/* text: 2 visual rules */
+.facilitatorteams__text_003 { @apply text-sm; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__text_003 { color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.facilitatorteams__group_012 { @apply overflow-y-auto min-h-0 flex-1 gap-4 grid pb-4 pr-1 grid-cols-[repeat(auto-fit,minmax(260px,1fr))]; }
+
+/* group: 8 visual rules */
+.facilitatorteams__group_013 { @apply min-h-[340px] rounded-xl shadow-lg border-2 flex-col flex; border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .facilitatorteams__group_013 { background-color: var(--tint-cyan); }
+
+/* group: 13 visual rules */
+.facilitatorteams__group_014 { @apply justify-between cursor-pointer rounded-t-xl items-center transition border-b shrink-0 flex py-3 px-4; border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .facilitatorteams__group_014 { background-color: var(--tint-cyan); }
+.facilitatorteams__group_014:hover { background-color: var(--tint-cyan); }
+html[data-theme="light"] .facilitatorteams__group_014:hover { background-color: var(--tint-cyan); }
+
+/* group: 3 visual rules */
+.facilitatorteams__group_015 { @apply items-center gap-1.5 flex; }
+
+/* headset: 1 visual rules */
+.facilitatorteams__headset_001 { color: var(--tone-cyan); }
+
+/* label: 4 visual rules */
+.facilitatorteams__label_005 { @apply transition font-bold; color: var(--tone-cyan); }
+html[data-theme="light"] .facilitatorteams__label_005 { color: var(--tone-cyan); }
+.group:hover .facilitatorteams__label_005 { color: var(--tone-cyan); }
+html[data-theme="light"] .group:hover .facilitatorteams__label_005 { color: var(--tone-cyan); }
+
+/* label: 9 visual rules */
+.facilitatorteams__label_006 { @apply rounded-full font-bold text-xs border py-0.5 px-2; border-color: var(--tint-border-cyan); color: var(--tone-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .facilitatorteams__label_006 { color: var(--tone-cyan); background-color: var(--tint-cyan); }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_016 { @apply overflow-y-auto flex-grow flex-col gap-2 flex p-3; }
+
+/* group: 9 visual rules */
+.facilitatorteams__group_017 { @apply justify-between cursor-default items-center rounded-lg border flex p-3; border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .facilitatorteams__group_017 { background-color: var(--tint-cyan); }
+
+/* group: 3 visual rules */
+.facilitatorteams__group_018 { @apply items-center gap-2 flex; }
+
+/* headset: 1 visual rules */
+.facilitatorteams__headset_002 { color: var(--tone-cyan); }
+
+/* label: 3 visual rules */
+.facilitatorteams__label_007 { @apply font-medium text-sm; color: var(--tone-cyan); }
+html[data-theme="light"] .facilitatorteams__label_007 { color: var(--tone-cyan); }
+
+/* label: 8 visual rules */
+.facilitatorteams__label_008 { @apply text-[10px] rounded border py-0.5 px-1.5; border-color: var(--tint-border-cyan); color: var(--tone-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .facilitatorteams__label_008 { background-color: var(--tint-cyan); }
+
+/* group: 9 visual rules */
+.facilitatorteams__group_019 { @apply justify-center items-center text-center flex-col text-xs h-full flex mt-4; color: var(--tone-cyan); opacity: .8; }
+
+/* headset: 2 visual rules */
+.facilitatorteams__headset_003 { @apply opacity-50 mb-2; }
+
+/* group: 8 visual rules */
+.facilitatorteams__group_020 { @apply border-dashed min-h-[340px] rounded-xl border-2 flex-col flex; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__group_020 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 8 visual rules */
+.facilitatorteams__group_021 { @apply justify-between items-center border-b shrink-0 flex py-3 px-4; border-color: var(--border-color); }
+html[data-theme="light"] .facilitatorteams__group_021 { border-color: var(--border-color); }
+
+/* label: 2 visual rules */
+.facilitatorteams__label_009 { @apply font-bold; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__label_009 { color: var(--text-muted); }
+
+/* label: 6 visual rules */
+.facilitatorteams__label_010 { @apply rounded-full text-xs py-0.5 px-2; color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .facilitatorteams__label_010 { color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* text: 4 visual rules */
+.facilitatorteams__text_004 { @apply text-center text-xs py-5; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__text_004 { color: var(--text-muted); }
+
+/* group: 7 visual rules */
+.facilitatorteams__group_022 { @apply min-h-[340px] rounded-xl flex-col border flex; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__group_022 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 13 visual rules */
+.facilitatorteams__group_023 { @apply justify-between cursor-pointer rounded-t-xl items-center transition border-b shrink-0 flex py-3 px-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__group_023 { border-color: var(--border-color); background-color: var(--surface-background); }
+.facilitatorteams__group_023:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .facilitatorteams__group_023:hover { background-color: var(--surface-muted); }
+
+/* label: 4 visual rules */
+.facilitatorteams__label_011 { @apply transition text-white font-bold; }
+html[data-theme="light"] .facilitatorteams__label_011 { color: var(--text-strong); }
+.group:hover .facilitatorteams__label_011 { color: var(--tone-blue); }
+
+/* externallink: 4 visual rules */
+.facilitatorteams__externallink_001 { @apply transition opacity-0; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__externallink_001 { color: var(--text-muted); }
+.group:hover .facilitatorteams__externallink_001 { @apply opacity-100; }
+
+/* label: 8 visual rules */
+.facilitatorteams__label_012 { @apply rounded-full transition text-xs py-0.5 px-2; color: var(--tone-blue); background-color: var(--surface-track); }
+html[data-theme="light"] .facilitatorteams__label_012 { background-color: var(--surface-muted); }
+.group:hover .facilitatorteams__label_012 { background-color: var(--tint-blue); }
+html[data-theme="light"] .group:hover .facilitatorteams__label_012 { background-color: var(--tint-blue); }
+
+/* button: 8 visual rules */
+.facilitatorteams__button_006 { @apply transition opacity-0 rounded p-1; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__button_006 { color: var(--text-muted); }
+.group:hover .facilitatorteams__button_006 { @apply opacity-100; }
+.facilitatorteams__button_006:hover { color: var(--tone-red); }
+.facilitatorteams__button_006:hover { background-color: var(--surface-track); }
+html[data-theme="light"] .facilitatorteams__button_006:hover { background-color: var(--surface-muted); }
+
+/* group: 7 visual rules */
+.facilitatorteams__group_024 { @apply overflow-auto rounded-xl min-h-0 flex-1 border; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__group_024 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* table: 4 visual rules */
+.facilitatorteams__table_001 { @apply min-w-[760px] text-left text-sm w-full; }
+
+/* thead: 7 visual rules */
+.facilitatorteams__thead_001 { @apply tracking-wide uppercase text-xs sticky top-0; color: var(--text-muted); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__thead_001 { color: var(--text-muted); background-color: var(--surface-background); }
+
+/* heading: 2 visual rules */
+.facilitatorteams__heading_001 { @apply py-3 px-4; }
+
+/* heading: 3 visual rules */
+.facilitatorteams__heading_002 { @apply text-right py-3 px-4; }
+
+/* tbody: 2 visual rules */
+.facilitatorteams__tbody_001 { @apply divide-y divide-[var(--border-color)]; }
+
+/* row: 4 visual rules */
+.facilitatorteams__row_001 { @apply cursor-pointer transition; color: var(--text-primary); }
+html[data-theme="light"] .facilitatorteams__row_001 { color: var(--text-primary); }
+.facilitatorteams__row_001:hover { background-color: var(--surface-raised); }
+
+/* cell: 4 visual rules */
+.facilitatorteams__cell_001 { @apply font-semibold text-white py-3 px-4; }
+html[data-theme="light"] .facilitatorteams__cell_001 { color: var(--text-strong); }
+
+/* label: 3 visual rules */
+.facilitatorteams__label_013 { @apply text-[10px] ml-2; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__label_013 { color: var(--text-muted); }
+
+/* cell: 4 visual rules */
+.facilitatorteams__cell_002 { @apply text-xs py-3 px-4; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__cell_002 { color: var(--text-muted); }
+
+/* group: 7 visual rules */
+.facilitatorteams__group_025 { @apply justify-center items-center bg-black/70 inset-0 fixed flex z-50; }
+
+/* group: 10 visual rules */
+.facilitatorteams__group_026 { @apply rounded-xl shadow-2xl space-y-4 w-[600px] flex-col border flex p-6; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__group_026 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_027 { @apply justify-between items-center border-b flex pb-2; border-color: var(--border-color); }
+html[data-theme="light"] .facilitatorteams__group_027 { border-color: var(--border-color); }
+
+/* title: 2 visual rules */
+.facilitatorteams__title_002 { @apply text-white font-bold; }
+html[data-theme="light"] .facilitatorteams__title_002 { color: var(--text-strong); }
+
+/* x: 1 visual rules */
+.facilitatorteams__x_001 { color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__x_001 { color: var(--text-muted); }
+
+/* textarea: 9 visual rules */
+.facilitatorteams__textarea_001 { @apply text-white rounded-lg text-sm border w-full h-32 p-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__textarea_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+
+/* select: 7 visual rules */
+.facilitatorteams__select_001 { @apply text-white rounded-lg border w-full p-2.5; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__select_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+
+/* button: 6 visual rules */
+.facilitatorteams__button_007 { @apply text-white rounded-lg font-bold w-full py-3; background-color: var(--action-primary); }
+html[data-theme="light"] .facilitatorteams__button_007 { color: #fff; }
+
+/* group: 8 visual rules */
+.facilitatorteams__group_028 { @apply justify-center items-center bg-black/60 inset-0 fixed flex z-50 p-4; }
+
+/* group: 9 visual rules */
+.facilitatorteams__group_029 { @apply rounded-xl shadow-2xl space-y-4 max-w-lg border w-full p-6; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__group_029 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_030 { @apply justify-between items-center border-b flex pb-3; border-color: var(--border-color); }
+html[data-theme="light"] .facilitatorteams__group_030 { border-color: var(--border-color); }
+
+/* label: 5 visual rules */
+.facilitatorteams__label_014 { @apply font-semibold space-y-1.5 text-xs block; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__label_014 { color: var(--text-muted); }
+
+/* label: 1 visual rules */
+.facilitatorteams__label_015 { color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__label_015 { color: var(--text-primary); }
+
+/* select: 9 visual rules */
+.facilitatorteams__select_002 { @apply text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__select_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+
+/* input: 9 visual rules */
+.facilitatorteams__input_002 { @apply text-white rounded-lg text-sm border w-full px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__input_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+
+/* textarea: 10 visual rules */
+.facilitatorteams__textarea_002 { @apply text-white rounded-lg resize-y text-sm border w-full px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__textarea_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+
+/* group: 3 visual rules */
+.facilitatorteams__group_031 { @apply justify-end gap-2 flex; }
+
+/* button: 7 visual rules */
+.facilitatorteams__button_008 { @apply rounded-lg text-sm border py-2 px-4; border-color: var(--border-strong); color: var(--text-primary); }
+html[data-theme="light"] .facilitatorteams__button_008 { border-color: var(--border-color); color: var(--text-primary); }
+
+/* button: 11 visual rules */
+.facilitatorteams__button_009 { @apply items-center inline-flex text-white rounded-lg font-bold text-sm gap-2 py-2 px-4; background-color: var(--action-primary); }
+html[data-theme="light"] .facilitatorteams__button_009 { color: #fff; }
+.facilitatorteams__button_009:disabled { @apply opacity-50; }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_032 { @apply bg-black/55 justify-end inset-0 z-[55] fixed flex; }
+
+/* aside: 9 visual rules */
+.facilitatorteams__aside_001 { @apply shadow-2xl flex-col max-w-md border-l h-full w-full flex; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .facilitatorteams__aside_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 7 visual rules */
+.facilitatorteams__group_033 { @apply justify-between items-start border-b flex px-6 py-5; border-color: var(--border-color); }
+html[data-theme="light"] .facilitatorteams__group_033 { border-color: var(--border-color); }
+
+/* text: 3 visual rules */
+.facilitatorteams__text_005 { @apply font-bold text-xs; color: var(--tone-blue); }
+
+/* title: 4 visual rules */
+.facilitatorteams__title_003 { @apply font-extrabold text-white text-xl mt-1; }
+html[data-theme="light"] .facilitatorteams__title_003 { color: var(--text-strong); }
+
+/* button: 5 visual rules */
+.facilitatorteams__button_010 { @apply rounded-lg p-2; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__button_010 { color: var(--text-muted); }
+.facilitatorteams__button_010:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .facilitatorteams__button_010:hover { background-color: var(--surface-muted); }
+.facilitatorteams__button_010:hover { @apply text-white; }
+html[data-theme="light"] .facilitatorteams__button_010:hover { color: var(--text-strong); }
+
+/* group: 4 visual rules */
+.facilitatorteams__group_034 { @apply overflow-y-auto space-y-4 flex-1 p-6; }
+
+/* group: 3 visual rules */
+.facilitatorteams__group_035 { @apply gap-3 grid grid-cols-2; }
+
+/* group: 5 visual rules */
+.facilitatorteams__group_036 { @apply rounded-xl border p-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .facilitatorteams__group_036 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* text: 2 visual rules */
+.facilitatorteams__text_006 { @apply text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .facilitatorteams__text_006 { color: var(--text-muted); }
+
+/* text: 3 visual rules */
+.facilitatorteams__text_007 { @apply text-white font-bold mt-1; }
+html[data-theme="light"] .facilitatorteams__text_007 { color: var(--text-strong); }
+
+/* group: 6 visual rules */
+.facilitatorteams__group_037 { @apply items-center font-bold text-sm gap-2 flex; color: var(--text-primary); }
+html[data-theme="light"] .facilitatorteams__group_037 { color: var(--text-primary); }
+
+/* calendarclock: 1 visual rules */
+.facilitatorteams__calendarclock_001 { color: var(--tone-amber); }
+
+/* text: 3 visual rules */
+.facilitatorteams__text_008 { @apply text-sm mt-2; color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__text_008 { color: var(--text-muted); }
+
+/* group: 3 visual rules */
+.facilitatorteams__group_038 { @apply flex-wrap gap-2 flex; }
+
+/* label: 7 visual rules */
+.facilitatorteams__label_016 { @apply rounded-full font-bold text-xs px-3 py-1; background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .facilitatorteams__label_016 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* label: 7 visual rules */
+.facilitatorteams__label_017 { @apply rounded-full font-bold text-xs px-3 py-1; background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .facilitatorteams__label_017 { background-color: var(--tint-cyan); color: var(--tone-cyan); }
+
+/* text: 8 visual rules */
+.facilitatorteams__text_009 { @apply leading-relaxed rounded-xl text-xs border p-4; border-color: var(--tint-border-blue); background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .facilitatorteams__text_009 { background-color: var(--tint-blue); color: var(--tone-blue); }
+
+/* group: 5 visual rules */
+.facilitatorteams__group_039 { @apply border-t gap-2 flex p-5; border-color: var(--border-color); }
+html[data-theme="light"] .facilitatorteams__group_039 { border-color: var(--border-color); }
+
+/* button: 15 visual rules */
+.facilitatorteams__button_011 { @apply justify-center items-center inline-flex rounded-lg font-bold text-sm py-2.5 flex-1 border gap-2 px-3; border-color: var(--tint-border-purple); background-color: var(--tint-purple); color: var(--tone-purple); }
+html[data-theme="light"] .facilitatorteams__button_011 { background-color: var(--tint-purple); }
+.facilitatorteams__button_011:hover { background-color: var(--tint-purple); }
+
+/* button: 12 visual rules */
+.facilitatorteams__button_012 { @apply justify-center items-center inline-flex text-white rounded-lg font-bold text-sm py-2.5 gap-2 px-3; background-color: var(--action-primary); }
+html[data-theme="light"] .facilitatorteams__button_012 { color: #fff; }
+.facilitatorteams__button_012:hover { background-color: var(--action-primary-hover); }
+
+/* Conditional style facilitatorteams__variant_001 */
+.facilitatorteams__variant_001 { color: var(--tone-green); }
+
+/* Conditional style facilitatorteams__variant_002 */
+.facilitatorteams__variant_002 { color: var(--tone-blue); }
+html[data-theme="light"] .facilitatorteams__variant_002 { color: var(--tone-blue); }
+
+/* Conditional style facilitatorteams__variant_003 */
+.facilitatorteams__variant_003 { @apply rounded-full h-full; }
+
+/* Conditional style facilitatorteams__variant_004 */
+.facilitatorteams__variant_004 { background-color: var(--chart-green); }
+
+/* Conditional style facilitatorteams__variant_005 */
+.facilitatorteams__variant_005 { background-image: linear-gradient(90deg, var(--chart-blue), var(--chart-cyan)); }
+
+/* Conditional style facilitatorteams__variant_006 */
+.facilitatorteams__variant_006 { @apply items-center inline-flex rounded-md font-bold text-xs gap-1.5 py-1.5 px-3; }
+
+/* Conditional style facilitatorteams__variant_007 */
+.facilitatorteams__variant_007 { @apply text-white; background-color: var(--action-primary); }
+html[data-theme="light"] .facilitatorteams__variant_007 { color: #fff; }
+
+/* Conditional style facilitatorteams__variant_008 */
+.facilitatorteams__variant_008 { color: var(--text-muted); }
+html[data-theme="light"] .facilitatorteams__variant_008 { color: var(--text-muted); }
+.facilitatorteams__variant_008:hover { @apply text-white; }
+html[data-theme="light"] .facilitatorteams__variant_008:hover { color: var(--text-strong); }
+
+/* Conditional style facilitatorteams__variant_009 */
+.facilitatorteams__variant_009 { @apply rounded-full text-[10px] font-bold py-1 px-2; }
+
+/* Conditional style facilitatorteams__variant_010 */
+.facilitatorteams__variant_010 { background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .facilitatorteams__variant_010 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* Conditional style facilitatorteams__variant_011 */
+.facilitatorteams__variant_011 { background-color: var(--tint-cyan); color: var(--tone-cyan); }
+html[data-theme="light"] .facilitatorteams__variant_011 { background-color: var(--tint-cyan); color: var(--tone-cyan); }
+
+/* Conditional style facilitatorteams__variant_012 */
+.facilitatorteams__variant_012 { color: var(--text-primary); background-color: var(--surface-raised); }
+
+/* Light theme neutral surfaces and labels */
+html[data-theme="light"] .facilitatorteams__variant_012 { background-color: var(--surface-track); }
+
+.facilitatorteams__variant_003 { width: var(--progress-width, 0%); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .facilitatorteams__button_004,
+  .facilitatorteams__button_005,
+  .facilitatorteams__button_007,
+  .facilitatorteams__button_009,
+  .facilitatorteams__button_012,
+  .facilitatorteams__label_002,
+  .facilitatorteams__variant_007
+):is(
+  .facilitatorteams__button_004,
+  .facilitatorteams__button_005,
+  .facilitatorteams__button_007,
+  .facilitatorteams__button_009,
+  .facilitatorteams__button_012,
+  .facilitatorteams__cell_001,
+  .facilitatorteams__input_001,
+  .facilitatorteams__input_002,
+  .facilitatorteams__label_001,
+  .facilitatorteams__label_011,
+  .facilitatorteams__select_001,
+  .facilitatorteams__select_002,
+  .facilitatorteams__text_007,
+  .facilitatorteams__textarea_001,
+  .facilitatorteams__textarea_002,
+  .facilitatorteams__title_001,
+  .facilitatorteams__title_002,
+  .facilitatorteams__title_003,
+  .facilitatorteams__variant_007
+) { color: #fff; }

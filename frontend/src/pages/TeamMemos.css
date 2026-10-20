@@ -1,0 +1,551 @@
+@reference "tailwindcss";
+
+/* main: 6 visual rules */
+.teammemos__main_001 { @apply min-h-[calc(100vh-64px)] max-w-[1700px] space-y-5 mx-auto p-4; }
+@media (min-width: 80rem) { .teammemos__main_001 { @apply p-6; } }
+
+/* header: 10 visual rules */
+.teammemos__header_001 { @apply justify-between items-center rounded-2xl flex-wrap border gap-4 flex p-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__header_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 3 visual rules */
+.teammemos__group_001 { @apply items-center gap-4 flex; }
+
+/* group: 5 visual rules */
+.teammemos__group_002 { @apply rounded-xl border p-3; border-color: var(--tint-border-purple); background-color: var(--tint-purple); }
+
+/* notebookpen: 1 visual rules */
+.teammemos__notebookpen_001 { color: var(--tone-purple); }
+html[data-theme="light"] .teammemos__notebookpen_001 { color: var(--tone-purple); }
+
+/* title: 3 visual rules */
+.teammemos__title_001 { @apply font-extrabold text-white text-xl; }
+html[data-theme="light"] .teammemos__title_001 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.teammemos__text_001 { @apply text-sm mt-1; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__text_001 { color: var(--text-muted); }
+
+/* group: 7 visual rules */
+.teammemos__group_003 { @apply rounded-full font-bold text-xs py-1.5 px-3; color: var(--text-primary); background-color: var(--surface-track); }
+html[data-theme="light"] .teammemos__group_003 { color: var(--text-primary); }
+
+/* section: 6 visual rules */
+.teammemos__section_001 { @apply overflow-hidden rounded-xl shadow-sm border; border-color: var(--tint-border-rose); background-color: var(--tint-rose); }
+html[data-theme="light"] .teammemos__section_001 { background-color: var(--tint-rose); }
+
+/* header: 9 visual rules */
+.teammemos__header_002 { @apply justify-between items-center border-b gap-3 flex py-3 px-4; border-color: var(--tint-border-rose); background-color: var(--tint-rose); }
+html[data-theme="light"] .teammemos__header_002 { background-color: var(--tint-rose); }
+
+/* title: 6 visual rules */
+.teammemos__title_002 { @apply font-extrabold items-center text-sm gap-2 flex; color: var(--tone-rose); }
+
+/* label: 7 visual rules */
+.teammemos__label_001 { @apply rounded-full font-bold text-xs px-2.5 py-1; background-color: var(--tint-rose); color: var(--tone-rose); }
+html[data-theme="light"] .teammemos__label_001 { background-color: var(--tint-rose); }
+
+/* group: 2 visual rules */
+.teammemos__group_004 { @apply divide-rose-500/15 divide-y; }
+
+/* card: 5 visual rules */
+.teammemos__card_001 { @apply items-start gap-3 flex py-3 px-4; }
+
+/* button: 4 visual rules */
+.teammemos__button_001 { @apply shrink-0 mt-0.5; color: var(--tone-rose); }
+.teammemos__button_001:hover { color: var(--tone-green); }
+html[data-theme="light"] .teammemos__button_001:hover { color: var(--tone-green); }
+
+/* group: 2 visual rules */
+.teammemos__group_005 { @apply min-w-0 flex-1; }
+
+/* group: 4 visual rules */
+.teammemos__group_006 { @apply items-center flex-wrap gap-2 flex; }
+
+/* label: 7 visual rules */
+.teammemos__label_002 { @apply text-[10px] font-bold rounded py-0.5 px-1.5; background-color: var(--tint-rose); color: var(--tone-rose); }
+html[data-theme="light"] .teammemos__label_002 { background-color: var(--tint-rose); }
+
+/* label: 2 visual rules */
+.teammemos__label_003 { @apply text-[10px]; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__label_003 { color: var(--text-muted); }
+
+/* text: 7 visual rules */
+.teammemos__text_002 { @apply whitespace-pre-wrap font-semibold break-words leading-6 text-sm mt-1; color: var(--text-strong); }
+html[data-theme="light"] .teammemos__text_002 { color: var(--text-strong); }
+
+/* time: 4 visual rules */
+.teammemos__time_001 { @apply text-[10px] block mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__time_001 { color: var(--text-muted); }
+
+/* text: 7 visual rules */
+.teammemos__text_003 { @apply rounded-xl text-sm border p-4; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .teammemos__text_003 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* group: 5 visual rules */
+.teammemos__group_007 { @apply items-start gap-5 grid grid-cols-1; }
+@media (min-width: 80rem) { .teammemos__group_007 { @apply grid-cols-[minmax(280px,340px)_minmax(0,1fr)]; } }
+
+/* aside: 8 visual rules */
+.teammemos__aside_001 { @apply overflow-hidden rounded-2xl shadow-lg border; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__aside_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+@media (min-width: 80rem) { .teammemos__aside_001 { @apply sticky; } }
+@media (min-width: 80rem) { .teammemos__aside_001 { @apply top-4; } }
+
+/* header: 7 visual rules */
+.teammemos__header_003 { @apply justify-between items-center border-b flex px-5 py-4; border-color: var(--border-color); }
+html[data-theme="light"] .teammemos__header_003 { border-color: var(--border-color); }
+
+/* text: 5 visual rules */
+.teammemos__text_004 { @apply tracking-wider text-[10px] font-bold uppercase; color: var(--tone-purple); }
+html[data-theme="light"] .teammemos__text_004 { color: var(--tone-purple); }
+
+/* title: 6 visual rules */
+.teammemos__title_003 { @apply font-extrabold items-center text-white gap-2 flex mt-1; }
+html[data-theme="light"] .teammemos__title_003 { color: var(--text-strong); }
+
+/* group: 2 visual rules */
+.teammemos__group_008 { @apply space-y-3 p-5; }
+
+/* group: 6 visual rules */
+.teammemos__group_009 { @apply rounded-lg border flex p-1; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__group_009 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* notebookpen: 2 visual rules */
+.teammemos__notebookpen_002 { @apply inline mr-1; }
+
+/* label: 5 visual rules */
+.teammemos__label_004 { @apply space-y-1.5 font-bold text-xs block; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__label_004 { color: var(--text-muted); }
+
+/* select: 11 visual rules */
+.teammemos__select_001 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__select_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__select_001:focus { border-color: var(--tone-purple); }
+
+/* label: 2 visual rules */
+.teammemos__label_005 { @apply font-normal; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__label_005 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.teammemos__input_001 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__input_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__input_001::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__input_001::placeholder { color: var(--text-muted); }
+.teammemos__input_001:focus { border-color: var(--tone-purple); }
+
+/* textarea: 14 visual rules */
+.teammemos__textarea_001 { @apply outline-none text-white rounded-lg leading-7 resize-y text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__textarea_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__textarea_001::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__textarea_001::placeholder { color: var(--text-muted); }
+.teammemos__textarea_001:focus { border-color: var(--tone-purple); }
+
+/* group: 5 visual rules */
+.teammemos__group_010 { @apply justify-between items-center text-[10px] flex; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__group_010 { color: var(--text-muted); }
+
+/* button: 14 visual rules */
+.teammemos__button_002 { @apply justify-center items-center inline-flex text-white rounded-lg font-bold text-sm w-full gap-2 py-3; background-color: var(--action-purple); }
+html[data-theme="light"] .teammemos__button_002 { color: #fff; }
+.teammemos__button_002:disabled { @apply cursor-not-allowed; }
+.teammemos__button_002:hover { background-color: var(--action-purple-hover); }
+.teammemos__button_002:disabled { @apply opacity-40; }
+
+/* input: 12 visual rules */
+.teammemos__input_002 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__input_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__input_002::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__input_002::placeholder { color: var(--text-muted); }
+.teammemos__input_002:focus { border-color: var(--tone-cyan); }
+
+/* group: 1 visual rules */
+.teammemos__group_011 { @apply space-y-2; }
+
+/* group: 6 visual rules */
+.teammemos__group_012 { @apply justify-between items-center font-bold text-xs flex; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__group_012 { color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.teammemos__group_013 { @apply overflow-y-auto rounded-lg space-y-2 max-h-72 border p-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__group_013 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* label: 7 visual rules */
+.teammemos__label_006 { @apply cursor-pointer font-semibold items-center text-sm gap-2 flex; color: var(--text-primary); }
+html[data-theme="light"] .teammemos__label_006 { color: var(--text-primary); }
+
+/* input: 1 visual rules */
+.teammemos__input_003 { @apply accent-cyan-500; }
+
+/* group: 3 visual rules */
+.teammemos__group_014 { @apply space-y-2 pl-6 mt-2; }
+
+/* group: 5 visual rules */
+.teammemos__group_015 { @apply items-center flex-wrap gap-y-2 gap-x-4 flex; }
+
+/* label: 5 visual rules */
+.teammemos__label_007 { @apply items-center text-xs gap-2 flex; color: var(--text-primary); }
+html[data-theme="light"] .teammemos__label_007 { color: var(--text-primary); }
+
+/* input: 1 visual rules */
+.teammemos__input_004 { @apply accent-emerald-500; }
+
+/* button: 14 visual rules */
+.teammemos__button_003 { @apply font-semibold items-center inline-flex rounded-md text-xs border gap-1 py-1 px-2; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__button_003 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+.teammemos__button_003:hover { border-color: var(--tone-cyan); }
+.teammemos__button_003:hover { color: var(--tone-cyan); }
+
+/* textarea: 12 visual rules */
+.teammemos__textarea_002 { @apply text-white rounded-md leading-6 resize-y text-sm border w-full px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__textarea_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__textarea_002::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__textarea_002::placeholder { color: var(--text-muted); }
+
+/* text: 4 visual rules */
+.teammemos__text_005 { @apply text-center text-xs p-4; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__text_005 { color: var(--text-muted); }
+
+/* text: 8 visual rules */
+.teammemos__text_006 { @apply border-dashed text-center rounded-lg text-xs border p-4; border-color: var(--border-strong); color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__text_006 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* text: 3 visual rules */
+.teammemos__text_007 { @apply text-[10px] leading-5; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__text_007 { color: var(--text-muted); }
+
+/* button: 14 visual rules */
+.teammemos__button_004 { @apply justify-center items-center inline-flex text-white rounded-lg font-bold text-sm w-full gap-2 py-3; background-color: var(--action-teal); }
+html[data-theme="light"] .teammemos__button_004 { color: #fff; }
+.teammemos__button_004:disabled { @apply cursor-not-allowed; }
+.teammemos__button_004:disabled { @apply opacity-40; }
+.teammemos__button_004:hover { background-color: var(--action-teal-hover); }
+
+/* section: 2 visual rules */
+.teammemos__section_002 { @apply space-y-4 min-w-0; }
+
+/* group: 6 visual rules */
+.teammemos__group_016 { @apply rounded-xl space-y-3 border p-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__group_016 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* label: 2 visual rules */
+.teammemos__label_008 { @apply relative block; }
+
+/* search: 4 visual rules */
+.teammemos__search_001 { @apply absolute top-2.5 left-3; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__search_001 { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.teammemos__input_005 { @apply outline-none text-white rounded-lg text-sm border w-full py-2 pr-3 pl-9; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__input_005 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__input_005:focus { border-color: var(--tone-blue); }
+
+/* group: 5 visual rules */
+.teammemos__group_017 { @apply flex-wrap min-w-0 gap-1.5 flex-1 flex; }
+
+/* label: 2 visual rules */
+.teammemos__label_009 { @apply text-[10px] opacity-70; }
+
+/* select: 11 visual rules */
+.teammemos__select_002 { @apply outline-none rounded-lg min-w-36 text-sm border px-3 py-2; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__select_002 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+.teammemos__select_002:focus { border-color: var(--tone-blue); }
+
+/* text: 4 visual rules */
+.teammemos__text_008 { @apply text-center text-sm py-10; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__text_008 { color: var(--text-muted); }
+
+/* group: 4 visual rules */
+.teammemos__group_018 { @apply gap-3 grid; }
+@media (min-width: 96rem) { .teammemos__group_018 { @apply grid-cols-3; } }
+@media (min-width: 48rem) { .teammemos__group_018 { @apply grid-cols-2; } }
+
+/* group: 7 visual rules */
+.teammemos__group_019 { @apply justify-between items-start border-b gap-3 flex pb-3; border-color: var(--border-color); }
+html[data-theme="light"] .teammemos__group_019 { border-color: var(--border-color); }
+
+/* group: 1 visual rules */
+.teammemos__group_020 { @apply min-w-0; }
+
+/* label: 10 visual rules */
+.teammemos__label_010 { @apply rounded-full items-center inline-flex bg-black/20 text-[10px] font-bold gap-1 py-1 px-2; color: var(--text-primary); }
+html[data-theme="light"] .teammemos__label_010 { color: var(--text-primary); }
+
+/* title: 4 visual rules */
+.teammemos__title_004 { @apply font-extrabold break-words text-white mt-2; }
+html[data-theme="light"] .teammemos__title_004 { color: var(--text-strong); }
+
+/* text: 4 visual rules */
+.teammemos__text_009 { @apply truncate text-xs mt-1; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__text_009 { color: var(--text-muted); }
+
+/* group: 3 visual rules */
+.teammemos__group_021 { @apply shrink-0 gap-1 flex; }
+
+/* button: 5 visual rules */
+.teammemos__button_005 { @apply rounded-md p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__button_005 { color: var(--text-muted); }
+.teammemos__button_005:hover { color: var(--tone-blue); }
+html[data-theme="light"] .teammemos__button_005:hover { color: var(--tone-blue); }
+.teammemos__button_005:hover { @apply bg-white/10; }
+
+/* button: 5 visual rules */
+.teammemos__button_006 { @apply rounded-md p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__button_006 { color: var(--text-muted); }
+.teammemos__button_006:hover { color: var(--tone-red); }
+html[data-theme="light"] .teammemos__button_006:hover { color: var(--tone-red); }
+.teammemos__button_006:hover { @apply bg-white/10; }
+
+/* pin: 2 visual rules */
+.teammemos__pin_001 { @apply mt-1; color: var(--tone-amber); }
+
+/* group: 5 visual rules */
+.teammemos__group_022 { @apply overflow-y-auto space-y-2 max-h-48 flex-1 py-3; }
+
+/* group: 6 visual rules */
+.teammemos__group_023 { @apply bg-black/10 rounded-lg border px-3 py-2; border-color: var(--border-color); }
+html[data-theme="light"] .teammemos__group_023 { border-color: var(--border-color); }
+
+/* group: 4 visual rules */
+.teammemos__group_024 { @apply justify-between items-center gap-2 flex; }
+
+/* label: 5 visual rules */
+.teammemos__label_011 { @apply font-bold truncate text-sm min-w-0; color: var(--text-strong); }
+html[data-theme="light"] .teammemos__label_011 { color: var(--text-strong); }
+
+/* text: 6 visual rules */
+.teammemos__text_010 { @apply whitespace-pre-wrap break-words leading-5 text-xs mt-1.5; color: var(--text-primary); }
+html[data-theme="light"] .teammemos__text_010 { color: var(--text-primary); }
+
+/* text: 7 visual rules */
+.teammemos__text_011 { @apply whitespace-pre-wrap break-words leading-6 text-sm flex-1 py-3; color: var(--text-primary); }
+html[data-theme="light"] .teammemos__text_011 { color: var(--text-primary); }
+
+/* footer: 10 visual rules */
+.teammemos__footer_001 { @apply justify-between items-center text-[10px] flex-wrap border-t gap-2 flex pt-3; border-color: var(--border-color); color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__footer_001 { border-color: var(--border-color); color: var(--text-muted); }
+
+/* time: 3 visual rules */
+.teammemos__time_002 { @apply items-center inline-flex gap-1; }
+
+/* group: 6 visual rules */
+.teammemos__group_025 { @apply border-dashed rounded-2xl text-center border p-12; border-color: var(--border-strong); }
+html[data-theme="light"] .teammemos__group_025 { border-color: var(--border-color); }
+
+/* notebookpen: 3 visual rules */
+.teammemos__notebookpen_003 { @apply mx-auto mb-3; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__notebookpen_003 { color: var(--text-primary); }
+
+/* text: 2 visual rules */
+.teammemos__text_012 { @apply font-bold; color: var(--text-primary); }
+html[data-theme="light"] .teammemos__text_012 { color: var(--text-primary); }
+
+/* text: 3 visual rules */
+.teammemos__text_013 { @apply text-sm mt-2; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__text_013 { color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.teammemos__group_026 { @apply justify-center items-center bg-black/65 inset-0 z-[70] fixed flex p-4; }
+
+/* section: 8 visual rules */
+.teammemos__section_003 { @apply overflow-hidden rounded-2xl shadow-2xl max-w-lg border w-full; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__section_003 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* header: 8 visual rules */
+.teammemos__header_004 { @apply justify-between items-center border-b flex px-5 py-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__header_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 2 visual rules */
+.teammemos__title_005 { @apply text-white font-bold; }
+html[data-theme="light"] .teammemos__title_005 { color: var(--text-strong); }
+
+/* text: 3 visual rules */
+.teammemos__text_014 { @apply text-xs mt-1; color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__text_014 { color: var(--text-muted); }
+
+/* button: 5 visual rules */
+.teammemos__button_007 { @apply rounded-lg p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__button_007 { color: var(--text-muted); }
+.teammemos__button_007:hover { background-color: var(--surface-track); }
+.teammemos__button_007:hover { @apply text-white; }
+html[data-theme="light"] .teammemos__button_007:hover { color: var(--text-strong); }
+
+/* input: 11 visual rules */
+.teammemos__input_006 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__input_006 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__input_006:focus { border-color: var(--tone-blue); }
+
+/* textarea: 13 visual rules */
+.teammemos__textarea_003 { @apply outline-none text-white rounded-lg leading-7 resize-y text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__textarea_003 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__textarea_003:focus { border-color: var(--tone-blue); }
+
+/* group: 3 visual rules */
+.teammemos__group_027 { @apply justify-end gap-2 flex; }
+
+/* button: 8 visual rules */
+.teammemos__button_008 { @apply rounded-lg font-bold text-sm border py-2 px-4; border-color: var(--border-strong); color: var(--text-primary); }
+html[data-theme="light"] .teammemos__button_008 { border-color: var(--border-color); color: var(--text-primary); }
+
+/* button: 9 visual rules */
+.teammemos__button_009 { @apply text-white rounded-lg font-bold text-sm py-2 px-4; background-color: var(--action-primary); }
+html[data-theme="light"] .teammemos__button_009 { color: #fff; }
+.teammemos__button_009:disabled { @apply opacity-40; }
+.teammemos__button_009:hover { background-color: var(--action-primary-hover); }
+
+/* section: 9 visual rules */
+.teammemos__section_004 { @apply overflow-hidden max-h-[90vh] rounded-2xl shadow-2xl max-w-2xl border w-full; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__section_004 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.teammemos__group_028 { @apply max-h-[calc(90vh-72px)] overflow-y-auto space-y-4 p-5; }
+
+/* input: 11 visual rules */
+.teammemos__input_007 { @apply outline-none text-white rounded-lg text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__input_007 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__input_007:focus { border-color: var(--tone-cyan); }
+
+/* group: 1 visual rules */
+.teammemos__group_029 { @apply space-y-3; }
+
+/* section: 5 visual rules */
+.teammemos__section_005 { @apply rounded-xl border p-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__section_005 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 5 visual rules */
+.teammemos__group_030 { @apply justify-between items-center flex-wrap gap-3 flex; }
+
+/* label: 6 visual rules */
+.teammemos__label_012 { @apply space-y-1.5 font-bold text-xs block mt-3; color: var(--text-muted); }
+html[data-theme="light"] .teammemos__label_012 { color: var(--text-muted); }
+
+/* textarea: 12 visual rules */
+.teammemos__textarea_004 { @apply text-white rounded-lg leading-6 resize-y text-sm py-2.5 border w-full px-3; border-color: var(--border-strong); background-color: var(--surface-background); }
+html[data-theme="light"] .teammemos__textarea_004 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.teammemos__textarea_004::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .teammemos__textarea_004::placeholder { color: var(--text-muted); }
+
+/* button: 9 visual rules */
+.teammemos__button_010 { @apply text-white rounded-lg font-bold text-sm py-2 px-4; background-color: var(--action-teal); }
+html[data-theme="light"] .teammemos__button_010 { color: #fff; }
+.teammemos__button_010:disabled { @apply opacity-40; }
+.teammemos__button_010:hover { background-color: var(--action-teal-hover); }
+
+/* Conditional style teammemos__variant_001 */
+.teammemos__variant_001 { border-color: var(--tint-border-purple); background-color: var(--tint-purple); }
+html[data-theme="light"] .teammemos__variant_001 { background-color: var(--tint-purple); }
+
+/* Conditional style teammemos__variant_002 */
+.teammemos__variant_002 { border-color: var(--tint-border-blue); background-color: var(--tint-blue); }
+html[data-theme="light"] .teammemos__variant_002 { background-color: var(--tint-blue); }
+
+/* Conditional style teammemos__variant_003 */
+.teammemos__variant_003 { border-color: var(--tint-border-amber); background-color: var(--tint-amber); }
+html[data-theme="light"] .teammemos__variant_003 { background-color: var(--tint-amber); }
+
+/* Conditional style teammemos__variant_004 */
+.teammemos__variant_004 { border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .teammemos__variant_004 { background-color: var(--tint-cyan); }
+
+/* Conditional style teammemos__variant_005 */
+.teammemos__variant_005 { border-color: var(--tint-border-rose); background-color: var(--tint-rose); }
+html[data-theme="light"] .teammemos__variant_005 { background-color: var(--tint-rose); }
+
+/* Conditional style teammemos__variant_006 */
+.teammemos__variant_006 { border-color: var(--tint-border-green); background-color: var(--tint-green); }
+html[data-theme="light"] .teammemos__variant_006 { background-color: var(--tint-green); }
+
+/* Conditional style teammemos__variant_007 */
+.teammemos__variant_007 { border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__variant_007 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* Conditional style teammemos__variant_008 */
+.teammemos__variant_008 { @apply rounded-md font-bold text-xs flex-1 py-2 px-2; }
+
+/* Conditional style teammemos__variant_009 */
+.teammemos__variant_009 { @apply text-white; background-color: var(--action-purple); }
+html[data-theme="light"] .teammemos__variant_009 { color: #fff; }
+
+/* Conditional style teammemos__variant_010 */
+.teammemos__variant_010 { color: var(--text-muted); }
+html[data-theme="light"] .teammemos__variant_010 { color: var(--text-muted); }
+.teammemos__variant_010:hover { @apply text-white; }
+html[data-theme="light"] .teammemos__variant_010:hover { color: var(--text-strong); }
+
+/* Conditional style teammemos__variant_011 */
+.teammemos__variant_011 { @apply text-white; background-color: var(--action-teal); }
+html[data-theme="light"] .teammemos__variant_011 { color: #fff; }
+
+/* Conditional style teammemos__variant_012 */
+.teammemos__variant_012 { @apply rounded-lg border p-2.5; }
+
+/* Conditional style teammemos__variant_013 */
+.teammemos__variant_013 { border-color: var(--tint-border-cyan); background-color: var(--tint-cyan); }
+html[data-theme="light"] .teammemos__variant_013 { background-color: var(--tint-cyan); }
+
+/* Conditional style teammemos__variant_014 */
+.teammemos__variant_014 { @apply border-transparent; background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__variant_014 { background-color: var(--surface-background); }
+
+/* Conditional style teammemos__variant_015 */
+.teammemos__variant_015 { @apply items-center inline-flex transition rounded-lg font-bold text-xs gap-1.5 border px-2.5 py-2; }
+
+/* Conditional style teammemos__variant_016 */
+.teammemos__variant_016 { @apply text-white; border-color: var(--tone-blue); background-color: var(--action-primary); }
+html[data-theme="light"] .teammemos__variant_016 { color: #fff; }
+
+/* Conditional style teammemos__variant_017 */
+.teammemos__variant_017 { border-color: var(--border-strong); color: var(--text-muted); background-color: var(--surface-muted); }
+html[data-theme="light"] .teammemos__variant_017 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+.teammemos__variant_017:hover { @apply text-white; }
+html[data-theme="light"] .teammemos__variant_017:hover { color: var(--text-strong); }
+
+/* Conditional style teammemos__variant_018 */
+.teammemos__variant_018 { @apply rounded-xl shadow-sm min-h-48 flex-col border flex p-4; }
+
+/* Conditional style teammemos__variant_019 */
+.teammemos__variant_019 { @apply rounded-full items-center inline-flex text-[10px] font-bold shrink-0 gap-1 py-1 px-2; }
+
+/* Conditional style teammemos__variant_020 */
+.teammemos__variant_020 { background-color: var(--tint-green); color: var(--tone-green); }
+html[data-theme="light"] .teammemos__variant_020 { background-color: var(--tint-green); color: var(--tone-green); }
+
+/* Conditional style teammemos__variant_021 */
+.teammemos__variant_021 { background-color: var(--tint-rose); color: var(--tone-rose); }
+html[data-theme="light"] .teammemos__variant_021 { background-color: var(--tint-rose); }
+
+/* Light theme neutral surfaces and labels */
+html[data-theme="light"] .teammemos__group_003 { background-color: var(--surface-track); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .teammemos__button_002,
+  .teammemos__button_004,
+  .teammemos__button_009,
+  .teammemos__button_010,
+  .teammemos__variant_009,
+  .teammemos__variant_011,
+  .teammemos__variant_016
+):is(
+  .teammemos__button_002,
+  .teammemos__button_004,
+  .teammemos__button_009,
+  .teammemos__button_010,
+  .teammemos__input_001,
+  .teammemos__input_002,
+  .teammemos__input_005,
+  .teammemos__input_006,
+  .teammemos__input_007,
+  .teammemos__select_001,
+  .teammemos__textarea_001,
+  .teammemos__textarea_002,
+  .teammemos__textarea_003,
+  .teammemos__textarea_004,
+  .teammemos__title_001,
+  .teammemos__title_003,
+  .teammemos__title_004,
+  .teammemos__title_005,
+  .teammemos__variant_009,
+  .teammemos__variant_011,
+  .teammemos__variant_016
+) { color: #fff; }

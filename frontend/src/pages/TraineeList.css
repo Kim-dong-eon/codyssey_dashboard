@@ -1,0 +1,585 @@
+@reference "tailwindcss";
+
+/* group: 8 visual rules */
+.traineelist__group_001 { @apply h-[calc(100vh-64px)] overflow-hidden max-w-[1600px] relative mx-auto gap-6 flex p-8; }
+
+/* group: 10 visual rules */
+.traineelist__group_002 { @apply overflow-hidden rounded-2xl shadow-lg flex-grow flex-col min-w-0 border flex; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_002 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 9 visual rules */
+.traineelist__group_003 { @apply border-b shrink-0 flex-col gap-4 flex px-6 py-4; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__group_003 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 3 visual rules */
+.traineelist__group_004 { @apply justify-between items-center flex; }
+
+/* group: 3 visual rules */
+.traineelist__group_005 { @apply items-center gap-3 flex; }
+
+/* group: 5 visual rules */
+.traineelist__group_006 { @apply rounded-lg border p-2; border-color: var(--tint-border-blue); background-color: var(--tint-blue); }
+
+/* user: 1 visual rules */
+.traineelist__user_001 { color: var(--tone-blue); }
+
+/* title: 3 visual rules */
+.traineelist__title_001 { @apply text-white font-bold text-xl; }
+html[data-theme="light"] .traineelist__title_001 { color: var(--text-strong); }
+
+/* group: 2 visual rules */
+.traineelist__group_007 { @apply relative w-72; }
+
+/* search: 4 visual rules */
+.traineelist__search_001 { @apply absolute top-2.5 left-3; color: var(--text-muted); }
+html[data-theme="light"] .traineelist__search_001 { color: var(--text-muted); }
+
+/* input: 13 visual rules */
+.traineelist__input_001 { @apply shadow-inner text-white rounded-lg text-sm border w-full py-2 pr-4 pl-9; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__input_001 { border-color: var(--border-color); background-color: var(--surface-muted); color: var(--text-strong); }
+.traineelist__input_001:focus { border-color: var(--tone-blue); }
+.traineelist__input_001:focus { @apply outline-none; }
+
+/* group: 3 visual rules */
+.traineelist__group_008 { @apply items-center gap-3 flex; }
+
+/* filter: 1 visual rules */
+.traineelist__filter_001 { color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__filter_001 { color: var(--text-muted); }
+
+/* select: 11 visual rules */
+.traineelist__select_001 { @apply cursor-pointer rounded-lg text-sm py-1.5 border px-3; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__select_001 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-muted); }
+.traineelist__select_001:focus { border-color: var(--tone-blue); }
+.traineelist__select_001:focus { @apply outline-none; }
+
+/* label: 3 visual rules */
+.traineelist__label_001 { @apply ml-auto text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__label_001 { color: var(--text-muted); }
+
+/* group: 2 visual rules */
+.traineelist__group_009 { @apply overflow-y-auto flex-grow; }
+
+/* table: 3 visual rules */
+.traineelist__table_001 { @apply text-center text-sm w-full; }
+
+/* thead: 8 visual rules */
+.traineelist__thead_001 { @apply shadow-sm border-b sticky top-0 z-10; border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__thead_001 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+
+/* heading: 3 visual rules */
+.traineelist__heading_001 { @apply font-medium w-1/4 py-4; }
+
+/* heading: 3 visual rules */
+.traineelist__heading_002 { @apply font-medium py-4 w-44; }
+
+/* tbody: 2 visual rules */
+.traineelist__tbody_001 { @apply divide-y divide-[var(--border-color)]; }
+
+/* alerttriangle: 2 visual rules */
+.traineelist__alerttriangle_001 { @apply fill-red-500/20; color: var(--tone-red); }
+
+/* headset: 1 visual rules */
+.traineelist__headset_001 { color: var(--tone-cyan); }
+
+/* label: 10 visual rules */
+.traineelist__label_002 { @apply tracking-wider text-[10px] font-bold rounded border py-0.5 px-1.5; border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .traineelist__label_002 { background-color: var(--tint-red); color: var(--tone-red); }
+
+/* cell: 1 visual rules */
+.traineelist__cell_001 { @apply py-4; }
+
+/* cell: 2 visual rules */
+.traineelist__cell_002 { @apply py-4 px-2; }
+
+/* group: 4 visual rules */
+.traineelist__group_010 { @apply justify-center items-center gap-1.5 flex; }
+
+/* cell: 2 visual rules */
+.traineelist__cell_003 { @apply text-center py-20; }
+
+/* group: 5 visual rules */
+.traineelist__group_011 { @apply justify-center items-center flex-col flex; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__group_011 { color: var(--text-muted); }
+
+/* search: 2 visual rules */
+.traineelist__search_002 { @apply opacity-50 mb-3; }
+
+/* group: 11 visual rules */
+.traineelist__group_012 { @apply overflow-hidden rounded-2xl shadow-2xl w-[500px] shrink-0 flex-col h-full border flex; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__group_012 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 9 visual rules */
+.traineelist__group_013 { @apply justify-between items-center border-b shrink-0 flex px-6 py-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_013 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 3 visual rules */
+.traineelist__title_002 { @apply font-extrabold text-white text-lg; }
+html[data-theme="light"] .traineelist__title_002 { color: var(--text-strong); }
+
+/* button: 6 visual rules */
+.traineelist__button_001 { @apply transition rounded-lg p-1.5; color: var(--text-muted); }
+html[data-theme="light"] .traineelist__button_001 { color: var(--text-muted); }
+.traineelist__button_001:hover { background-color: var(--surface-track); }
+html[data-theme="light"] .traineelist__button_001:hover { background-color: var(--surface-muted); }
+.traineelist__button_001:hover { @apply text-white; }
+html[data-theme="light"] .traineelist__button_001:hover { color: var(--text-strong); }
+
+/* group: 5 visual rules */
+.traineelist__group_014 { @apply overflow-y-auto space-y-6 flex-grow p-6; background-color: var(--app-background); }
+html[data-theme="light"] .traineelist__group_014 { background-color: var(--app-background); }
+
+/* group: 3 visual rules */
+.traineelist__group_015 { @apply items-start gap-4 flex; }
+
+/* label: 4 visual rules */
+.traineelist__label_003 { @apply tracking-wide font-bold text-xs mb-2; }
+
+/* x: 2 visual rules */
+.traineelist__x_001 { @apply text-white font-bold; }
+html[data-theme="light"] .traineelist__x_001 { color: var(--text-strong); }
+
+/* group: 8 visual rules */
+.traineelist__group_016 { @apply overflow-hidden rounded-xl shadow-sm flex-grow text-sm border; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_016 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.traineelist__group_017 { @apply border-b grid grid-cols-2; border-color: var(--border-color); }
+html[data-theme="light"] .traineelist__group_017 { border-color: var(--border-color); }
+
+/* group: 6 visual rules */
+.traineelist__group_018 { @apply border-r flex-col py-2.5 flex px-4; border-color: var(--border-color); }
+html[data-theme="light"] .traineelist__group_018 { border-color: var(--border-color); }
+
+/* label: 4 visual rules */
+.traineelist__label_004 { @apply text-[10px] font-bold mb-0.5; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__label_004 { color: var(--text-muted); }
+
+/* label: 2 visual rules */
+.traineelist__label_005 { @apply text-white font-bold; }
+html[data-theme="light"] .traineelist__label_005 { color: var(--text-strong); }
+
+/* group: 4 visual rules */
+.traineelist__group_019 { @apply flex-col py-2.5 flex px-4; }
+
+/* select: 5 visual rules */
+.traineelist__select_002 { @apply cursor-pointer bg-transparent font-bold; color: var(--tone-blue); }
+.traineelist__select_002:focus { @apply outline-none; }
+
+/* label: 1 visual rules */
+.traineelist__label_006 { color: var(--text-primary); }
+html[data-theme="light"] .traineelist__label_006 { color: var(--text-primary); }
+
+/* label: 3 visual rules */
+.traineelist__label_007 { @apply truncate text-xs; color: var(--text-primary); }
+html[data-theme="light"] .traineelist__label_007 { color: var(--text-primary); }
+
+/* group: 2 visual rules */
+.traineelist__group_020 { @apply grid grid-cols-2; }
+
+/* group: 6 visual rules */
+.traineelist__group_021 { @apply rounded-xl shadow-sm border p-5; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_021 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 7 visual rules */
+.traineelist__group_022 { @apply justify-between items-center border-b flex pb-3 mb-4; border-color: var(--border-color); }
+html[data-theme="light"] .traineelist__group_022 { border-color: var(--border-color); }
+
+/* label: 3 visual rules */
+.traineelist__label_008 { @apply font-bold text-lg; color: var(--tone-blue); }
+
+/* label: 1 visual rules */
+.traineelist__label_009 { @apply text-white; }
+html[data-theme="light"] .traineelist__label_009 { color: var(--text-strong); }
+
+/* label: 9 visual rules */
+.traineelist__label_010 { @apply font-bold text-xs rounded border px-2.5 py-1; border-color: var(--border-strong); color: var(--text-muted); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__label_010 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* title: 7 visual rules */
+.traineelist__title_003 { @apply items-center font-bold text-xs gap-1.5 flex mb-3; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__title_003 { color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.traineelist__group_023 { @apply shadow-inner rounded-lg border w-full h-44 p-3; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__group_023 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 6 visual rules */
+.traineelist__group_024 { @apply justify-center items-center text-xs h-full flex; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__group_024 { color: var(--text-muted); }
+
+/* group: 5 visual rules */
+.traineelist__group_025 { @apply overflow-hidden rounded-xl shadow-sm border; border-color: var(--border-color); }
+html[data-theme="light"] .traineelist__group_025 { border-color: var(--border-color); }
+
+/* group: 8 visual rules */
+.traineelist__group_026 { @apply justify-between items-center border-b flex px-5 py-3; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_026 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* label: 6 visual rules */
+.traineelist__label_011 { @apply items-center font-bold text-sm gap-2 flex; color: var(--text-primary); }
+html[data-theme="light"] .traineelist__label_011 { color: var(--text-primary); }
+
+/* notebookpen: 1 visual rules */
+.traineelist__notebookpen_001 { color: var(--tone-amber); }
+
+/* label: 2 visual rules */
+.traineelist__label_012 { @apply text-xs; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__label_012 { color: var(--text-muted); }
+
+/* group: 3 visual rules */
+.traineelist__group_027 { @apply space-y-3 p-4; background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__group_027 { background-color: var(--surface-background); }
+
+/* input: 12 visual rules */
+.traineelist__input_002 { @apply text-white rounded-lg text-sm border w-full px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__input_002 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.traineelist__input_002::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__input_002::placeholder { color: var(--text-muted); }
+.traineelist__input_002:focus { border-color: var(--tone-blue); }
+.traineelist__input_002:focus { @apply outline-none; }
+
+/* group: 3 visual rules */
+.traineelist__group_028 { @apply items-stretch gap-2 flex; }
+
+/* textarea: 14 visual rules */
+.traineelist__textarea_001 { @apply text-white rounded-lg min-h-20 resize-y text-sm flex-1 border px-3 py-2; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__textarea_001 { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.traineelist__textarea_001::placeholder { color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__textarea_001::placeholder { color: var(--text-muted); }
+.traineelist__textarea_001:focus { border-color: var(--tone-blue); }
+.traineelist__textarea_001:focus { @apply outline-none; }
+
+/* button: 12 visual rules */
+.traineelist__button_002 { @apply items-center inline-flex text-white rounded-lg font-bold self-end text-xs gap-1.5 py-2.5 px-3; background-color: var(--action-primary); }
+html[data-theme="light"] .traineelist__button_002 { color: #fff; }
+.traineelist__button_002:hover { background-color: var(--action-primary-hover); }
+
+/* group: 2 visual rules */
+.traineelist__group_029 { @apply space-y-2 pt-1; }
+
+/* card: 5 visual rules */
+.traineelist__card_001 { @apply rounded-lg border p-3; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__card_001 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.traineelist__group_030 { @apply justify-between items-start gap-3 flex; }
+
+/* group: 1 visual rules */
+.traineelist__group_031 { @apply min-w-0; }
+
+/* group: 4 visual rules */
+.traineelist__group_032 { @apply items-center flex-wrap gap-2 flex; }
+
+/* text: 3 visual rules */
+.traineelist__text_001 { @apply text-white font-bold text-sm; }
+html[data-theme="light"] .traineelist__text_001 { color: var(--text-strong); }
+
+/* label: 2 visual rules */
+.traineelist__label_013 { @apply text-[10px]; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__label_013 { color: var(--text-muted); }
+
+/* text: 5 visual rules */
+.traineelist__text_002 { @apply whitespace-pre-wrap leading-relaxed text-sm mt-2; color: var(--text-primary); }
+html[data-theme="light"] .traineelist__text_002 { color: var(--text-primary); }
+
+/* time: 4 visual rules */
+.traineelist__time_001 { @apply text-[10px] block mt-2; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__time_001 { color: var(--text-muted); }
+
+/* group: 5 visual rules */
+.traineelist__group_033 { @apply transition opacity-0 gap-1 flex; }
+.group:hover .traineelist__group_033 { @apply opacity-100; }
+
+/* button: 5 visual rules */
+.traineelist__button_003 { @apply rounded p-1.5; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__button_003 { color: var(--text-muted); }
+.traineelist__button_003:hover { background-color: var(--tint-blue); }
+html[data-theme="light"] .traineelist__button_003:hover { background-color: var(--tint-blue); }
+.traineelist__button_003:hover { color: var(--tone-blue); }
+
+/* button: 5 visual rules */
+.traineelist__button_004 { @apply rounded p-1.5; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__button_004 { color: var(--text-primary); }
+.traineelist__button_004:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .traineelist__button_004:hover { background-color: var(--tint-red); }
+.traineelist__button_004:hover { color: var(--tone-red); }
+
+/* text: 4 visual rules */
+.traineelist__text_003 { @apply text-center text-xs py-2; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__text_003 { color: var(--text-muted); }
+
+/* group: 8 visual rules */
+.traineelist__group_034 { @apply justify-between items-center border-b flex px-5 py-3; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_034 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* label: 6 visual rules */
+.traineelist__label_014 { @apply items-center font-bold text-sm gap-2 flex; color: var(--text-primary); }
+html[data-theme="light"] .traineelist__label_014 { color: var(--text-primary); }
+
+/* messagesquare: 1 visual rules */
+.traineelist__messagesquare_001 { color: var(--tone-purple); }
+
+/* label: 9 visual rules */
+.traineelist__label_015 { @apply rounded-full font-bold text-xs border py-0.5 px-2.5; border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .traineelist__label_015 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* group: 3 visual rules */
+.traineelist__group_035 { @apply overflow-y-auto max-h-64; background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__group_035 { background-color: var(--surface-background); }
+
+/* table: 3 visual rules */
+.traineelist__table_002 { @apply text-left text-sm w-full; }
+
+/* thead: 10 visual rules */
+.traineelist__thead_002 { @apply tracking-wider text-[11px] uppercase border-b sticky top-0 z-10; border-color: var(--border-color); color: var(--text-subtle); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__thead_002 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-background); }
+
+/* heading: 4 visual rules */
+.traineelist__heading_003 { @apply font-bold py-2.5 px-5 w-24; }
+
+/* heading: 3 visual rules */
+.traineelist__heading_004 { @apply font-bold py-2.5 px-5; }
+
+/* heading: 5 visual rules */
+.traineelist__heading_005 { @apply text-center font-bold py-2.5 w-12 px-5; }
+
+/* tbody: 3 visual rules */
+.traineelist__tbody_002 { @apply divide-y divide-[var(--border-color)]; color: var(--text-primary); }
+html[data-theme="light"] .traineelist__tbody_002 { color: var(--text-primary); }
+
+/* row: 2 visual rules */
+.traineelist__row_001 { @apply transition-colors; }
+.traineelist__row_001:hover { background-color: var(--surface-raised); }
+
+/* cell: 7 visual rules */
+.traineelist__cell_004 { @apply whitespace-nowrap font-medium align-top text-xs px-5 py-4; color: var(--text-muted); }
+html[data-theme="light"] .traineelist__cell_004 { color: var(--text-muted); }
+
+/* group: 1 visual rules */
+.traineelist__group_036 { @apply mt-1.5; }
+
+/* label: 8 visual rules */
+.traineelist__label_016 { @apply text-[10px] rounded border py-0.5 px-1.5; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__label_016 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-muted); }
+
+/* cell: 4 visual rules */
+.traineelist__cell_005 { @apply align-top text-xs px-5 py-4; }
+
+/* label: 5 visual rules */
+.traineelist__label_017 { @apply text-[13px] font-bold mb-1.5 block; color: var(--tone-blue); }
+
+/* label: 3 visual rules */
+.traineelist__label_018 { @apply whitespace-pre-wrap leading-relaxed; color: var(--text-primary); }
+html[data-theme="light"] .traineelist__label_018 { color: var(--text-primary); }
+
+/* cell: 4 visual rules */
+.traineelist__cell_006 { @apply text-center align-top px-5 py-4; }
+
+/* button: 8 visual rules */
+.traineelist__button_005 { @apply transition-colors opacity-50 rounded-md p-1.5; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__button_005 { color: var(--text-primary); }
+.group:hover .traineelist__button_005 { @apply opacity-100; }
+.traineelist__button_005:hover { background-color: var(--tint-red); }
+.traineelist__button_005:hover { color: var(--tone-red); }
+
+/* cell: 4 visual rules */
+.traineelist__cell_007 { @apply text-center text-xs py-10; color: var(--text-subtle); }
+html[data-theme="light"] .traineelist__cell_007 { color: var(--text-muted); }
+
+/* group: 7 visual rules */
+.traineelist__group_037 { @apply justify-center items-center bg-black/70 inset-0 fixed flex z-50; }
+
+/* group: 9 visual rules */
+.traineelist__group_038 { @apply overflow-hidden rounded-2xl shadow-2xl w-[500px] flex-col border flex; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .traineelist__group_038 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 8 visual rules */
+.traineelist__group_039 { @apply justify-between items-center border-b flex px-6 py-4; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .traineelist__group_039 { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* title: 5 visual rules */
+.traineelist__title_004 { @apply items-center text-white font-bold gap-2 flex; }
+html[data-theme="light"] .traineelist__title_004 { color: var(--text-strong); }
+
+/* messagesquare: 1 visual rules */
+.traineelist__messagesquare_002 { color: var(--tone-blue); }
+
+/* x: 2 visual rules */
+.traineelist__x_002 { color: var(--text-muted); }
+html[data-theme="light"] .traineelist__x_002 { color: var(--text-muted); }
+.traineelist__x_002:hover { @apply text-white; }
+html[data-theme="light"] .traineelist__x_002:hover { color: var(--text-strong); }
+
+/* group: 2 visual rules */
+.traineelist__group_040 { @apply space-y-5 p-6; }
+
+/* text: 4 visual rules */
+.traineelist__text_004 { @apply font-bold text-sm mb-1; color: var(--text-muted); }
+html[data-theme="light"] .traineelist__text_004 { color: var(--text-muted); }
+
+/* text: 3 visual rules */
+.traineelist__text_005 { @apply text-white font-bold text-lg; }
+html[data-theme="light"] .traineelist__text_005 { color: var(--text-strong); }
+
+/* label: 8 visual rules */
+.traineelist__label_019 { @apply font-normal text-xs rounded py-0.5 ml-2 px-2; color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .traineelist__label_019 { color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* text: 4 visual rules */
+.traineelist__text_006 { @apply font-bold text-sm mb-1.5; color: var(--text-muted); }
+html[data-theme="light"] .traineelist__text_006 { color: var(--text-muted); }
+
+/* select: 10 visual rules */
+.traineelist__select_003 { @apply cursor-pointer text-white rounded-lg border w-full p-3; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__select_003 { border-color: var(--border-color); background-color: var(--surface-muted); color: var(--text-strong); }
+.traineelist__select_003:focus { border-color: var(--tone-blue); }
+.traineelist__select_003:focus { @apply outline-none; }
+
+/* input: 10 visual rules */
+.traineelist__input_003 { @apply text-white rounded-lg text-sm border w-full p-3; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__input_003 { border-color: var(--border-color); background-color: var(--surface-muted); color: var(--text-strong); }
+.traineelist__input_003:focus { border-color: var(--tone-blue); }
+.traineelist__input_003:focus { @apply outline-none; }
+
+/* textarea: 12 visual rules */
+.traineelist__textarea_002 { @apply resize-none text-white rounded-lg text-sm border w-full h-32 p-3; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__textarea_002 { border-color: var(--border-color); background-color: var(--surface-muted); color: var(--text-strong); }
+.traineelist__textarea_002:focus { border-color: var(--tone-blue); }
+.traineelist__textarea_002:focus { @apply outline-none; }
+
+/* button: 11 visual rules */
+.traineelist__button_006 { @apply shadow-blue-900/50 transition text-white rounded-lg font-bold shadow-lg w-full mt-2 py-3; background-color: var(--action-primary); }
+html[data-theme="light"] .traineelist__button_006 { color: #fff; }
+.traineelist__button_006:hover { background-color: var(--action-primary-hover); }
+
+/* Conditional style traineelist__variant_001 */
+.traineelist__variant_001 { background-color: var(--tint-red); }
+html[data-theme="light"] .traineelist__variant_001 { background-color: var(--tint-red); }
+
+/* Conditional style traineelist__variant_002 */
+.traineelist__variant_002 { @apply opacity-70; background-color: var(--tint-red); }
+html[data-theme="light"] .traineelist__variant_002 { background-color: var(--tint-red); }
+
+/* Conditional style traineelist__variant_003 */
+.traineelist__variant_003 { background-color: var(--tint-blue); }
+html[data-theme="light"] .traineelist__variant_003 { background-color: var(--tint-blue); }
+
+/* Conditional style traineelist__variant_004 */
+.traineelist__variant_004:hover { background-color: var(--surface-raised); }
+
+/* Conditional style traineelist__variant_005 */
+.traineelist__variant_005 { color: var(--tone-red); }
+
+/* Conditional style traineelist__variant_006 */
+.traineelist__variant_006 { @apply text-white; }
+html[data-theme="light"] .traineelist__variant_006 { color: var(--text-strong); }
+
+/* Conditional style traineelist__variant_007 */
+.traineelist__variant_007 { @apply transition-colors cursor-pointer; }
+
+/* Conditional style traineelist__variant_008 */
+.traineelist__variant_008 { @apply justify-center items-center font-bold gap-2 flex py-4; }
+
+/* Conditional style traineelist__variant_009 */
+.traineelist__variant_009 { @apply rounded-full font-bold text-xs border px-3 py-1; }
+
+/* Conditional style traineelist__variant_010 */
+.traineelist__variant_010 { border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .traineelist__variant_010 { background-color: var(--tint-red); }
+
+/* Conditional style traineelist__variant_011 */
+.traineelist__variant_011 { border-color: var(--tint-border-blue); background-color: var(--tint-blue); color: var(--tone-blue); }
+html[data-theme="light"] .traineelist__variant_011 { background-color: var(--tint-blue); }
+
+/* Conditional style traineelist__variant_012 */
+.traineelist__variant_012 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-track); }
+html[data-theme="light"] .traineelist__variant_012 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+
+/* Conditional style traineelist__variant_013 */
+.traineelist__variant_013 { @apply font-medium py-4; }
+
+/* Conditional style traineelist__variant_014 */
+.traineelist__variant_014 { color: var(--tone-red); opacity: .75; }
+
+/* Conditional style traineelist__variant_015 */
+.traineelist__variant_015 { color: var(--text-primary); }
+html[data-theme="light"] .traineelist__variant_015 { color: var(--text-primary); }
+
+/* Conditional style traineelist__variant_016 */
+.traineelist__variant_016 { @apply justify-center items-center transition rounded-lg font-bold text-xs gap-1.5 flex-1 py-1.5 border flex; }
+
+/* Conditional style traineelist__variant_017 */
+.traineelist__variant_017 { border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .traineelist__variant_017 { background-color: var(--tint-red); }
+.traineelist__variant_017:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .traineelist__variant_017:hover { background-color: var(--tint-red); }
+
+/* Conditional style traineelist__variant_018 */
+.traineelist__variant_018 { border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__variant_018 { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-muted); }
+.traineelist__variant_018:hover { border-color: var(--tone-blue); }
+.traineelist__variant_018:hover { background-color: var(--tint-blue); }
+.traineelist__variant_018:hover { @apply text-white; }
+html[data-theme="light"] .traineelist__variant_018:hover { color: var(--text-strong); }
+
+/* Conditional style traineelist__variant_019 */
+.traineelist__variant_019 { @apply transition rounded-lg border p-2; }
+
+/* Conditional style traineelist__variant_020 */
+.traineelist__variant_020 { border-color: var(--tint-border-green); background-color: var(--tint-green); color: var(--tone-green); }
+html[data-theme="light"] .traineelist__variant_020 { background-color: var(--tint-green); color: var(--tone-green); }
+.traineelist__variant_020:hover { background-color: var(--tint-green); }
+html[data-theme="light"] .traineelist__variant_020:hover { background-color: var(--tint-green); }
+
+/* Conditional style traineelist__variant_021 */
+.traineelist__variant_021 { border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .traineelist__variant_021 { background-color: var(--tint-red); color: var(--tone-red); }
+.traineelist__variant_021:hover { background-color: var(--tint-red); }
+html[data-theme="light"] .traineelist__variant_021:hover { background-color: var(--tint-red); }
+
+/* Conditional style traineelist__variant_022 */
+.traineelist__variant_022 { @apply transition-colors cursor-pointer justify-center items-center rounded-xl shadow-sm border-2 shrink-0 flex-col flex h-24 w-24; }
+
+/* Conditional style traineelist__variant_023 */
+.traineelist__variant_023 { border-color: var(--tint-border-red); background-color: var(--tint-red); color: var(--tone-red); }
+html[data-theme="light"] .traineelist__variant_023 { background-color: var(--tint-red); }
+
+/* Conditional style traineelist__variant_024 */
+.traineelist__variant_024 { border-color: var(--border-strong); color: var(--text-muted); background-color: var(--surface-raised); }
+html[data-theme="light"] .traineelist__variant_024 { border-color: var(--border-color); color: var(--text-muted); background-color: var(--surface-muted); }
+.traineelist__variant_024:hover { @apply border-gray-400; }
+
+/* Conditional style traineelist__variant_025 */
+.traineelist__variant_025 { @apply justify-center items-center border-2 rounded flex h-6 w-6; }
+
+/* Conditional style traineelist__variant_026 */
+.traineelist__variant_026 { border-color: var(--tone-red); background-color: var(--action-danger); }
+
+/* Conditional style traineelist__variant_027 */
+.traineelist__variant_027 { @apply border-gray-500; }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .traineelist__button_002,
+  .traineelist__button_006,
+  .traineelist__variant_026
+):is(
+  .traineelist__button_002,
+  .traineelist__button_006,
+  .traineelist__input_001,
+  .traineelist__input_002,
+  .traineelist__input_003,
+  .traineelist__label_005,
+  .traineelist__label_009,
+  .traineelist__select_003,
+  .traineelist__text_001,
+  .traineelist__text_005,
+  .traineelist__textarea_001,
+  .traineelist__textarea_002,
+  .traineelist__title_001,
+  .traineelist__title_002,
+  .traineelist__title_004,
+  .traineelist__variant_006,
+  .traineelist__x_001
+) { color: #fff; }

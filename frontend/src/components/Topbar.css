@@ -1,2 +1,108 @@
-/* Topbar 컴포넌트 전용 CSS */
-.topbar { height: 60px; background: #fff; border-bottom: 1px solid #ddd; }
+@reference "tailwindcss";
+
+/* header: 13 visual rules */
+.topbar__shell { @apply justify-between items-center border-b right-0 left-0 top-0 fixed px-6 flex h-16 z-50; border-color: var(--border-color); background-color: var(--surface-background); }
+html[data-theme="light"] .topbar__shell { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* group: 4 visual rules */
+.topbar__main { @apply items-center min-w-0 gap-5 flex; }
+
+/* group: 6 visual rules */
+.topbar__brand { @apply items-center text-white font-bold text-xl gap-2 flex; }
+html[data-theme="light"] .topbar__brand { color: var(--text-strong); }
+
+/* group: 7 visual rules */
+.topbar__brand_mark { @apply justify-center items-center rounded-lg flex h-8 w-8; background-color: var(--action-primary); }
+
+/* bookopen: 1 visual rules */
+.topbar__strong_text { @apply text-white; }
+html[data-theme="light"] .topbar__strong_text { color: var(--text-strong); }
+
+/* nav: 4 visual rules */
+.topbar__navigation { @apply shrink-0 gap-0 flex h-16; }
+
+/* group: 3 visual rules */
+.topbar__actions { @apply items-center gap-4 flex; }
+
+/* form: 3 visual rules */
+.topbar__search_form { @apply items-center relative flex; }
+
+/* search: 3 visual rules */
+.topbar__search_icon { @apply absolute left-3; color: var(--text-muted); }
+html[data-theme="light"] .topbar__search_icon { color: var(--text-muted); }
+
+/* input: 12 visual rules */
+.topbar__search_input { @apply rounded-full text-white text-sm border py-1.5 pr-12 pl-9 w-64; border-color: var(--border-strong); background-color: var(--surface-raised); }
+html[data-theme="light"] .topbar__search_input { border-color: var(--border-color); background-color: var(--surface-muted); color: var(--text-strong); }
+.topbar__search_input:focus { border-color: var(--tone-blue); }
+.topbar__search_input:focus { @apply outline-none; }
+
+/* group: 7 visual rules */
+.topbar__search_shortcut { @apply items-center absolute right-3 text-xs gap-1 flex; color: var(--text-subtle); }
+html[data-theme="light"] .topbar__search_shortcut { color: var(--text-muted); }
+
+/* group: 12 visual rules */
+.topbar__search_results { @apply overflow-hidden rounded-lg shadow-xl absolute top-full right-0 border z-[60] left-0 mt-2; border-color: var(--border-strong); background-color: var(--surface-muted); }
+html[data-theme="light"] .topbar__search_results { border-color: var(--border-color); background-color: var(--surface-background); }
+
+/* button: 9 visual rules */
+.topbar__search_result { @apply justify-between items-center text-left text-sm w-full flex px-4 py-3; }
+.topbar__search_result:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .topbar__search_result:hover { background-color: var(--surface-muted); }
+
+/* label: 2 visual rules */
+.topbar__muted_label { @apply text-xs; color: var(--text-muted); }
+html[data-theme="light"] .topbar__muted_label { color: var(--text-muted); }
+
+/* button: 7 visual rules */
+.topbar__search_submit { @apply text-left text-sm w-full px-4 py-3; color: var(--text-primary); }
+html[data-theme="light"] .topbar__search_submit { color: var(--text-primary); }
+.topbar__search_submit:hover { background-color: var(--surface-raised); }
+html[data-theme="light"] .topbar__search_submit:hover { background-color: var(--surface-muted); }
+
+/* button: 13 visual rules */
+.topbar__theme_toggle { @apply items-center inline-flex rounded-lg font-bold text-xs border gap-2 px-3 py-2; border-color: var(--border-strong); color: var(--text-primary); background-color: var(--surface-muted); }
+html[data-theme="light"] .topbar__theme_toggle { border-color: var(--border-color); color: var(--text-primary); background-color: var(--surface-background); }
+.topbar__theme_toggle:hover { @apply text-white; }
+html[data-theme="light"] .topbar__theme_toggle:hover { color: var(--text-strong); }
+
+/* group: 6 visual rules */
+.topbar__cohort_control { @apply items-center border-l gap-2 pl-6 flex; border-color: var(--border-color); }
+html[data-theme="light"] .topbar__cohort_control { border-color: var(--border-color); }
+.topbar__cohort_metadata { @apply flex flex-col min-w-0; }
+.topbar__cohort_deadline { @apply whitespace-nowrap text-left text-[11px] font-semibold; color: var(--tone-blue); }
+.topbar__cohort_deadline:hover:not(:disabled) { @apply underline; }
+.topbar__cohort_deadline:disabled { color: var(--text-muted); }
+
+/* select: 11 visual rules */
+.topbar__cohort_select { @apply cursor-pointer rounded-lg text-white text-sm border py-1.5 px-3; border-color: var(--border-color); background-color: var(--surface-muted); }
+html[data-theme="light"] .topbar__cohort_select { border-color: var(--border-color); background-color: var(--surface-background); color: var(--text-strong); }
+.topbar__cohort_select:focus { border-color: var(--tone-blue); }
+.topbar__cohort_select:focus { @apply outline-none; }
+
+/* option: 1 visual rules */
+.topbar__new_cohort { color: var(--tone-blue); }
+
+/* Conditional style topbar__nav_link */
+.topbar__nav_link { @apply transition-colors text-[13px] border-b-2 font-bold px-2.5 py-4; }
+
+/* Conditional style topbar__nav_link_active */
+.topbar__nav_link_active { border-color: var(--tone-blue); color: var(--tone-blue); }
+
+/* Conditional style topbar__nav_link_inactive */
+.topbar__nav_link_inactive { @apply border-transparent; color: var(--text-muted); }
+html[data-theme="light"] .topbar__nav_link_inactive { color: var(--text-muted); }
+.topbar__nav_link_inactive:hover { color: var(--text-primary); }
+html[data-theme="light"] .topbar__nav_link_inactive:hover { color: var(--text-primary); }
+
+/* White labels on solid action colors */
+html[data-theme="light"] :is(
+  .topbar__brand_mark
+):is(
+  .topbar__brand,
+  .topbar__cohort_select,
+  .topbar__search_input,
+  .topbar__strong_text
+) { color: #fff; }
+
+html[data-theme="light"] .topbar__brand_mark .topbar__strong_text { color: #fff; }
