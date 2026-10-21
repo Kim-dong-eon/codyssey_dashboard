@@ -1,0 +1,34 @@
+# Local credentials and private roster exports
+.env
+.env.*
+!.env.example
+private_exports/
+roster*.json
+database-*.json
+
+# Local databases, dumps, and crawler scratch files
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.dump
+*.bak
+*.backup
+*.csv
+temp_data/
+app/temp_data/
+
+# Python and deployment artifacts
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vercel/
+*.log
+
+# Local editor/system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

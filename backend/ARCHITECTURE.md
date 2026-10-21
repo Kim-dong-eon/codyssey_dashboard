@@ -3,7 +3,7 @@
 ## 책임 구분
 
 - `app/main.py`: FastAPI 앱, CORS, 수명 주기, 라우터 등록만 담당합니다.
-- `app/migrations.py`: 테이블 생성과 기존 데이터 호환 마이그레이션을 담당합니다. 현재는 API 시작 시 `initialize_schema()`가 실행됩니다.
+- `app/migrations.py`: 테이블 생성과 기존 데이터 호환 마이그레이션을 담당합니다. 로컬/일반 서버는 API 시작 시 `initialize_schema()`를 실행하고, Vercel에서는 요청 시작 때 이를 생략하므로 배포 전 별도로 실행합니다.
 - `app/services/crawl.py`: 로그인, 미션 페이지 요청 및 파싱, 기수별 실행 순서를 담당합니다.
 - `app/services/crawl_persistence.py`: 크롤링 결과와 교육생을 이메일로 매칭하고 진도·팀 프로젝트를 DB에 저장합니다. 기존 행을 기수당 한 번 읽어 반복 조회를 줄이며, 팀·개인 미션을 **기수당 한 트랜잭션**으로 커밋합니다.
 - `app/services/progress_state.py`: 진도 기록에서 현재·과거 단계와 완료 수를 계산합니다. 교육생 상세 화면은 기수 전체 기록 대신 대상 교육생 기록과 기수별 미션 종류만 읽습니다.

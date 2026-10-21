@@ -1,0 +1,20 @@
+# Local configuration; keep the documented template
+.env
+.env.*
+!.env.example
+
+# Install, build, deployment, and log output
+node_modules/
+dist/
+.vite/
+.vercel/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local editor/system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

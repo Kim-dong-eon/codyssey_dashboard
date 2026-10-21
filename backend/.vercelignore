@@ -2,6 +2,9 @@
 .env
 .env.*
 private_exports/
+roster*.json
+database-*.json
+*.csv
 *.db
 *.sqlite
 *.sqlite3

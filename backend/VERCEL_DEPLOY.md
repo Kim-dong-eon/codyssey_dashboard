@@ -1,10 +1,10 @@
 # Vercel 배포 및 초기 데이터 이관
 
-이 문서는 백엔드를 별도 Vercel 프로젝트로 배포할 때의 절차입니다. Vercel 프로젝트의 **Root Directory를 `backend`**로 지정합니다. `index.py`가 FastAPI 앱을 노출하고, `vercel.json`이 매일 **09:00 KST(00:00 UTC)** `/api/cron/crawl`을 호출합니다. 프론트엔드는 Root Directory `frontend`의 별도 프로젝트로 배포하고 `VITE_API_BASE_URL=https://<백엔드 도메인>/api`를 빌드 환경 변수로 설정합니다. `frontend/vercel.json`은 React Router의 직접 접속 경로를 `index.html`로 연결합니다.
+이 문서는 백엔드를 별도 Vercel 프로젝트로 배포할 때의 절차입니다. **현재 단일 Git 저장소**를 연결한다면 백엔드 프로젝트의 Root Directory를 `backend`, 프론트엔드 프로젝트의 Root Directory를 `frontend`로 지정합니다. 두 폴더를 **서로 다른 Git 저장소로 분리한 뒤** 연결한다면 각 Vercel 프로젝트의 Root Directory는 해당 저장소의 루트(`.`)입니다. 두 경우 모두 `index.py`가 FastAPI 앱을 노출하고, 백엔드 `vercel.json`이 매일 **09:00 KST(00:00 UTC)** `/api/cron/crawl`을 호출합니다. 프론트엔드에는 `VITE_API_BASE_URL=https://<백엔드 도메인>/api`를 빌드 환경 변수로 설정합니다. 프론트엔드 `vercel.json`은 React Router의 직접 접속 경로를 `index.html`로 연결합니다.
 
 ## Vercel에 올릴 파일과 초기 데이터
 
-GitHub에는 애플리케이션 코드와 배포 설정만 푸시합니다. 백엔드의 `index.py`, `vercel.json`, `requirements.txt`, `app/migrations.py`, `app/trainee_transfer.py`와 나머지 앱 코드, 프론트엔드 코드가 여기에 해당합니다. `backend/.env`, `backend/private_exports/`의 roster JSON과 전체 DB 스냅샷은 **GitHub나 Vercel 함수 번들에 넣지 않습니다**.
+GitHub에는 애플리케이션 코드와 배포 설정만 푸시합니다. 백엔드의 `index.py`, `vercel.json`, `requirements.txt`, `app/migrations.py`, `app/trainee_transfer.py`와 나머지 앱 코드를 백엔드 저장소에 두고, 프론트엔드 코드는 별도 저장소에 둡니다. `.env`와 `private_exports/`의 roster JSON·전체 DB 스냅샷은 **GitHub나 Vercel 함수 번들에 넣지 않습니다**. 현재 단일 저장소에서는 이 두 경로 앞에 `backend/`가 붙습니다.
 
 대상 DB는 Vercel 밖의 지속성 있는 DB로 준비하고 연결 주소를 Vercel의 `DATABASE_URL` 환경 변수에 설정합니다. 초기 데이터는 로컬 컴퓨터에서 `TARGET_DATABASE_URL`로 그 대상 DB에 직접 연결해 **한 번 이관**합니다. 이때 이관할 데이터는 교육생 155명과 외래 키에 필요한 기수 2건·팀 5건뿐입니다. JSON 파일 자체를 Vercel에 업로드하는 절차는 없습니다.
 
@@ -27,11 +27,11 @@ GitHub에는 애플리케이션 코드와 배포 설정만 푸시합니다. 백�
 
 Vercel의 로컬 파일 시스템을 DB로 사용하지 마세요. `DATABASE_URL`이 빠지면 Vercel 앱은 시작 오류를 내도록 구성했습니다.
 
-로컬 CLI 배포 시 `backend/.vercelignore`가 `.env`, `private_exports`, 로컬 DB, `venv`, 임시 데이터와 테스트를 업로드 대상에서 제외합니다. Git 기반 배포에서는 `.gitignore`와 Git 추적 상태도 함께 확인하세요. 실제 배포 전 `git ls-files backend/.env backend/private_exports backend/venv backend/codyssey.db`가 빈 결과인지 점검합니다.
+로컬 CLI 배포 시 `.vercelignore`가 `.env`, `private_exports`, 로컬 DB, `venv`, 임시 데이터와 테스트를 업로드 대상에서 제외합니다. Git 기반 배포에서는 `.gitignore`와 Git 추적 상태도 함께 확인하세요. 현재 단일 저장소에서는 `git ls-files backend/.env backend/private_exports backend/venv backend/codyssey.db`가 빈 결과인지 점검하고, 분리된 백엔드 저장소에서는 같은 경로에서 `backend/` 접두사를 뺀 뒤 확인합니다.
 
 ## 첫 배포 전 DB 준비
 
-다음 명령은 프로젝트의 Python 3.12 환경에서 **로컬 컴퓨터에서 한 번** 실행합니다. 대상 DB는 새로 만든 빈 DB여야 합니다. 자격 증명이나 출력 JSON은 Git에 올리지 마세요.
+다음 명령은 프로젝트의 Python 3.12 환경에서 **로컬 컴퓨터에서 한 번** 실행합니다. 예시 경로 `C:\codyssey\backend`는 현재 단일 저장소 기준이며, 분리 후에는 내려받은 백엔드 저장소의 루트로 이동해 실행합니다. 대상 DB는 새로 만든 빈 DB여야 합니다. 자격 증명이나 출력 JSON은 Git에 올리지 마세요.
 
 ```powershell
 cd C:\codyssey\backend
@@ -64,13 +64,15 @@ PostgreSQL 대상에서는 원래 ID를 지정해 넣은 뒤 기수·팀·교육
 
 Vercel 대상 DB에 적용할 파일은 `backend/private_exports/roster-trainees-2026-10-20.json`입니다. 기수 2건, 팀 5건, 교육생 155건만 있으며 SHA-256은 `1E58FCB436432EA4C553C6D75E29C6758B0EC9D1EF19A489EFB33C3C85AD7C3E`입니다. 기존 로컬 추출본에서 플래그를 제외해 만들었습니다. 새 빈 SQLite DB에 미리보기·반영·재반영(추가 0건)을 확인했습니다. 이 파일은 Git에서 제외되며, **아직 Vercel 대상 DB에는 반영하지 않았습니다.**
 
+이 파일은 원본 작업자의 로컬에만 있으며 GitHub에서 백엔드 저장소를 새로 내려받아도 따라오지 않습니다. 분리된 저장소에서는 경로가 `private_exports/roster-trainees-2026-10-20.json`이 됩니다. 이관 담당자는 보호된 경로에 파일을 별도로 받아야 합니다.
+
 기수의 **기한은 `cohorts.end_date`**입니다. 추출 당시 기수 ID 1과 ID 2 모두 시작일 `2026-10-01`, 기한 `2026-12-31`로 저장되어 있으며, 이 날짜들은 `roster` JSON의 각 기수 항목에도 들어 있습니다.
 
 이전의 `roster-2026-10-20.json`에는 상태 플래그도 있지만 새 이관 코드는 그 구버전 파일을 읽더라도 플래그를 반영하지 않습니다. `backend/private_exports/database-2026-10-20.json`은 14개 테이블, 총 1,448행의 별도 보관용 스냅샷이며 자동 복원 도구가 아닙니다. 두 기존 파일도 Git에서 제외하고 초기 교육생 이관에는 사용하지 않습니다.
 
 ## 배포 QA
 
-1. Vercel 백엔드 프로젝트의 Root Directory가 `backend`인지, Production 환경 변수가 모두 지정됐는지 확인합니다.
+1. Vercel 백엔드 프로젝트의 Root Directory가 단일 저장소에서는 `backend`, 분리된 백엔드 저장소에서는 루트(`.`)인지, Production 환경 변수가 모두 지정됐는지 확인합니다.
 2. 배포 후 `/`가 `status: ok`를 반환하고 `/api/cohorts/`에서 이관한 기수가 조회되는지 확인합니다.
 3. 인증이 없는 `/api/cron/crawl` 호출이 401인지 확인합니다. `CRON_SECRET` 누락은 503입니다.
 4. 첫 Cron 실행 전 교육생 수와 팀 배정 수를 확인합니다. 첫 크롤링 후 미션별 진도와 마지막 업데이트 시간이 생겼는지 확인합니다.
